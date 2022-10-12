@@ -8,6 +8,7 @@
 
 #include <string>
 #include <list>
+#include <ostream>
 
 class Contact {
 private:
@@ -16,25 +17,23 @@ private:
     //tm* dateCreation;
     //std::list<Interaction> listeInteractions;
 public:
-    Contact();
+    void setPrenom(std::string prenom);
+    std::string getPrenom();
 
-    ~Contact();
+    void setNom(std::string nom);
+    std::string getNom();
 
-    const std::string &getNom() const;
+    void setEntreprise(std::string entreprise);
+    std::string getEntreprise();
 
-    void setNom(const std::string &nom);
+    void setMail(std::string mail);
+    std::string getMail();
 
-    const std::string &getPrenom() const;
+    friend std::ostream &operator<<(std::ostream &os, const Contact &contact);
 
-    void setPrenom(const std::string &prenom);
-
-    const std::string &getEntreprise() const;
-
-    void setEntreprise(const std::string &entreprise);
-
-    const std::string &getMail() const;
-
-    void setMail(const std::string &mail);
+    void setTel(std::list<int> tel);
+    std::list<int> getTel();
+    std::string telToString() const;
 };
 
 

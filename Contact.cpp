@@ -4,43 +4,50 @@
 
 #include "Contact.h"
 
-const std::string &Contact::getNom() const {
-    return nom;
+void Contact::setPrenom(std::string prenom) {
+    this->prenom = prenom;
+}
+std::string Contact::getPrenom() {
+    return this->prenom;
 }
 
-void Contact::setNom(const std::string &nom) {
-    Contact::nom = nom;
+void Contact::setNom(std::string nom) {
+    this->nom = nom;
+}
+std::string Contact::getNom() {
+    return this->nom;
 }
 
-const std::string &Contact::getPrenom() const {
-    return prenom;
+void Contact::setEntreprise(std::string entreprise) {
+    this->entreprise = entreprise;
+}
+std::string Contact::getEntreprise() {
+    return this->entreprise;
 }
 
-void Contact::setPrenom(const std::string &prenom) {
-    Contact::prenom = prenom;
+void Contact::setMail(std::string mail) {
+    this->mail = mail;
+}
+std::string Contact::getMail() {
+    return this->mail;
 }
 
-const std::string &Contact::getEntreprise() const {
-    return entreprise;
+void Contact::setTel(std::list<int> tel){
+    this->tel = tel;
+}
+std::list<int> Contact::getTel(){
+    return this->tel;
+}
+std::string Contact::telToString() const {
+    std::string res = "";
+    for(auto i:tel){
+        res+=std::to_string(i);
+    }
+    return res;
 }
 
-void Contact::setEntreprise(const std::string &entreprise) {
-    Contact::entreprise = entreprise;
-}
-
-const std::string &Contact::getMail() const {
-    return mail;
-}
-
-void Contact::setMail(const std::string &mail) {
-    Contact::mail = mail;
-}
-
-Contact::Contact() {
-    //init dateCreation
-}
-
-Contact::~Contact() {
-    //free dateCreation
-    //clear listInteraction
+std::ostream &operator<<(std::ostream &os, const Contact &contact) {
+    os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise << "\nmail: "
+       << contact.mail << "\ntel: " << contact.telToString();
+    return os;
 }

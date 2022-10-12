@@ -1,10 +1,18 @@
 #include <QApplication>
 #include <QPushButton>
+#include <iostream>
+#include "Contact.h"
 
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
-    QPushButton button("Hello world!", nullptr);
-    button.resize(200, 100);
-    button.show();
-    return QApplication::exec();
+    Contact c;
+
+    c.setPrenom("Yaon");
+    c.setNom("Dusoleil");
+    c.setMail("y.dusoleil@outlook.com");
+    c.setEntreprise("Dassault Nuclear");
+    c.setTel({0,6,7,6,5,7,7,8,3,6});
+
+    std::cout << c << std::endl;
+
+    return 0;
 }
