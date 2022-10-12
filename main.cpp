@@ -1,8 +1,8 @@
 #include <QApplication>
 #include <QPushButton>
 #include <iostream>
-#include "Contact.h"
-#include "Interaction.h"
+#include "Contact/Contact.h"
+#include "Interaction/Interaction.h"
 
 int main(int argc, char *argv[]) {
     Contact c;

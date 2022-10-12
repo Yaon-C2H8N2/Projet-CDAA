@@ -9,7 +9,7 @@
 #include <string>
 #include <list>
 #include <ostream>
-#include "Interaction.h"
+#include "../Interaction/Interaction.h"
 
 using namespace std;
 
