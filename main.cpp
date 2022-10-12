@@ -12,14 +12,10 @@ int main(int argc, char *argv[]) {
     c.setEntreprise("Dassault Nuclear");
     c.setTel({0, 6, 7, 6, 5, 7, 7, 8, 3, 6});
 
-    cout << c << endl;
-
-    auto* i = new Interaction();
+    auto *i = new Interaction();
     i->setContenu("@todo rappel @date 12/10/2023");
     c.addInteraction(*i);
     free(i);
-
-    cout << c << endl;
 
     i = new Interaction();
     i->setContenu("discussion afin de fixer un rendez-vous");
