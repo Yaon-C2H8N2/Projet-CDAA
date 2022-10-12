@@ -1,8 +1,8 @@
 #include <QApplication>
-#include <QPushButton>
 #include <iostream>
 #include "src/Contact/Contact.h"
 #include "src/Interaction/Interaction.h"
+#include "src/GestionContact/GestionContact.h"
 
 int main(int argc, char *argv[]) {
     Contact c;
@@ -22,7 +22,24 @@ int main(int argc, char *argv[]) {
     c.addInteraction(*i);
     free(i);
 
-    cout << c << endl;
+    Contact c2;
+    c2.setNom("Gallois");
+    c2.setPrenom("Mélissandre");
+    c2.setMail("chocoMéli21@gmail.com");
+    c2.setEntreprise("none");
+    c2.setTel({0, 7, 8, 3, 7, 0, 2, 1, 9, 7});
+
+    GestionContact gc;
+    gc.addContact(c);
+    gc.addContact(c2);
+
+    cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
+
+    gc.removeContact(c);
+
+    cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
+
+    cout << gc.getHistoriqueModifs() << endl;
 
     return 0;
 }

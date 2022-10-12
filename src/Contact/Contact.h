@@ -52,6 +52,10 @@ public:
     string listInteractionToString() const;
 
     friend ostream &operator<<(ostream &os, const Contact &contact);
+
+    bool operator==(const Contact &rhs) const;
+
+    bool operator!=(const Contact &rhs) const;
 };
 
 

@@ -5,6 +5,7 @@
 #ifndef PROJET_CDAA_GESTIONCONTACT_H
 #define PROJET_CDAA_GESTIONCONTACT_H
 
+#include <ostream>
 #include "../Contact/Contact.h"
 
 using namespace std;
@@ -13,12 +14,21 @@ class GestionContact {
 private:
     list<Contact> listeContacts;
     list<string> historiqueModifs;
-public:
-    void addContact(Contact c);
 
-    void removeContact(Contact c);
+    void logModif(string contenu);
+
+public:
+    void addContact(Contact &c);
+
+    void removeContact(Contact &c);
+
+    void modifContact(Contact &c);
+
+    int getNbContacts();
 
     string getHistoriqueModifs();
+
+    friend ostream &operator<<(ostream &os, const GestionContact &contact);
 };
 
 

@@ -91,3 +91,11 @@ ostream &operator<<(ostream &os, const Contact &contact) {
        << contact.listInteractionToString();
     return os;
 }
+
+bool Contact::operator==(const Contact &rhs) const {
+    return nom == rhs.nom && prenom == rhs.prenom && entreprise == rhs.entreprise && mail == rhs.mail;
+}
+
+bool Contact::operator!=(const Contact &rhs) const {
+    return &rhs != this;
+}
