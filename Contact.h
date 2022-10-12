@@ -9,31 +9,49 @@
 #include <string>
 #include <list>
 #include <ostream>
+#include "Interaction.h"
+
+using namespace std;
 
 class Contact {
 private:
-    std::string nom, prenom, entreprise, mail;
-    std::list<int> tel;
-    //tm* dateCreation;
-    //std::list<Interaction> listeInteractions;
+    string nom, prenom, entreprise, mail;
+    list<int> tel;
+    tm *dateCreation;
+    list<Interaction> listeInteractions;
+
+    string telToString() const;
+
 public:
-    void setPrenom(std::string prenom);
-    std::string getPrenom();
+    Contact();
 
-    void setNom(std::string nom);
-    std::string getNom();
+    ~Contact();
 
-    void setEntreprise(std::string entreprise);
-    std::string getEntreprise();
+    void setPrenom(string prenom);
 
-    void setMail(std::string mail);
-    std::string getMail();
+    string getPrenom();
 
-    friend std::ostream &operator<<(std::ostream &os, const Contact &contact);
+    void setNom(string nom);
 
-    void setTel(std::list<int> tel);
-    std::list<int> getTel();
-    std::string telToString() const;
+    string getNom();
+
+    void setEntreprise(string entreprise);
+
+    string getEntreprise();
+
+    void setMail(string mail);
+
+    string getMail();
+
+    void setTel(list<int> tel);
+
+    list<int> getTel();
+
+    void addInteraction(Interaction i);
+
+    string listInteractionToString() const;
+
+    friend ostream &operator<<(ostream &os, const Contact &contact);
 };
 
 

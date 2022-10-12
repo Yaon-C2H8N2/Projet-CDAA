@@ -13,7 +13,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(Projet_CDAA main.cpp Contact.cpp Contact.h)
+add_executable(Projet_CDAA main.cpp Contact.cpp Contact.h Interaction.cpp Interaction.h)
 target_link_libraries(Projet_CDAA
         Qt5::Core
         Qt5::Gui

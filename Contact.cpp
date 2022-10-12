@@ -4,50 +4,90 @@
 
 #include "Contact.h"
 
-void Contact::setPrenom(std::string prenom) {
+using namespace std;
+
+Contact::Contact() {
+    time_t t = time(0);
+    dateCreation = localtime(&t);
+}
+
+Contact::~Contact() {
+}
+
+void Contact::setPrenom(string prenom) {
     this->prenom = prenom;
 }
-std::string Contact::getPrenom() {
+
+string Contact::getPrenom() {
     return this->prenom;
 }
 
-void Contact::setNom(std::string nom) {
+void Contact::setNom(string nom) {
     this->nom = nom;
 }
-std::string Contact::getNom() {
+
+string Contact::getNom() {
     return this->nom;
 }
 
-void Contact::setEntreprise(std::string entreprise) {
+void Contact::setEntreprise(string entreprise) {
     this->entreprise = entreprise;
 }
-std::string Contact::getEntreprise() {
+
+string Contact::getEntreprise() {
     return this->entreprise;
 }
 
-void Contact::setMail(std::string mail) {
+void Contact::setMail(string mail) {
     this->mail = mail;
 }
-std::string Contact::getMail() {
+
+string Contact::getMail() {
     return this->mail;
 }
 
-void Contact::setTel(std::list<int> tel){
+void Contact::setTel(list<int> tel) {
     this->tel = tel;
 }
-std::list<int> Contact::getTel(){
+
+list<int> Contact::getTel() {
     return this->tel;
 }
-std::string Contact::telToString() const {
-    std::string res = "";
-    for(auto i:tel){
-        res+=std::to_string(i);
+
+string Contact::telToString() const {
+    string res = "";
+    int cpt = 0;
+    for (auto i: tel) {
+        if (cpt == 2) {
+            res += " ";
+            cpt = 0;
+        }
+        res += to_string(i);
+        cpt++;
     }
     return res;
 }
 
-std::ostream &operator<<(std::ostream &os, const Contact &contact) {
-    os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise << "\nmail: "
-       << contact.mail << "\ntel: " << contact.telToString();
+void Contact::addInteraction(Interaction i) {
+    this->listeInteractions.push_back(i);
+}
+
+string Contact::listInteractionToString() const {
+    string res = "";
+    int cpt = 0;
+    for (auto i: this->listeInteractions) {
+        cpt++;
+        res += "\n========== Interaction n°" + to_string(cpt) + " ==========\n";
+        res += "Contenu : " + i.getContenu() + "\n";
+        res += "Date interaction : " + i.dateToString() + "\n";
+    }
+    return res;
+}
+
+ostream &operator<<(ostream &os, const Contact &contact) {
+    os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise
+       << "\nmail: "
+       << contact.mail << "\ntel: " << contact.telToString() << "\nInteractions :\n"
+       << contact.listInteractionToString();
     return os;
 }
