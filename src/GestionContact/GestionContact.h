@@ -26,6 +26,8 @@ public:
 
     int getNbContacts();
 
+    list<Contact *> getContact(string name);
+
     string getHistoriqueModifs();
 
     friend ostream &operator<<(ostream &os, const GestionContact &contact);
