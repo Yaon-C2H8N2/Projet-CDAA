@@ -15,14 +15,10 @@ using namespace std;
 
 class Contact {
 private:
-    string nom, prenom, entreprise, mail;
-    list<int> tel;
-    tm *dateCreation;
+    string nom, prenom, entreprise, mail, tel;
     list<Interaction> listeInteractions;
-
-    string telToString() const;
-
 public:
+    tm *dateCreation;
     Contact();
 
     ~Contact();
@@ -43,9 +39,9 @@ public:
 
     string getMail();
 
-    void setTel(list<int> tel);
+    void setTel(string tel);
 
-    list<int> getTel();
+    string getTel();
 
     void addInteraction(Interaction i);
 

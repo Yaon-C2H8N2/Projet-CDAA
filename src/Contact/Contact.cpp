@@ -46,26 +46,12 @@ string Contact::getMail() {
     return this->mail;
 }
 
-void Contact::setTel(list<int> tel) {
+void Contact::setTel(string tel) {
     this->tel = tel;
 }
 
-list<int> Contact::getTel() {
+string Contact::getTel() {
     return this->tel;
-}
-
-string Contact::telToString() const {
-    string res = "";
-    int cpt = 0;
-    for (auto i: tel) {
-        if (cpt == 2) {
-            res += " ";
-            cpt = 0;
-        }
-        res += to_string(i);
-        cpt++;
-    }
-    return res;
 }
 
 void Contact::addInteraction(Interaction i) {
@@ -87,15 +73,15 @@ string Contact::listInteractionToString() const {
 ostream &operator<<(ostream &os, const Contact &contact) {
     os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise
        << "\nmail: "
-       << contact.mail << "\ntel: " << contact.telToString() << "\nInteractions :\n"
+       << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n"
        << contact.listInteractionToString();
     return os;
 }
 
 bool Contact::operator==(const Contact &rhs) const {
-    return nom == rhs.nom && prenom == rhs.prenom && entreprise == rhs.entreprise && mail == rhs.mail;
+    //return this->dateCreation == rhs.dateCreation;
 }
 
 bool Contact::operator!=(const Contact &rhs) const {
-    return &rhs != this;
+    //return this->dateCreation != rhs.dateCreation;
 }

@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     c.setPrenom("Yoan");
     c.setMail("y.dusoleil@outlook.com");
     c.setEntreprise("none");
-    c.setTel({0, 6, 7, 6, 5, 7, 7, 8, 3, 6});
+    c.setTel("06 76 57 78 36");
 
     auto *i = new Interaction();
     i->setContenu("@todo rappel @date 12/10/2023");
@@ -22,16 +22,22 @@ int main(int argc, char *argv[]) {
     c.addInteraction(*i);
     free(i);
 
-    Contact c2;
-    c2.setNom("Gallois");
-    c2.setPrenom("Mélissandre");
-    c2.setMail("chocoMéli21@gmail.com");
-    c2.setEntreprise("none");
-    c2.setTel({0, 7, 8, 3, 7, 0, 2, 1, 9, 7});
+    cout << c.dateCreation << endl;
+
+    sleep(2);
+
+    Contact *c2 = new Contact();
+    c2->setNom("Gallois");
+    c2->setPrenom("Mélissandre");
+    c2->setMail("chocoMéli21@gmail.com");
+    c2->setEntreprise("none");
+    c2->setTel("07 83 70 21 97");
+
+    cout << c2->dateCreation << endl;
 
     GestionContact gc;
     gc.addContact(c);
-    gc.addContact(c2);
+    gc.addContact(*c2);
 
     cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
 
