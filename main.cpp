@@ -43,5 +43,7 @@ int main(int argc, char *argv[]) {
 
     cout << gc.getHistoriqueModifs() << endl;
 
+    free(c);
+    free(c2);
     return 0;
 }
