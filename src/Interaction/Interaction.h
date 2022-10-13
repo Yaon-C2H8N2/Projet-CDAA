@@ -14,17 +14,18 @@ using namespace std;
 class Interaction {
 private:
     string contenu;
-    tm *dateInteraction;
+    tm dateInteraction;
+
+    string dateToString() const;
+
 public:
-    Interaction();
-
-    ~Interaction();
-
     void setContenu(string contenu);
 
     string getContenu();
 
-    string dateToString() const;
+    void setDateInteraction(tm dateInteraction);
+
+    tm *getDateInteraction();
 
     friend ostream &operator<<(ostream &os, const Interaction &interaction);
 };

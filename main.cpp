@@ -5,6 +5,7 @@
 #include "src/GestionContact/GestionContact.h"
 
 int main(int argc, char *argv[]) {
+    GestionContact gc;
     Contact *c = new Contact();
     c->setNom("Dusoleil");
     c->setPrenom("Yoan");
@@ -17,16 +18,22 @@ int main(int argc, char *argv[]) {
 
     auto *i = new Interaction();
     i->setContenu("@todo rappel @date 12/10/2023");
+    t = time(0);
+    date = *localtime(&t);
+    i->setDateInteraction(date);
     c->addInteraction(*i);
     free(i);
 
     i = new Interaction();
     i->setContenu("discussion afin de fixer un rendez-vous");
+    t = time(0);
+    date = *localtime(&t);
+    i->setDateInteraction(date);
     c->addInteraction(*i);
     free(i);
 
     cout << "id " << c->getPrenom() << " : " << mktime(c->getDateCreation()) << endl;
-
+    gc.addContact(*c);
     sleep(2);
 
     Contact *c2 = new Contact();
@@ -40,11 +47,10 @@ int main(int argc, char *argv[]) {
     c2->setDateCreation(date);
 
     cout << "id " << c2->getPrenom() << " : " << mktime(c2->getDateCreation()) << endl;
+    gc.addContact(*c2);
 
-    GestionContact gc;
-    gc.addContact(c);
-    gc.addContact(c2);
-
+    cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
+    gc.removeContact(*c);
     cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
 
     cout << gc.getHistoriqueModifs() << endl;

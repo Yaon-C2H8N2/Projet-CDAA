@@ -6,12 +6,6 @@
 
 using namespace std;
 
-Contact::Contact() {
-}
-
-Contact::~Contact() {
-}
-
 void Contact::setPrenom(string prenom) {
     this->prenom = prenom;
 }
@@ -64,22 +58,23 @@ void Contact::addInteraction(Interaction i) {
     this->listeInteractions.push_back(i);
 }
 
-string Contact::listInteractionToString() const {
-    string res = "";
-    int cpt = 0;
-    for (auto i: this->listeInteractions) {
-        cpt++;
-        res += "\n========== Interaction n°" + to_string(cpt) + " ==========\n";
-        res += "Contenu : " + i.getContenu() + "\n";
-        res += "Date interaction : " + i.dateToString() + "\n";
-    }
-    return res;
-}
-
 ostream &operator<<(ostream &os, const Contact &contact) {
     os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise
        << "\nmail: "
-       << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n"
-       << contact.listInteractionToString();
+       << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n";
+    int cpt = 0;
+    for (auto i: contact.listeInteractions) {
+        cpt++;
+        os << "========== Interaction n°" + to_string(cpt) + " ==========\n";
+        os << i << endl;
+    }
     return os;
+}
+
+bool Contact::operator==(Contact rhs) {
+    return mktime(&this->dateCreation) == mktime(&rhs.dateCreation);
+}
+
+bool Contact::operator!=(Contact rhs) {
+    return !(rhs == *this);
 }

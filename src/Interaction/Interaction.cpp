@@ -7,14 +7,6 @@
 
 using namespace std;
 
-Interaction::Interaction() {
-    time_t t = time(0);
-    dateInteraction = localtime(&t);
-}
-
-Interaction::~Interaction() {
-}
-
 void Interaction::setContenu(string contenu) {
     this->contenu = contenu;
 }
@@ -23,17 +15,25 @@ string Interaction::getContenu() {
     return this->contenu;
 }
 
+void Interaction::setDateInteraction(tm dateInteraction) {
+    this->dateInteraction = dateInteraction;
+}
+
+tm *Interaction::getDateInteraction() {
+    return &this->dateInteraction;
+}
+
 string Interaction::dateToString() const {
     string res = "";
-    res += to_string(this->dateInteraction->tm_mday);
+    res += to_string(this->dateInteraction.tm_mday);
     res += "/";
-    res += to_string(1 + this->dateInteraction->tm_mon);
+    res += to_string(1 + this->dateInteraction.tm_mon);
     res += "/";
-    res += to_string(1900 + this->dateInteraction->tm_year);
+    res += to_string(1900 + this->dateInteraction.tm_year);
     return res;
 }
 
 ostream &operator<<(ostream &os, const Interaction &interaction) {
-    os << "contenu: " << interaction.contenu << "\ndateInteraction: " << interaction.dateToString();
+    os << "contenu: " << interaction.contenu << "\ndateInteraction: " << interaction.dateToString() << endl;
     return os;
 }

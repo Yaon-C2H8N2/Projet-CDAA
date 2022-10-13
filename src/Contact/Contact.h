@@ -19,10 +19,6 @@ private:
     list<Interaction> listeInteractions;
     tm dateCreation;
 public:
-    Contact();
-
-    ~Contact();
-
     void setPrenom(string prenom);
 
     string getPrenom();
@@ -49,7 +45,9 @@ public:
 
     void addInteraction(Interaction i);
 
-    string listInteractionToString() const;
+    bool operator==(Contact rhs);
+
+    bool operator!=(Contact rhs);
 
     friend ostream &operator<<(ostream &os, const Contact &contact);
 };
