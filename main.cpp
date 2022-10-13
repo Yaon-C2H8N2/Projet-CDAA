@@ -5,24 +5,24 @@
 #include "src/GestionContact/GestionContact.h"
 
 int main(int argc, char *argv[]) {
-    Contact c;
-    c.setNom("Dusoleil");
-    c.setPrenom("Yoan");
-    c.setMail("y.dusoleil@outlook.com");
-    c.setEntreprise("none");
-    c.setTel("06 76 57 78 36");
+    Contact *c = new Contact();
+    c->setNom("Dusoleil");
+    c->setPrenom("Yoan");
+    c->setMail("y.dusoleil@outlook.com");
+    c->setEntreprise("none");
+    c->setTel("06 76 57 78 36");
 
     auto *i = new Interaction();
     i->setContenu("@todo rappel @date 12/10/2023");
-    c.addInteraction(*i);
+    c->addInteraction(*i);
     free(i);
 
     i = new Interaction();
     i->setContenu("discussion afin de fixer un rendez-vous");
-    c.addInteraction(*i);
+    c->addInteraction(*i);
     free(i);
 
-    cout << c.dateCreation << endl;
+    cout << "id " << c->getPrenom() << " : " << mktime(&c->dateCreation) << endl;
 
     sleep(2);
 
@@ -33,15 +33,11 @@ int main(int argc, char *argv[]) {
     c2->setEntreprise("none");
     c2->setTel("07 83 70 21 97");
 
-    cout << c2->dateCreation << endl;
+    cout << "id " << c2->getPrenom() << " : " << mktime(&c2->dateCreation) << endl;
 
     GestionContact gc;
     gc.addContact(c);
-    gc.addContact(*c2);
-
-    cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
-
-    gc.removeContact(c);
+    gc.addContact(c2);
 
     cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
 

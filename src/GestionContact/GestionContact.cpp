@@ -16,14 +16,9 @@ void GestionContact::logModif(string contenu) {
     this->historiqueModifs.push_back(res);
 }
 
-void GestionContact::addContact(Contact &c) {
+void GestionContact::addContact(Contact *c) {
     this->listeContacts.push_back(c);
-    logModif("ajout " + c.getNom() + " " + c.getPrenom());
-}
-
-void GestionContact::removeContact(Contact &c) {
-    this->listeContacts.remove(c);
-    logModif("suppression " + c.getNom() + " " + c.getPrenom());
+    logModif("ajout " + c->getNom() + " " + c->getPrenom());
 }
 
 int GestionContact::getNbContacts() {
@@ -41,7 +36,7 @@ string GestionContact::getHistoriqueModifs() {
 ostream &operator<<(ostream &os, const GestionContact &contact) {
     int cpt = 0;
     for (auto i: contact.listeContacts) {
-        os << "Contact n°" << cpt << " : " << i.getPrenom() << " " << i.getNom() << endl;
+        os << "Contact n°" << cpt << " : " << i->getPrenom() << " " << i->getNom() << endl;
         cpt++;
     }
     return os;

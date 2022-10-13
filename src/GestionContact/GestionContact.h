@@ -12,21 +12,15 @@ using namespace std;
 
 class GestionContact {
 private:
-    list<Contact> listeContacts;
+    list<Contact *> listeContacts;
     list<string> historiqueModifs;
 
     void logModif(string contenu);
 
 public:
-    void addContact(Contact &c);
-
-    void removeContact(Contact &c);
-
-    void modifContact(Contact &c);
+    void addContact(Contact *c);
 
     int getNbContacts();
-
-    list<Contact *> getContact(string name);
 
     string getHistoriqueModifs();
 

@@ -8,7 +8,7 @@ using namespace std;
 
 Contact::Contact() {
     time_t t = time(0);
-    dateCreation = localtime(&t);
+    dateCreation = *localtime(&t);
 }
 
 Contact::~Contact() {
@@ -76,12 +76,4 @@ ostream &operator<<(ostream &os, const Contact &contact) {
        << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n"
        << contact.listInteractionToString();
     return os;
-}
-
-bool Contact::operator==(const Contact &rhs) const {
-    //return this->dateCreation == rhs.dateCreation;
-}
-
-bool Contact::operator!=(const Contact &rhs) const {
-    //return this->dateCreation != rhs.dateCreation;
 }
