@@ -7,8 +7,6 @@
 using namespace std;
 
 Contact::Contact() {
-    time_t t = time(0);
-    dateCreation = *localtime(&t);
 }
 
 Contact::~Contact() {
@@ -52,6 +50,14 @@ void Contact::setTel(string tel) {
 
 string Contact::getTel() {
     return this->tel;
+}
+
+void Contact::setDateCreation(tm dateCreation) {
+    this->dateCreation = dateCreation;
+}
+
+tm *Contact::getDateCreation() {
+    return &this->dateCreation;
 }
 
 void Contact::addInteraction(Interaction i) {

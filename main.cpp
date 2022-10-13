@@ -11,6 +11,9 @@ int main(int argc, char *argv[]) {
     c->setMail("y.dusoleil@outlook.com");
     c->setEntreprise("none");
     c->setTel("06 76 57 78 36");
+    time_t t = time(0);
+    tm date = *localtime(&t);
+    c->setDateCreation(date);
 
     auto *i = new Interaction();
     i->setContenu("@todo rappel @date 12/10/2023");
@@ -22,7 +25,7 @@ int main(int argc, char *argv[]) {
     c->addInteraction(*i);
     free(i);
 
-    cout << "id " << c->getPrenom() << " : " << mktime(&c->dateCreation) << endl;
+    cout << "id " << c->getPrenom() << " : " << mktime(c->getDateCreation()) << endl;
 
     sleep(2);
 
@@ -32,8 +35,11 @@ int main(int argc, char *argv[]) {
     c2->setMail("chocoMéli21@gmail.com");
     c2->setEntreprise("none");
     c2->setTel("07 83 70 21 97");
+    t = time(0);
+    date = *localtime(&t);
+    c2->setDateCreation(date);
 
-    cout << "id " << c2->getPrenom() << " : " << mktime(&c2->dateCreation) << endl;
+    cout << "id " << c2->getPrenom() << " : " << mktime(c2->getDateCreation()) << endl;
 
     GestionContact gc;
     gc.addContact(c);

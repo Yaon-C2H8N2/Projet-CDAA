@@ -17,9 +17,8 @@ class Contact {
 private:
     string nom, prenom, entreprise, mail, tel;
     list<Interaction> listeInteractions;
-public:
     tm dateCreation;
-
+public:
     Contact();
 
     ~Contact();
@@ -43,6 +42,10 @@ public:
     void setTel(string tel);
 
     string getTel();
+
+    void setDateCreation(tm dateCreation);
+
+    tm *getDateCreation();
 
     void addInteraction(Interaction i);
 
