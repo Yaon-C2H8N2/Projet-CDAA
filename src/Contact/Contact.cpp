@@ -151,7 +151,7 @@ ostream &operator<<(ostream &os, const Contact &contact) {
  * @param rhs
  * Une instance de Contact avec laquelle comparer l'instance actuelle.
  * @return
- * Bool : True si les contacts sont égaux, sinon false.
+ * bool : True si les contacts sont égaux, sinon false.
  */
 bool Contact::operator==(Contact rhs) {
     return mktime(&this->dateCreation) == mktime(&rhs.dateCreation);
@@ -162,7 +162,7 @@ bool Contact::operator==(Contact rhs) {
  * @param rhs
  * Une instance de Contact avec laquelle comparer l'instance actuelle.
  * @return
- * Bool : True si les contacts sont inégaux, sinon false.
+ * bool : True si les contacts sont inégaux, sinon false.
  */
 bool Contact::operator!=(Contact rhs) {
     return !(rhs == *this);
