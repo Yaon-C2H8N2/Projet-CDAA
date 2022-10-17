@@ -57,5 +57,8 @@ int main(int argc, char *argv[]) {
 
     free(c);
     free(c2);
+
+    cout << gc << endl;
+    cout << gc.getContact().getNom() << endl;
     return 0;
 }

@@ -24,6 +24,8 @@ public:
 
     int getNbContacts();
 
+    Contact getContact(int i);
+
     string getHistoriqueModifs();
 
     friend ostream &operator<<(ostream &os, const GestionContact &contact);

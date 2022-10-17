@@ -49,6 +49,27 @@ int GestionContact::getNbContacts() {
 }
 
 /**
+ * Retourne le Contact à un indice spécifique dans la liste
+ * @param i
+ * Indice du Contact à renvoyer.
+ * @return
+ * Une copie de l'instance Contact dans la liste.
+ */
+Contact GestionContact::getContact(int i) {
+    int cpt = 0;
+    Contact res;
+    if (i < this->getNbContacts()) {
+        for (auto j: this->listeContacts) {
+            if (cpt >= i) {
+                res = j;
+            }
+            cpt++;
+        }
+    }else //throw exception (à voir comment ça marche, je connais pas encore)
+    return res;
+}
+
+/**
  * Retourne l'historique des modification sur cette instance de GestionContact. Il contiendra tous les ajouts,
  * modifications et suppression de contact ainsi qu'un horodatage.
  * @return
