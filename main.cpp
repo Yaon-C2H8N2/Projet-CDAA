@@ -49,6 +49,9 @@ int main(int argc, char *argv[]) {
     cout << "id " << c2->getPrenom() << " : " << mktime(c2->getDateCreation()) << endl;
     gc.addContact(*c2);
 
+    cout << gc.getContact(0).getNom() << endl;
+    cout << gc.getContact(1).getNom() << endl;
+
     cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
     gc.removeContact(*c);
     cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
@@ -59,6 +62,5 @@ int main(int argc, char *argv[]) {
     free(c2);
 
     cout << gc << endl;
-    cout << gc.getContact().getNom() << endl;
     return 0;
 }

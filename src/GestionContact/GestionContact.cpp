@@ -60,7 +60,7 @@ Contact GestionContact::getContact(int i) {
     Contact res;
     if (i < this->getNbContacts()) {
         for (auto j: this->listeContacts) {
-            if (cpt >= i) {
+            if (cpt == i) {
                 res = j;
             }
             cpt++;
