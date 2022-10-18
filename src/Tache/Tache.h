@@ -26,6 +26,8 @@ public:
 
     tm getDateTache();
 
+    //@todo modification tache quand modif intéraction
+
     bool operator==(Tache rhs);
 
     bool operator!=(Tache rhs);

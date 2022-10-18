@@ -16,7 +16,7 @@ using namespace std;
 class Contact {
 private:
     string nom, prenom, entreprise, mail, tel;
-    list<Interaction> listeInteractions;
+    list<Interaction> listeInteractions;    //@todo adapter avec le nouveau mode de gestion des intéractions
     tm dateCreation;
 public:
     void setPrenom(string prenom);

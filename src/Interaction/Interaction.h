@@ -15,6 +15,7 @@ class Interaction {
 private:
     string contenu;
     tm dateInteraction;
+    //@todo lien avec contact
 
     string dateToString() const;
 
@@ -22,6 +23,10 @@ public:
     void setContenu(string contenu);
 
     string getContenu();
+
+    //@todo modification de l'intéraction
+
+    //@todo lien interaction/tache
 
     void setDateInteraction(tm dateInteraction);
 
