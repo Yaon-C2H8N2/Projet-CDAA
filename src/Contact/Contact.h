@@ -41,9 +41,13 @@ public:
 
     void setDateCreation(tm dateCreation);
 
-    tm *getDateCreation();
+    tm getDateCreation();
 
     void addInteraction(Interaction i);
+
+    int getNbInteraction();
+
+    Interaction getInteraction();
 
     bool operator==(Contact rhs);
 

@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     c->addInteraction(*i);
     free(i);
 
-    cout << "id " << c->getPrenom() << " : " << mktime(c->getDateCreation()) << endl;
+    tm dateC = c->getDateCreation();
     gc.addContact(*c);
     sleep(2);
 
@@ -46,21 +46,14 @@ int main(int argc, char *argv[]) {
     date = *localtime(&t);
     c2->setDateCreation(date);
 
-    cout << "id " << c2->getPrenom() << " : " << mktime(c2->getDateCreation()) << endl;
+    tm dateC2 = c2->getDateCreation();
     gc.addContact(*c2);
 
-    cout << gc.getContact(0).getNom() << endl;
-    cout << gc.getContact(1).getNom() << endl;
+    for (int k = 0; k < gc.getNbContacts(); k++) {
+        cout << "Contact n°" << k << endl;
+        cout << gc.getContact(k);
+    }
 
-    cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
-    gc.removeContact(*c);
-    cout << gc << "Nb contacts : " << gc.getNbContacts() << endl;
-
-    cout << gc.getHistoriqueModifs() << endl;
-
-    free(c);
-    free(c2);
-
-    cout << gc << endl;
+    //@TODO tester le déroulement des intéractions pour chaque Contact
     return 0;
 }

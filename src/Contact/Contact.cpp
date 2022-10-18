@@ -111,8 +111,8 @@ void Contact::setDateCreation(tm dateCreation) {
  * @return
  * Un pointeur vers une structure tm symbolisant une date.
  */
-tm *Contact::getDateCreation() {
-    return &this->dateCreation;
+tm Contact::getDateCreation() {
+    return this->dateCreation;
 }
 
 /**
@@ -123,6 +123,10 @@ tm *Contact::getDateCreation() {
 void Contact::addInteraction(Interaction i) {
     this->listeInteractions.push_back(i);
 }
+
+//@TODO getNbInteraction() à implémenter
+
+//@TODO getInteraction(int i) à implémenter
 
 /**
  * Redéfinition de l'opérateur d'affichage de Contact.
