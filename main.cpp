@@ -54,6 +54,11 @@ int main(int argc, char *argv[]) {
         cout << gc.getContact(k);
     }
 
-    //@TODO tester le déroulement des intéractions pour chaque Contact
+    for (int k = 0; k < gc.getNbContacts(); k++) {
+        cout << "Interactions de " << gc.getContact(k).getPrenom() << " " << gc.getContact(k).getNom() << " :" << endl;
+        for (int l = 0; l < gc.getContact(k).getNbInteraction(); l++) {
+            cout << gc.getContact(k).getInteraction(l) << endl;
+        }
+    }
     return 0;
 }

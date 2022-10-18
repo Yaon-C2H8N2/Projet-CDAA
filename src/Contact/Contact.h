@@ -47,7 +47,7 @@ public:
 
     int getNbInteraction();
 
-    Interaction getInteraction();
+    Interaction getInteraction(int i);
 
     bool operator==(Contact rhs);
 

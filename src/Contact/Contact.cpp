@@ -116,17 +116,43 @@ tm Contact::getDateCreation() {
 }
 
 /**
- * Ajout l'intéraction passée en paramètre à la liste des intéractions de cette instance de Contact.
+ * Ajout l'intéraction passée en paramètre à la liste d'Interaction de cette instance de Contact.
  * @param i
- * Une intéraction à associer à une instance de Contact.
+ * Une Interaction à associer à une instance de Contact.
  */
 void Contact::addInteraction(Interaction i) {
     this->listeInteractions.push_back(i);
 }
 
-//@TODO getNbInteraction() à implémenter
+/**
+ * Retourne le nombre d'Interaction du Contact
+ * @return
+ * Nombre entier d'Interaction du Contact.
+ */
+int Contact::getNbInteraction() {
+    return this->listeInteractions.size();
+}
 
-//@TODO getInteraction(int i) à implémenter
+/**
+ * Retourne l'Interaction à un indice spécifique dans la liste
+ * @param i
+ * Indice de l'Interaction à renvoyer.
+ * @return
+ * Une copie de l'instance Interaction dans la liste.
+ */
+Interaction Contact::getInteraction(int i) {
+    int cpt = 0;
+    Interaction res;
+    if (i < this->getNbInteraction()) {
+        for (auto j: this->listeInteractions) {
+            if (cpt == i) {
+                res = j;
+            }
+            cpt++;
+        }
+    }else //throw exception (à voir comment ça marche, je connais pas encore)
+        return res;
+}
 
 /**
  * Redéfinition de l'opérateur d'affichage de Contact.
