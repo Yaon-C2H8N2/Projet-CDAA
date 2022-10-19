@@ -6,8 +6,19 @@
 #define PROJET_CDAA_GESTIONINTERACTION_H
 
 
+#include "../Interaction/Interaction.h"
+
 class GestionInteraction {
-    //@todo toute la classe
+private:
+    list<Interaction> listeInteraction;
+public:
+    void addInteraction(Interaction i);
+
+    void removeInteraction(Interaction i);
+
+    int getNbInteraction();
+
+    Interaction getInteraction(int i);
 };
 
 

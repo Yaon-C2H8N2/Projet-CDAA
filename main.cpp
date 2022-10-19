@@ -21,7 +21,6 @@ int main(int argc, char *argv[]) {
     t = time(0);
     date = *localtime(&t);
     i->setDateInteraction(date);
-    c->addInteraction(*i);
     free(i);
 
     i = new Interaction();
@@ -29,7 +28,6 @@ int main(int argc, char *argv[]) {
     t = time(0);
     date = *localtime(&t);
     i->setDateInteraction(date);
-    c->addInteraction(*i);
     free(i);
 
     tm dateC = c->getDateCreation();
@@ -52,13 +50,6 @@ int main(int argc, char *argv[]) {
     for (int k = 0; k < gc.getNbContacts(); k++) {
         cout << "Contact n°" << k << endl;
         cout << gc.getContact(k);
-    }
-
-    for (int k = 0; k < gc.getNbContacts(); k++) {
-        cout << "Interactions de " << gc.getContact(k).getPrenom() << " " << gc.getContact(k).getNom() << " :" << endl;
-        for (int l = 0; l < gc.getContact(k).getNbInteraction(); l++) {
-            cout << gc.getContact(k).getInteraction(l) << endl;
-        }
     }
     return 0;
 }

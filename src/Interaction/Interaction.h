@@ -8,6 +8,8 @@
 
 #include <string>
 #include <ostream>
+#include "../Contact/Contact.h"
+#include "../Tache/Tache.h"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ class Interaction {
 private:
     string contenu;
     tm dateInteraction;
-    //@todo lien avec contact
+    Contact contact;
 
     string dateToString() const;
 
@@ -26,11 +28,19 @@ public:
 
     //@todo modification de l'intéraction
 
-    //@todo lien interaction/tache
+    Tache *exportTaches();
 
     void setDateInteraction(tm dateInteraction);
 
     tm *getDateInteraction();
+
+    void setContact(Contact c);
+
+    Contact *getContact();
+
+    bool operator==(Interaction rhs);
+
+    bool operator!=(Interaction rhs);
 
     friend ostream &operator<<(ostream &os, const Interaction &interaction);
 };

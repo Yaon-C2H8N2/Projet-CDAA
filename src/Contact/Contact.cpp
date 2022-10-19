@@ -116,45 +116,6 @@ tm Contact::getDateCreation() {
 }
 
 /**
- * Ajout l'intéraction passée en paramètre à la liste d'Interaction de cette instance de Contact.
- * @param i
- * Une Interaction à associer à une instance de Contact.
- */
-void Contact::addInteraction(Interaction i) {
-    this->listeInteractions.push_back(i);
-}
-
-/**
- * Retourne le nombre d'Interaction du Contact
- * @return
- * Nombre entier d'Interaction du Contact.
- */
-int Contact::getNbInteraction() {
-    return this->listeInteractions.size();
-}
-
-/**
- * Retourne l'Interaction à un indice spécifique dans la liste
- * @param i
- * Indice de l'Interaction à renvoyer.
- * @return
- * Une copie de l'instance Interaction dans la liste.
- */
-Interaction Contact::getInteraction(int i) {
-    int cpt = 0;
-    Interaction res;
-    if (i < this->getNbInteraction()) {
-        for (auto j: this->listeInteractions) {
-            if (cpt == i) {
-                res = j;
-            }
-            cpt++;
-        }
-    }else //throw exception (à voir comment ça marche, je connais pas encore)
-        return res;
-}
-
-/**
  * Redéfinition de l'opérateur d'affichage de Contact.
  * @param os
  * Flux de sortie dans lequel on souhaite réaliser l'affichage.
@@ -168,11 +129,6 @@ ostream &operator<<(ostream &os, const Contact &contact) {
        << "\nmail: "
        << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n";
     int cpt = 0;
-    for (auto i: contact.listeInteractions) {
-        cpt++;
-        os << "========== Interaction n°" + to_string(cpt) + " ==========\n";
-        os << i << endl;
-    }
     return os;
 }
 

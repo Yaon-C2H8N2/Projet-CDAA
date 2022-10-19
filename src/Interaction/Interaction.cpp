@@ -18,6 +18,15 @@ string Interaction::dateToString() const {
 }
 
 /**
+ * Exporte dans un tableau de Tache les tâches de cette intéraction.
+ * @return
+ * Un tableau de Tache.
+ */
+Tache *Interaction::exportTaches() {
+
+}
+
+/**
  * Définit le contenu de l'intéraction.
  * @param contenu
  * Le contenu au format std::string.
@@ -33,6 +42,24 @@ void Interaction::setContenu(string contenu) {
  */
 string Interaction::getContenu() {
     return this->contenu;
+}
+
+/**
+ * Définit le Contact dont provient l'intéraction
+ * @param c
+ * Une instance de Contact.
+ */
+void Interaction::setContact(Contact c) {
+    this->contact = c;
+}
+
+/**
+ * Retorune un pointeur vers le Contact rattaché à cette intéraction
+ * @return
+ * Un pointeur vers une instance de Contact.
+ */
+Contact *Interaction::getContact() {
+    return &this->contact;
 }
 
 /**
@@ -65,4 +92,14 @@ tm *Interaction::getDateInteraction() {
 ostream &operator<<(ostream &os, const Interaction &interaction) {
     os << "contenu: " << interaction.contenu << "\ndateInteraction: " << interaction.dateToString() << endl;
     return os;
+}
+
+bool Interaction::operator==(Interaction rhs) {
+    return contenu == rhs.contenu &&
+           mktime(&dateInteraction) == mktime(&rhs.dateInteraction) &&
+           contact == rhs.contact;
+}
+
+bool Interaction::operator!=(Interaction rhs){
+    return !(rhs == *this);
 }

@@ -16,7 +16,6 @@ using namespace std;
 class Contact {
 private:
     string nom, prenom, entreprise, mail, tel;
-    list<Interaction> listeInteractions;    //@todo adapter avec le nouveau mode de gestion des intéractions
     tm dateCreation;
 public:
     void setPrenom(string prenom);
@@ -42,12 +41,6 @@ public:
     void setDateCreation(tm dateCreation);
 
     tm getDateCreation();
-
-    void addInteraction(Interaction i);
-
-    int getNbInteraction();
-
-    Interaction getInteraction(int i);
 
     bool operator==(Contact rhs);
 
