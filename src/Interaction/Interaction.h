@@ -26,10 +26,6 @@ public:
 
     string getContenu();
 
-    //@todo modification de l'intéraction
-
-    Tache *exportTaches();
-
     void setDateInteraction(tm dateInteraction);
 
     tm *getDateInteraction();

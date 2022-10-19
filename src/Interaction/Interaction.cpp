@@ -18,15 +18,6 @@ string Interaction::dateToString() const {
 }
 
 /**
- * Exporte dans un tableau de Tache les tâches de cette intéraction.
- * @return
- * Un tableau de Tache.
- */
-Tache *Interaction::exportTaches() {
-
-}
-
-/**
  * Définit le contenu de l'intéraction.
  * @param contenu
  * Le contenu au format std::string.
