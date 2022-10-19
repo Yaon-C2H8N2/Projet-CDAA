@@ -1,16 +1,15 @@
-//
-// Created by yaon on 18/10/22.
-//
+#ifndef GESTIONINTERACTION_H
+#define GESTIONINTERACTION_H
 
-#ifndef PROJET_CDAA_GESTIONINTERACTION_H
-#define PROJET_CDAA_GESTIONINTERACTION_H
-
-
+#include <ostream>
 #include "../Interaction/Interaction.h"
 
-class GestionInteraction {
+#include <list>
+
+class GestionInteraction
+{
 private:
-    list<Interaction> listeInteraction;
+    list<Interaction> listeInteractions;
 public:
     void addInteraction(Interaction i);
 
@@ -21,5 +20,4 @@ public:
     Interaction getInteraction(int i);
 };
 
-
-#endif //PROJET_CDAA_GESTIONINTERACTION_H
+#endif // GESTIONINTERACTION_H
