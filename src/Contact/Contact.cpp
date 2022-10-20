@@ -153,3 +153,12 @@ bool Contact::operator==(Contact rhs) {
 bool Contact::operator!=(Contact rhs) {
     return !(rhs == *this);
 }
+
+/**
+ * Retourne la liste des Interaction du Contact.
+ * @return
+ * Un pointeur vers la classe GestionInteraction représentant la liste des Interaction du Contact.
+ */
+GestionInteraction *Contact::getInteractions() {
+    return this->getInteractions();
+}

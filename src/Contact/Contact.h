@@ -9,13 +9,14 @@
 #include <string>
 #include <list>
 #include <ostream>
-#include "../Interaction/Interaction.h"
+#include "../GestionInteraction/GestionInteraction.h"
 
 using namespace std;
 
 class Contact {
 private:
     string nom, prenom, entreprise, mail, tel;
+    GestionInteraction interactions;
     tm dateCreation;
 public:
     void setPrenom(string prenom);
@@ -41,6 +42,8 @@ public:
     void setDateCreation(tm dateCreation);
 
     tm getDateCreation();
+
+    GestionInteraction *getInteractions();
 
     bool operator==(Contact rhs);
 
