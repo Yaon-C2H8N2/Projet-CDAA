@@ -48,3 +48,22 @@ Interaction GestionInteraction::getInteraction(int i) {
     return res;
 }
 
+/**
+ * Redéfinition de l'opérateur d'affichage de GestionInteraction.
+ * @param os
+ * Flux de sortie dans lequel on souhaite réaliser l'affichage.
+ * @param interaction
+ * Une instance de GestionInteraction.
+ * @return
+ * Le flux de sortie modifié.
+ */
+ostream &operator<<(ostream &os, const GestionInteraction &interaction) {
+    int cpt = 0;
+    for (auto i: interaction.listeInteractions) {
+        os << "=== Interaction n°" << cpt << " ===" << endl;
+        os << i;
+        cpt++;
+    }
+    return os;
+}
+

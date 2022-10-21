@@ -95,7 +95,8 @@ string GestionContact::getHistoriqueModifs() {
 ostream &operator<<(ostream &os, const GestionContact &contact) {
     int cpt = 0;
     for (auto i: contact.listeContacts) {
-        os << "Contact n°" << cpt << " : " << i.getPrenom() << " " << i.getNom() << endl;
+        os << "========== Contact n°" << cpt << " ==========" << endl;
+        os << i;
         cpt++;
     }
     return os;

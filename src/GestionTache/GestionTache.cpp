@@ -51,3 +51,22 @@ Tache GestionTache::getTache(int i) {
     } else //throw exception (à voir comment ça marche, je connais pas encore)
         return res;
 }
+
+/**
+ * Redéfinition de l'opérateur d'affichage de GestionTache.
+ * @param os
+ * Flux de sortie dans lequel on souhaite réaliser l'affichage.
+ * @param tache
+ * Une instance de GestionTache.
+ * @return
+ * Le flux de sortie modifié.
+ */
+ostream &operator<<(ostream &os, const GestionTache &tache) {
+    int cpt = 0;
+    for (auto i: tache.listeTache) {
+        os << "=== Tache n°" << cpt << " ===" << endl;
+        os << i;
+        cpt++;
+    }
+    return os;
+}

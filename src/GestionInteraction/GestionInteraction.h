@@ -18,6 +18,8 @@ public:
     int getNbInteraction();
 
     Interaction getInteraction(int i);
+
+    friend ostream &operator<<(ostream &os, const GestionInteraction &interaction);
 };
 
 #endif // GESTIONINTERACTION_H

@@ -6,6 +6,7 @@
 #define PROJET_CDAA_GESTIONTACHE_H
 
 #include <list>
+#include <ostream>
 #include "../Tache/Tache.h"
 
 using namespace std;
@@ -21,6 +22,8 @@ public:
     int getNbTache();
 
     Tache getTache(int i);
+
+    friend ostream &operator<<(ostream &os, const GestionTache &tache);
 };
 
 

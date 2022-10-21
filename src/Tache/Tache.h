@@ -6,6 +6,7 @@
 #define PROJET_CDAA_TACHE_H
 
 #include <string>
+#include <ostream>
 
 using namespace std;
 
@@ -25,6 +26,8 @@ public:
     void setDateTache(tm dateTache);
 
     tm getDateTache();
+
+    friend ostream &operator<<(ostream &os, const Tache &tache);
 
     bool operator==(Tache rhs);
 

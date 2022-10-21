@@ -81,3 +81,18 @@ bool Tache::operator==(Tache rhs) {
 bool Tache::operator!=(Tache rhs) {
     return !(rhs == *this);
 }
+
+/**
+ * Rédéfinition de l'opérateur d'affichage de Tache.
+ * @param os
+ * Flux de sortie dans lequel on souhaite réaliser l'affichage.
+ * @param tache
+ * Une instance de Tache.
+ * @return
+ * Le flux de sortie modifié.
+ */
+ostream &operator<<(ostream &os, const Tache &tache) {
+    os << "nomTache: " << tache.nomTache << "\ncontenu: " << tache.contenu << "\ndateTache: " << tache.dateTache.tm_mday
+       << "/" << tache.dateTache.tm_mon << "/" << tache.dateTache.tm_year;
+    return os;
+}
