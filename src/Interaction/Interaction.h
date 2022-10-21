@@ -8,7 +8,6 @@
 
 #include <string>
 #include <ostream>
-#include "../Contact/Contact.h"
 #include "../Tache/Tache.h"
 
 using namespace std;
@@ -17,7 +16,6 @@ class Interaction {
 private:
     string contenu;
     tm dateInteraction;
-    Contact contact;
 
     string dateToString() const;
 
@@ -29,10 +27,6 @@ public:
     void setDateInteraction(tm dateInteraction);
 
     tm *getDateInteraction();
-
-    void setContact(Contact c);
-
-    Contact *getContact();
 
     bool operator==(Interaction rhs);
 

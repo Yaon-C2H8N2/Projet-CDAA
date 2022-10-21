@@ -65,7 +65,7 @@ Contact GestionContact::getContact(int i) {
             }
             cpt++;
         }
-    }else //throw exception (à voir comment ça marche, je connais pas encore)
+    } else {} //throw exception (à voir comment ça marche, je connais pas encore)
     return res;
 }
 

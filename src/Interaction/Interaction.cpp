@@ -36,24 +36,6 @@ string Interaction::getContenu() {
 }
 
 /**
- * Définit le Contact dont provient l'intéraction
- * @param c
- * Une instance de Contact.
- */
-void Interaction::setContact(Contact c) {
-    this->contact = c;
-}
-
-/**
- * Retorune un pointeur vers le Contact rattaché à cette intéraction
- * @return
- * Un pointeur vers une instance de Contact.
- */
-Contact *Interaction::getContact() {
-    return &this->contact;
-}
-
-/**
  * Définit la date de l'intéraction.
  * @param dateInteraction
  * Une structure tm qui sera copiée pour définir la date de l'intéraction.
@@ -87,10 +69,9 @@ ostream &operator<<(ostream &os, const Interaction &interaction) {
 
 bool Interaction::operator==(Interaction rhs) {
     return contenu == rhs.contenu &&
-           mktime(&dateInteraction) == mktime(&rhs.dateInteraction) &&
-           contact == rhs.contact;
+           mktime(&dateInteraction) == mktime(&rhs.dateInteraction);
 }
 
-bool Interaction::operator!=(Interaction rhs){
+bool Interaction::operator!=(Interaction rhs) {
     return !(rhs == *this);
 }

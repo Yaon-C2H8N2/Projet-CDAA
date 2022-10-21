@@ -44,7 +44,7 @@ Interaction GestionInteraction::getInteraction(int i) {
             }
             cpt++;
         }
-    }else //throw exception (à voir comment ça marche, je connais pas encore)
-        return res;
+    } else {}//throw exception (à voir comment ça marche, je connais pas encore)
+    return res;
 }
 
