@@ -48,7 +48,7 @@ Tache GestionTache::getTache(int i) {
             }
             cpt++;
         }
-    } else //throw exception (à voir comment ça marche, je connais pas encore)
+    } else{} //throw exception (à voir comment ça marche, je connais pas encore)
         return res;
 }
 
@@ -65,7 +65,7 @@ ostream &operator<<(ostream &os, const GestionTache &tache) {
     int cpt = 0;
     for (auto i: tache.listeTache) {
         os << "=== Tache n°" << cpt << " ===" << endl;
-        os << i;
+        os << i << endl;
         cpt++;
     }
     return os;

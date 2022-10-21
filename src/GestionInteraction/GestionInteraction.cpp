@@ -61,7 +61,7 @@ ostream &operator<<(ostream &os, const GestionInteraction &interaction) {
     int cpt = 0;
     for (auto i: interaction.listeInteractions) {
         os << "=== Interaction n°" << cpt << " ===" << endl;
-        os << i;
+        os << i << endl;
         cpt++;
     }
     return os;

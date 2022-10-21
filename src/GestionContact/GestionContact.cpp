@@ -96,7 +96,7 @@ ostream &operator<<(ostream &os, const GestionContact &contact) {
     int cpt = 0;
     for (auto i: contact.listeContacts) {
         os << "========== Contact n°" << cpt << " ==========" << endl;
-        os << i;
+        os << i << endl;
         cpt++;
     }
     return os;

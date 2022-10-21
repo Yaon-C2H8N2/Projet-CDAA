@@ -12,13 +12,9 @@ using namespace std;
 
 class Tache {
 private:
-    string nomTache, contenu;
+    string contenu;
     tm dateTache;
 public:
-    void setNomTache(string nomTache);
-
-    string getNomTache();
-
     void setContenu(string contenu);
 
     string getContenu();

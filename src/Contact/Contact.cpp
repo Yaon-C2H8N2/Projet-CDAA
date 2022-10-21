@@ -127,7 +127,7 @@ tm Contact::getDateCreation() {
 ostream &operator<<(ostream &os, const Contact &contact) {
     os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise
        << "\nmail: "
-       << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n";
+       << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n" << contact.interactions;
     int cpt = 0;
     return os;
 }
@@ -160,5 +160,5 @@ bool Contact::operator!=(Contact rhs) {
  * Un pointeur vers la classe GestionInteraction représentant la liste des Interaction du Contact.
  */
 GestionInteraction *Contact::getInteractions() {
-    return this->getInteractions();
+    return &this->interactions;
 }

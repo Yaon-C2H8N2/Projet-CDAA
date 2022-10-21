@@ -5,24 +5,6 @@
 #include "Tache.h"
 
 /**
- * Définit le nom de la Tache.
- * @param nomTache
- * Un nom sous forme de std::string.
- */
-void Tache::setNomTache(string nomTache) {
-    this->nomTache = nomTache;
-}
-
-/**
- * Retourne le nom de cette instance de Tache.
- * @return
- * Le nom de cette instance de Tache sous forme de std::string.
- */
-string Tache::getNomTache() {
-    return this->nomTache;
-}
-
-/**
  * Définit le contenu de cette instnace de Tache.
  * @param contenu
  * Un contenu sous forme de std::string.
@@ -66,8 +48,7 @@ tm Tache::getDateTache() {
  * bool : True si les deux instances de Tache sont égales. sinon false.
  */
 bool Tache::operator==(Tache rhs) {
-    return nomTache == rhs.nomTache &&
-           contenu == rhs.contenu &&
+    return contenu == rhs.contenu &&
            mktime(&dateTache) == mktime(&rhs.dateTache);
 }
 
@@ -92,7 +73,7 @@ bool Tache::operator!=(Tache rhs) {
  * Le flux de sortie modifié.
  */
 ostream &operator<<(ostream &os, const Tache &tache) {
-    os << "nomTache: " << tache.nomTache << "\ncontenu: " << tache.contenu << "\ndateTache: " << tache.dateTache.tm_mday
+    os << "contenu: " << tache.contenu << "\ndateTache: " << tache.dateTache.tm_mday
        << "/" << tache.dateTache.tm_mon << "/" << tache.dateTache.tm_year;
     return os;
 }
