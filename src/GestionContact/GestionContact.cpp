@@ -2,6 +2,7 @@
 // Created by yaon on 12/10/22.
 //
 
+#include <iostream>
 #include "GestionContact.h"
 
 using namespace std;
@@ -45,20 +46,13 @@ void GestionContact::removeContact(Contact c) {
  * L'instance de Contact contenant les nouvelles informations.
  */
 void GestionContact::modifyContact(Contact c) {
-    Contact *old;
     for(auto i:this->listeContacts){
         tm date1 = i.getDateCreation();
         tm date2 = c.getDateCreation();
         if(mktime(&date1) == mktime(&date2)){
-            old = &i;
+
         }
     }
-    old->setPrenom(c.getPrenom());
-    old->setNom(c.getNom());
-    old->setMail(c.getMail());
-    old->setTel(c.getTel());
-    old->setEntreprise(c.getEntreprise());
-    old->setCheminPhoto(c.getCheminPhoto());
     logModif("modification de " + c.getNom() + " " + c.getPrenom());
 }
 

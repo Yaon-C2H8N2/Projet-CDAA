@@ -55,5 +55,7 @@ int main(int argc, char *argv[]) {
     cout << "==================================== Liste des taches ====================================" << endl;
     cout << "==========================================================================================" << endl;
     cout << *listeTaches << endl;
+
+    //@todo tester modification de contact
     return 0;
 }
