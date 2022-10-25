@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
         c->setEntreprise("EntrepriseTest" + to_string(i));
         c->setTel("00 00 00 00 0" + to_string(i));
         c->setMail("mailTest" + to_string(i) + "@domaine.extension");
+        c->setCheminPhoto("dummyPicture" + to_string(i) + ".png");
         time_t t = time(nullptr);
         tm dateCreation = *localtime(&t);
         c->setDateCreation(dateCreation);

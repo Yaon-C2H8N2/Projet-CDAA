@@ -145,7 +145,8 @@ tm Contact::getDateCreation() {
 ostream &operator<<(ostream &os, const Contact &contact) {
     os << "nom: " << contact.nom << "\nprenom: " << contact.prenom << "\nentreprise: " << contact.entreprise
        << "\nmail: "
-       << contact.mail << "\ntel: " << contact.tel << "\nInteractions :\n" << contact.interactions;
+       << contact.mail << "\ntel: " << contact.tel << "\ncheminPhoto: " << contact.cheminPhoto << "\nInteractions :\n"
+       << contact.interactions;
     int cpt = 0;
     return os;
 }
