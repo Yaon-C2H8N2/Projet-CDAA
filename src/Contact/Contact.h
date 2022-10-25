@@ -15,7 +15,7 @@ using namespace std;
 
 class Contact {
 private:
-    string nom, prenom, entreprise, mail, tel;
+    string nom, prenom, entreprise, mail, tel, cheminPhoto;
     GestionInteraction interactions;
     tm dateCreation;
 public:
@@ -38,6 +38,10 @@ public:
     void setTel(string tel);
 
     string getTel();
+
+    void setCheminPhoto(string cheminPhoto);
+
+    string getCheminPhoto();
 
     void setDateCreation(tm dateCreation);
 

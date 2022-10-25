@@ -97,6 +97,24 @@ string Contact::getTel() {
 }
 
 /**
+ * Définit le chemin de la photo du contact.
+ * @param cheminPhoto
+ * Un chemin relatif ou absolu vers la photo du contact.
+ */
+void Contact::setCheminPhoto(string cheminPhoto) {
+    this->cheminPhoto = cheminPhoto;
+}
+
+/**
+ * Retourne le chemin de la photo du contact.
+ * @return
+ * Un chemin relatif ou absolu vers la photo du contact.
+ */
+string Contact::getCheminPhoto() {
+    return this->cheminPhoto;
+}
+
+/**
  * Définit la date de création du contact.
  * @param dateCreation
  * Une structure tm dont la copie sera définie comme date de création du contact. Une copie est nécessaire car
