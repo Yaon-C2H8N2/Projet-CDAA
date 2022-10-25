@@ -45,15 +45,18 @@ void GestionContact::removeContact(Contact c) {
  * @param c
  * L'instance de Contact contenant les nouvelles informations.
  */
-void GestionContact::modifyContact(Contact c) {
-    for(auto i:this->listeContacts){
-        tm date1 = i.getDateCreation();
-        tm date2 = c.getDateCreation();
-        if(mktime(&date1) == mktime(&date2)){
-
+void GestionContact::modifyContact(Contact c1, Contact c2) {
+    list<Contact> modifiedContact = {c2};
+    auto iterator = listeContacts.begin();
+    for (auto j: this->listeContacts) {
+        if (j == c1) {
+            this->listeContacts.splice(iterator,modifiedContact);
+            this->listeContacts.remove(c1);
+            break;
         }
+        std::advance(iterator, 1);
     }
-    logModif("modification de " + c.getNom() + " " + c.getPrenom());
+    logModif("modification de " + c2.getNom() + " " + c2.getPrenom());
 }
 
 /**

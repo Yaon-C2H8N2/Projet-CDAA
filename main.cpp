@@ -56,6 +56,10 @@ int main(int argc, char *argv[]) {
     cout << "==========================================================================================" << endl;
     cout << *listeTaches << endl;
 
-    //@todo tester modification de contact
+    cout << *listeContact << endl;
+    Contact testModif = listeContact->getContact(4);
+    testModif.setNom("NomModif");
+    listeContact->modifyContact(listeContact->getContact(4),testModif);
+    cout << *listeContact << endl;
     return 0;
 }

@@ -159,7 +159,8 @@ ostream &operator<<(ostream &os, const Contact &contact) {
  * bool : True si les contacts sont égaux, sinon false.
  */
 bool Contact::operator==(Contact rhs) {
-    return mktime(&this->dateCreation) == mktime(&rhs.dateCreation);
+    return mktime(&this->dateCreation) == mktime(&rhs.dateCreation) && this->prenom == rhs.prenom &&
+           this->nom == rhs.nom && this->entreprise == rhs.entreprise && this->tel == rhs.tel && this->mail == rhs.mail;
 }
 
 /**

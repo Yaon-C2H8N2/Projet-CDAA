@@ -22,7 +22,7 @@ public:
 
     void removeContact(Contact c);
 
-    void modifyContact(Contact c);
+    void modifyContact(Contact c1, Contact c2);
 
     int getNbContacts();
 
