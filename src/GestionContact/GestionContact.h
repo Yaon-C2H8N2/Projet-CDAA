@@ -30,6 +30,14 @@ public:
 
     string getHistoriqueModifs();
 
+    GestionContact rechercheNom(string name);
+
+    GestionContact rechercheEntreprise(string entreprise);
+
+    GestionContact rechercheDateCreation(tm date);
+
+    GestionContact rechercheIntervalleDate(tm date_debut, tm date_fin);
+
     friend ostream &operator<<(ostream &os, const GestionContact &contact);
 };
 

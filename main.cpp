@@ -16,12 +16,12 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 5; i++) {
         //création du contact
         Contact *c = new Contact();
-        c->setPrenom("PrénomTest" + to_string(i));
-        c->setNom("NomTest" + to_string(i));
-        c->setEntreprise("EntrepriseTest" + to_string(i));
-        c->setTel("00 00 00 00 0" + to_string(i));
-        c->setMail("mailTest" + to_string(i) + "@domaine.extension");
-        c->setCheminPhoto("dummyPicture" + to_string(i) + ".png");
+        c->setPrenom("PrénomTest" + to_string(i + 1));
+        c->setNom("NomTest" + to_string(i + 1));
+        c->setEntreprise("EntrepriseTest" + to_string(i + 1));
+        c->setTel("00 00 00 00 0" + to_string(i + 1));
+        c->setMail("mailTest" + to_string(i + 1) + "@domaine.extension");
+        c->setCheminPhoto("dummyPicture" + to_string(i + 1) + ".png");
         time_t t = time(nullptr);
         tm dateCreation = *localtime(&t);
         c->setDateCreation(dateCreation);
@@ -32,12 +32,13 @@ int main(int argc, char *argv[]) {
         dateCreation = *localtime(&t);
         interaction->setDateInteraction(dateCreation);
         interaction->setContenu(
-                "ContenuTest" + to_string(i) + " @todo testTodo" + to_string(i) + " @date 0" + to_string(i) + "/01/23");
+                "ContenuTest" + to_string(i + 1) + " @todo testTodo" + to_string(i + 1) + " @date 0" +
+                to_string(i + 1) + "/01/23");
         c->getInteractions()->addInteraction(*interaction);
 
         //création des taches
         Tache *tache = new Tache();
-        tache->setContenu("ContenuTest" + to_string(i));
+        tache->setContenu("ContenuTest" + to_string(i + 1));
         t = time(nullptr);
         t += (1);
         dateCreation = *localtime(&t);
@@ -47,19 +48,21 @@ int main(int argc, char *argv[]) {
         listeTaches->addTache(*tache);
     }
 
+    Contact testModif = listeContact->getContact(4);
+    testModif.setNom("NomModif");
+    listeContact->modifyContact(listeContact->getContact(4), testModif);
+    listeContact->removeContact(listeContact->getContact(0));
+
     cout << "==========================================================================================" << endl;
     cout << "=================================== Liste des contacts ===================================" << endl;
     cout << "==========================================================================================" << endl;
     cout << *listeContact << endl;
+    cout << "================= Historique modifications =================" << endl;
+    cout << listeContact->getHistoriqueModifs() << endl;
     cout << "==========================================================================================" << endl;
     cout << "==================================== Liste des taches ====================================" << endl;
     cout << "==========================================================================================" << endl;
     cout << *listeTaches << endl;
-
-    cout << *listeContact << endl;
-    Contact testModif = listeContact->getContact(4);
-    testModif.setNom("NomModif");
-    listeContact->modifyContact(listeContact->getContact(4),testModif);
-    cout << *listeContact << endl;
+    cout << listeContact->rechercheNom("NomM");
     return 0;
 }

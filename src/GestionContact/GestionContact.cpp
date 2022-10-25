@@ -50,7 +50,7 @@ void GestionContact::modifyContact(Contact c1, Contact c2) {
     auto iterator = listeContacts.begin();
     for (auto j: this->listeContacts) {
         if (j == c1) {
-            this->listeContacts.splice(iterator,modifiedContact);
+            this->listeContacts.splice(iterator, modifiedContact);
             this->listeContacts.remove(c1);
             break;
         }
@@ -100,6 +100,40 @@ string GestionContact::getHistoriqueModifs() {
     string res = "";
     for (auto i: this->historiqueModifs) {
         res += i + "\n";
+    }
+    return res;
+}
+
+/**
+ * Retourne une instance de GestionContact qui contient les contacts comportant la recherche dans leur nom ou leur prénom.
+ * @param name
+ * Le nom à rechercher.
+ * @return
+ * Une instance de GestionContact contenant les contacts recherchés.
+ */
+GestionContact GestionContact::rechercheNom(string name) {
+    GestionContact res;
+    for (auto i: this->listeContacts) {
+        if(i.getNom().find(name) != std::string::npos || i.getPrenom().find(name) != std::string::npos){
+            res.addContact(i);
+        }
+    }
+    return res;
+}
+
+/**
+ * Retourne une instance de GestionContact qui contient les contacts comportant la recherche dans leur entreprise.
+ * @param entreprise
+ * L'entreprise à rechercher.
+ * @return
+ * Une instance de GestionContact contenant les contacts recherchés.
+ */
+GestionContact GestionContact::rechercheEntreprise(string entreprise) {
+    GestionContact res;
+    for (auto i: this->listeContacts) {
+        if(i.getEntreprise().find(entreprise) != std::string::npos){
+            res.addContact(i);
+        }
     }
     return res;
 }
