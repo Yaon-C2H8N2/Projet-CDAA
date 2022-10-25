@@ -22,6 +22,8 @@ public:
 
     void removeContact(Contact c);
 
+    void modifyContact(Contact c);
+
     int getNbContacts();
 
     Contact getContact(int i);

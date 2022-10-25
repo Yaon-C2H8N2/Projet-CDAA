@@ -40,6 +40,29 @@ void GestionContact::removeContact(Contact c) {
 }
 
 /**
+ * Remplace les infos du contact partageant le même identifiant que le contact passé en paramètre.
+ * @param c
+ * L'instance de Contact contenant les nouvelles informations.
+ */
+void GestionContact::modifyContact(Contact c) {
+    Contact *old;
+    for(auto i:this->listeContacts){
+        tm date1 = i.getDateCreation();
+        tm date2 = c.getDateCreation();
+        if(mktime(&date1) == mktime(&date2)){
+            old = &i;
+        }
+    }
+    old->setPrenom(c.getPrenom());
+    old->setNom(c.getNom());
+    old->setMail(c.getMail());
+    old->setTel(c.getTel());
+    old->setEntreprise(c.getEntreprise());
+    old->setCheminPhoto(c.getCheminPhoto());
+    logModif("modification de " + c.getNom() + " " + c.getPrenom());
+}
+
+/**
  * Retourne le nombre d'instance de Contact enregistrée dans la liste.
  * @return
  * Un int décrivant le nombre de Contact dans la liste.
@@ -62,6 +85,7 @@ Contact GestionContact::getContact(int i) {
         for (auto j: this->listeContacts) {
             if (cpt == i) {
                 res = j;
+                break;
             }
             cpt++;
         }
