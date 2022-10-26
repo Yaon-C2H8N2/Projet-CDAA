@@ -64,5 +64,8 @@ int main(int argc, char *argv[]) {
     cout << "==========================================================================================" << endl;
     cout << *listeTaches << endl;
     cout << listeContact->rechercheNom("NomM");
+
+    delete listeContact;
+    delete listeTaches;
     return 0;
 }
