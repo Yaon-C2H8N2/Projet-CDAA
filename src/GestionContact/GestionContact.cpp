@@ -105,34 +105,72 @@ string GestionContact::getHistoriqueModifs() {
 }
 
 /**
- * Retourne une instance de GestionContact qui contient les contacts comportant la recherche dans leur nom ou leur prénom.
+ * Retourne un pointeur vers une instance de GestionContact qui contient les contacts comportant la recherche dans leur nom ou leur prénom.
  * @param name
  * Le nom à rechercher.
  * @return
- * Une instance de GestionContact contenant les contacts recherchés.
+ * Un pointeur vers une instance de GestionContact contenant les contacts recherchés.
  */
-GestionContact GestionContact::rechercheNom(string name) {
-    GestionContact res;
+GestionContact *GestionContact::rechercheNom(string name) {
+    GestionContact *res = new GestionContact();
     for (auto i: this->listeContacts) {
-        if(i.getNom().find(name) != std::string::npos || i.getPrenom().find(name) != std::string::npos){
-            res.addContact(i);
+        if (i.getNom().find(name) != std::string::npos || i.getPrenom().find(name) != std::string::npos) {
+            res->addContact(i);
         }
     }
     return res;
 }
 
 /**
- * Retourne une instance de GestionContact qui contient les contacts comportant la recherche dans leur entreprise.
+ * Retourne un pointeur vers une instance de GestionContact qui contient les contacts comportant la recherche dans leur entreprise.
  * @param entreprise
  * L'entreprise à rechercher.
  * @return
- * Une instance de GestionContact contenant les contacts recherchés.
+ * Un pointeur vers une instance de GestionContact contenant les contacts recherchés.
  */
-GestionContact GestionContact::rechercheEntreprise(string entreprise) {
-    GestionContact res;
+GestionContact *GestionContact::rechercheEntreprise(string entreprise) {
+    GestionContact *res = new GestionContact();
     for (auto i: this->listeContacts) {
-        if(i.getEntreprise().find(entreprise) != std::string::npos){
-            res.addContact(i);
+        if (i.getEntreprise().find(entreprise) != std::string::npos) {
+            res->addContact(i);
+        }
+    }
+    return res;
+}
+
+/**
+ * Retourne un pointeur vers une instance de GestionContact qui contient les contacts créé à la date recherchée.
+ * @param date
+ * La date cherchée
+ * @return
+ * Un pointeur vers une instance de GestionContact contenant les contacts recherchés.
+ */
+GestionContact *GestionContact::rechercheDateCreation(tm date) {
+    GestionContact *res = new GestionContact();
+    for(auto i:this->listeContacts){
+        tm dateContact = i.getDateCreation();
+        if(mktime(&dateContact) == mktime(&date)){
+            res->addContact(i);
+        }
+    }
+    return res;
+}
+
+/**
+ * Retourne un pointeur vers une instance de GestionContact qui contient les contacts ayant été créés dans une intervalle de dates données.
+ * @param date_debut
+ * La date de début de l'intervalle
+ * @param date_fin
+ * La de fin de l'intervalle
+ * @return
+ * Un pointeur vers une instance de GestionContact contenant les contacts recherchés.
+ */
+GestionContact *GestionContact::rechercheIntervalleDate(tm date_debut, tm date_fin) {
+    GestionContact *res = new GestionContact();
+    for(auto i: this->listeContacts){
+        tm dateContact = i.getDateCreation();
+        if(mktime(&dateContact) >= mktime(&date_debut) && mktime(&dateContact) <= mktime(&date_fin)){
+            res->addContact(i);
         }
     }
     return res;
