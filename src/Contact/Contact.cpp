@@ -147,7 +147,6 @@ ostream &operator<<(ostream &os, const Contact &contact) {
        << "\nmail: "
        << contact.mail << "\ntel: " << contact.tel << "\ncheminPhoto: " << contact.cheminPhoto << "\nInteractions :\n"
        << contact.interactions;
-    int cpt = 0;
     return os;
 }
 
