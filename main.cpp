@@ -48,10 +48,14 @@ int main(int argc, char *argv[]) {
         listeTaches->addTache(*tache);
     }
 
+    //essai modif contact
     Contact testModif = listeContact->getContact(4);
     testModif.setNom("NomModif");
     listeContact->modifyContact(listeContact->getContact(4), testModif);
+
+    //essai suppression contact
     listeContact->removeContact(listeContact->getContact(0));
+
 
     cout << "==========================================================================================" << endl;
     cout << "=================================== Liste des contacts ===================================" << endl;
@@ -63,9 +67,12 @@ int main(int argc, char *argv[]) {
     cout << "==================================== Liste des taches ====================================" << endl;
     cout << "==========================================================================================" << endl;
     cout << *listeTaches << endl;
+
+    //essai recherche d'un contact par son nom
     GestionContact *resRecherche = listeContact->rechercheNom("NomM");
     cout << *resRecherche << endl;
 
+    //libération des pointeurs
     delete listeContact;
     delete listeTaches;
     delete resRecherche;
