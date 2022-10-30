@@ -26,9 +26,11 @@ public:
 
 signals:
     void refreshContactList(GestionContact *);
-public slots:
+    void showContactInfo(Contact);
+private slots:
     void showContactList(GestionContact *);
     void searchInList(QString);
+    void contactClicked(Contact);
 };
 
 

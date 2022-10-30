@@ -3,6 +3,7 @@
 //
 
 #include "ContactList.h"
+#include "../ContactButton/ContactButton.h"
 #include <iostream>
 
 ContactList::ContactList(QWidget *parent) {
@@ -11,7 +12,7 @@ ContactList::ContactList(QWidget *parent) {
     QObject::connect(this, SIGNAL(refreshContactList(GestionContact * )),
                      SLOT(showContactList(GestionContact * )));
     QObject::connect(this->ui.lineEdit, SIGNAL(textChanged(
-                                                       const QString &)), this, SLOT(searchInList(QString)));
+    const QString &)), this, SLOT(searchInList(QString)));
 }
 
 void ContactList::setContactList(GestionContact *gestionContact) {
@@ -31,14 +32,16 @@ void ContactList::showContactList(GestionContact *gestionContact) {
     }
 
     for (int i = 0; i < gestionContact->getNbContacts(); i++) {
-        QPushButton *qPushButton = new QPushButton(ui.scrollArea->widget());
-        qPushButton->setObjectName("contactButton");
-        qPushButton->setText(QString::fromStdString(
-                gestionContact->getContact(i).getPrenom() + " " + gestionContact->getContact(i).getNom()));
-        ui.scrollArea->widget()->layout()->addWidget(qPushButton);
+        ContactButton *contactButton = new ContactButton(ui.scrollArea->widget(), gestionContact->getContact(i));
+        QObject::connect(contactButton, SIGNAL(clicked(Contact)), this, SLOT(contactClicked(Contact)));
+        ui.scrollArea->widget()->layout()->addWidget(contactButton->qPushButton);
     }
 }
 
 void ContactList::searchInList(QString content) {
     emit refreshContactList(this->gestionContact->rechercheNom(content.toStdString()));
+}
+
+void ContactList::contactClicked(Contact contact) {
+    emit showContactInfo(contact);
 }

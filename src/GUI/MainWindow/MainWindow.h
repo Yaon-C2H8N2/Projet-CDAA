@@ -11,6 +11,7 @@
 #include "ui_MainWindow.h"
 #include "../ContactList/ContactList.h"
 #include "../TasksList/TasksList.h"
+#include "../ContactInfo/ContactInfo.h"
 
 class MainWindow : public QObject {
 Q_OBJECT
@@ -19,11 +20,14 @@ private:
 public:
     ContactList *contactList;
     TasksList *tasksList;
+    ContactInfo *contactInfo;
     Ui::MainWindow ui;
 
     MainWindow(QMainWindow *parent);
 
     void show();
+private slots:
+    void showContact(Contact);
 };
 
 
