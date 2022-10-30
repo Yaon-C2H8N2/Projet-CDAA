@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactInfoXIhomc.ui'
+** Form generated from reading UI file 'ContactInfoskkzNu.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTINFOXIHOMC_H
-#define CONTACTINFOXIHOMC_H
+#ifndef CONTACTINFOSKKZNU_H
+#define CONTACTINFOSKKZNU_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -100,13 +100,17 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 620, 215));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 620, 218));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout->addWidget(scrollArea);
 
         creationDateLabel = new QLabel(ContactInfo);
         creationDateLabel->setObjectName(QString::fromUtf8("creationDateLabel"));
+        QFont font;
+        font.setPointSize(10);
+        creationDateLabel->setFont(font);
+        creationDateLabel->setStyleSheet(QString::fromUtf8("color: rgb(192, 191, 188);"));
 
         verticalLayout->addWidget(creationDateLabel);
 
@@ -138,4 +142,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTINFOXIHOMC_H
+#endif // CONTACTINFOSKKZNU_H

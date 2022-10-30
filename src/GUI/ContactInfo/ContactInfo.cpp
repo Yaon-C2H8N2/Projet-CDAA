@@ -22,6 +22,10 @@ void ContactInfo::setContact(Contact contact) {
     this->show();
 }
 
+Contact ContactInfo::getContact() {
+    return this->contact;
+}
+
 void ContactInfo::show() {
     this->parent->show();
 }

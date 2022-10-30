@@ -21,5 +21,6 @@ void MainWindow::show() {
 }
 
 void MainWindow::showContact(Contact contact) {
-    contactInfo->setContact(contact);
+    if(contact!=contactInfo->getContact())contactInfo->setContact(contact);
+    else contactInfo->hide();
 }

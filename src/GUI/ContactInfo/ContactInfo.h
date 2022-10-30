@@ -22,6 +22,8 @@ public:
 
     void setContact(Contact contact);
 
+    Contact getContact();
+
     void show();
 
     void hide();

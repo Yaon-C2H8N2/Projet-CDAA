@@ -99,7 +99,7 @@
         <x>0</x>
         <y>0</y>
         <width>620</width>
-        <height>215</height>
+        <height>218</height>
        </rect>
       </property>
      </widget>
@@ -107,6 +107,14 @@
    </item>
    <item>
     <widget class="QLabel" name="creationDateLabel">
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(192, 191, 188);</string>
+     </property>
      <property name="text">
       <string>DEBUG_CREATIONDATE</string>
      </property>
