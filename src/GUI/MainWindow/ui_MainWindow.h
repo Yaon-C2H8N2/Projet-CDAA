@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'MainWindowvnmHmw.ui'
+** Form generated from reading UI file 'MainWindowCpyEvH.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef MAINWINDOWVNMHMW_H
-#define MAINWINDOWVNMHMW_H
+#ifndef MAINWINDOWCPYEVH_H
+#define MAINWINDOWCPYEVH_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -31,6 +31,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *contactListWidget;
     QWidget *contactInfoWidget;
+    QWidget *newContactWidget;
     QWidget *calendarTab;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -62,6 +63,11 @@ public:
         contactInfoWidget->setObjectName(QString::fromUtf8("contactInfoWidget"));
 
         horizontalLayout->addWidget(contactInfoWidget);
+
+        newContactWidget = new QWidget(contactTab);
+        newContactWidget->setObjectName(QString::fromUtf8("newContactWidget"));
+
+        horizontalLayout->addWidget(newContactWidget);
 
         tabWidget->addTab(contactTab, QString());
         calendarTab = new QWidget();
@@ -102,4 +108,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // MAINWINDOWVNMHMW_H
+#endif // MAINWINDOWCPYEVH_H

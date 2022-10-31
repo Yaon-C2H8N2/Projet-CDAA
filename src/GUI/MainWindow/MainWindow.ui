@@ -49,6 +49,9 @@
         <item>
          <widget class="QWidget" name="contactInfoWidget" native="true"/>
         </item>
+        <item>
+         <widget class="QWidget" name="newContactWidget" native="true"/>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="calendarTab">

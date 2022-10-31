@@ -12,6 +12,7 @@
 #include "../ContactList/ContactList.h"
 #include "../TasksList/TasksList.h"
 #include "../ContactInfo/ContactInfo.h"
+#include "../ContactCreator/ContactCreator.h"
 
 class MainWindow : public QObject {
 Q_OBJECT
@@ -21,12 +22,14 @@ public:
     ContactList *contactList;
     TasksList *tasksList;
     ContactInfo *contactInfo;
+    ContactCreator *contactCreator;
     Ui::MainWindow ui;
 
     MainWindow(QMainWindow *parent);
 
     void show();
 private slots:
+    void showNewContact();
     void showContact(Contact);
 };
 
