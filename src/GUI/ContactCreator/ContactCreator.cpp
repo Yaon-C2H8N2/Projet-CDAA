@@ -12,11 +12,17 @@ ContactCreator::ContactCreator(QWidget *parent) {
     for (auto i: children) {
         QObject::connect(i,SIGNAL(textChanged(const QString &)),this,SLOT(validateFields()));
     }
+    QObject::connect(this->ui.validatePushButton, SIGNAL(clicked()), this, SLOT(validateButtonClicked()));
+    QObject::connect(this->ui.cancelPushButton, SIGNAL(clicked()), this, SLOT(cancelButtonClicked()));
 }
 
 void ContactCreator::setContact(Contact contact) {
     this->contact = contact;
-    //@todo peupler les champs de l'UI avec les infos du contact
+    this->ui.firstNameLineEdit->setText(QString::fromStdString(this->contact.getPrenom()));
+    this->ui.lastNameLineEdit->setText(QString::fromStdString(this->contact.getNom()));
+    this->ui.companyNameLineEdit->setText(QString::fromStdString(this->contact.getEntreprise()));
+    this->ui.phoneNumberLineEdit->setText(QString::fromStdString(this->contact.getTel()));
+    this->ui.mailAddressLineEdit->setText(QString::fromStdString(this->contact.getMail()));
 }
 
 void ContactCreator::show() {
@@ -34,5 +40,24 @@ void ContactCreator::validateFields() {
     for (auto i: children) {
         if(i->text()=="")notEmpty = false;
     }
-    this->ui.pushButton_3->setEnabled(notEmpty);
+    this->ui.validatePushButton->setEnabled(notEmpty);
+}
+
+void ContactCreator::validateButtonClicked() {
+    this->contact.setNom(this->ui.lastNameLineEdit->text().toStdString());
+    this->contact.setPrenom(this->ui.firstNameLineEdit->text().toStdString());
+    this->contact.setEntreprise(this->ui.companyNameLineEdit->text().toStdString());
+    this->contact.setTel(this->ui.phoneNumberLineEdit->text().toStdString());
+    this->contact.setMail(this->ui.mailAddressLineEdit->text().toStdString());
+    time_t t = time(nullptr);
+    tm date = *localtime(&t);
+    this->contact.setDateCreation(date);
+    //@todo chemin photo
+    emit validateContact(this->contact);
+    this->hide();
+}
+
+void ContactCreator::cancelButtonClicked() {
+    this->setContact(*new Contact());
+    this->hide();
 }

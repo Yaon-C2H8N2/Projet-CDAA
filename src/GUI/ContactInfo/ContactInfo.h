@@ -27,6 +27,10 @@ public:
     void show();
 
     void hide();
+
+public slots:
+
+    void ShowContextMenu(const QPoint &);
 };
 
 

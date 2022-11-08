@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactCreatorEKCVOq.ui'
+** Form generated from reading UI file 'ContactCreatorrryixF.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTCREATOREKCVOQ_H
-#define CONTACTCREATOREKCVOQ_H
+#ifndef CONTACTCREATORRRYIXF_H
+#define CONTACTCREATORRRYIXF_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -24,18 +24,18 @@ class Ui_ContactCreator
 {
 public:
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
+    QPushButton *contactPicturePushButton;
     QFrame *frame;
     QHBoxLayout *horizontalLayout;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_5;
+    QLineEdit *firstNameLineEdit;
+    QLineEdit *lastNameLineEdit;
+    QLineEdit *phoneNumberLineEdit;
+    QLineEdit *mailAddressLineEdit;
+    QLineEdit *companyNameLineEdit;
     QFrame *frame_2;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QPushButton *cancelPushButton;
+    QPushButton *validatePushButton;
 
     void setupUi(QWidget *ContactCreator)
     {
@@ -45,15 +45,15 @@ public:
         ContactCreator->setLayoutDirection(Qt::LeftToRight);
         verticalLayout = new QVBoxLayout(ContactCreator);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        pushButton = new QPushButton(ContactCreator);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        contactPicturePushButton = new QPushButton(ContactCreator);
+        contactPicturePushButton->setObjectName(QString::fromUtf8("contactPicturePushButton"));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy);
+        sizePolicy.setHeightForWidth(contactPicturePushButton->sizePolicy().hasHeightForWidth());
+        contactPicturePushButton->setSizePolicy(sizePolicy);
 
-        verticalLayout->addWidget(pushButton);
+        verticalLayout->addWidget(contactPicturePushButton);
 
         frame = new QFrame(ContactCreator);
         frame->setObjectName(QString::fromUtf8("frame"));
@@ -66,33 +66,33 @@ public:
         frame->setFrameShadow(QFrame::Raised);
         horizontalLayout = new QHBoxLayout(frame);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        lineEdit = new QLineEdit(frame);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        firstNameLineEdit = new QLineEdit(frame);
+        firstNameLineEdit->setObjectName(QString::fromUtf8("firstNameLineEdit"));
 
-        horizontalLayout->addWidget(lineEdit);
+        horizontalLayout->addWidget(firstNameLineEdit);
 
-        lineEdit_2 = new QLineEdit(frame);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        lastNameLineEdit = new QLineEdit(frame);
+        lastNameLineEdit->setObjectName(QString::fromUtf8("lastNameLineEdit"));
 
-        horizontalLayout->addWidget(lineEdit_2);
+        horizontalLayout->addWidget(lastNameLineEdit);
 
 
         verticalLayout->addWidget(frame);
 
-        lineEdit_3 = new QLineEdit(ContactCreator);
-        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        phoneNumberLineEdit = new QLineEdit(ContactCreator);
+        phoneNumberLineEdit->setObjectName(QString::fromUtf8("phoneNumberLineEdit"));
 
-        verticalLayout->addWidget(lineEdit_3);
+        verticalLayout->addWidget(phoneNumberLineEdit);
 
-        lineEdit_4 = new QLineEdit(ContactCreator);
-        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+        mailAddressLineEdit = new QLineEdit(ContactCreator);
+        mailAddressLineEdit->setObjectName(QString::fromUtf8("mailAddressLineEdit"));
 
-        verticalLayout->addWidget(lineEdit_4);
+        verticalLayout->addWidget(mailAddressLineEdit);
 
-        lineEdit_5 = new QLineEdit(ContactCreator);
-        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
+        companyNameLineEdit = new QLineEdit(ContactCreator);
+        companyNameLineEdit->setObjectName(QString::fromUtf8("companyNameLineEdit"));
 
-        verticalLayout->addWidget(lineEdit_5);
+        verticalLayout->addWidget(companyNameLineEdit);
 
         frame_2 = new QFrame(ContactCreator);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
@@ -102,16 +102,16 @@ public:
         frame_2->setFrameShadow(QFrame::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame_2);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        pushButton_2 = new QPushButton(frame_2);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        cancelPushButton = new QPushButton(frame_2);
+        cancelPushButton->setObjectName(QString::fromUtf8("cancelPushButton"));
 
-        horizontalLayout_2->addWidget(pushButton_2);
+        horizontalLayout_2->addWidget(cancelPushButton);
 
-        pushButton_3 = new QPushButton(frame_2);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setEnabled(false);
+        validatePushButton = new QPushButton(frame_2);
+        validatePushButton->setObjectName(QString::fromUtf8("validatePushButton"));
+        validatePushButton->setEnabled(false);
 
-        horizontalLayout_2->addWidget(pushButton_3);
+        horizontalLayout_2->addWidget(validatePushButton);
 
 
         verticalLayout->addWidget(frame_2);
@@ -125,14 +125,14 @@ public:
     void retranslateUi(QWidget *ContactCreator)
     {
         ContactCreator->setWindowTitle(QCoreApplication::translate("ContactCreator", "Form", nullptr));
-        pushButton->setText(QCoreApplication::translate("ContactCreator", "PushButton", nullptr));
-        lineEdit->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Pr\303\251nom", nullptr));
-        lineEdit_2->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Nom", nullptr));
-        lineEdit_3->setPlaceholderText(QCoreApplication::translate("ContactCreator", "N\302\260T\303\251l\303\251phone", nullptr));
-        lineEdit_4->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Adresse mail", nullptr));
-        lineEdit_5->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Entreprise", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("ContactCreator", "Annuler", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("ContactCreator", "Valider", nullptr));
+        contactPicturePushButton->setText(QCoreApplication::translate("ContactCreator", "PushButton", nullptr));
+        firstNameLineEdit->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Pr\303\251nom", nullptr));
+        lastNameLineEdit->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Nom", nullptr));
+        phoneNumberLineEdit->setPlaceholderText(QCoreApplication::translate("ContactCreator", "N\302\260T\303\251l\303\251phone", nullptr));
+        mailAddressLineEdit->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Adresse mail", nullptr));
+        companyNameLineEdit->setPlaceholderText(QCoreApplication::translate("ContactCreator", "Entreprise", nullptr));
+        cancelPushButton->setText(QCoreApplication::translate("ContactCreator", "Annuler", nullptr));
+        validatePushButton->setText(QCoreApplication::translate("ContactCreator", "Valider", nullptr));
     } // retranslateUi
 
 };
@@ -143,4 +143,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTCREATOREKCVOQ_H
+#endif // CONTACTCREATORRRYIXF_H

@@ -18,7 +18,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="contactPicturePushButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -46,14 +46,14 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="firstNameLineEdit">
         <property name="placeholderText">
          <string>Prénom</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="QLineEdit" name="lastNameLineEdit">
         <property name="placeholderText">
          <string>Nom</string>
         </property>
@@ -63,21 +63,21 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="phoneNumberLineEdit">
      <property name="placeholderText">
       <string>N°Téléphone</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineEdit_4">
+    <widget class="QLineEdit" name="mailAddressLineEdit">
      <property name="placeholderText">
       <string>Adresse mail</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineEdit_5">
+    <widget class="QLineEdit" name="companyNameLineEdit">
      <property name="placeholderText">
       <string>Entreprise</string>
      </property>
@@ -99,14 +99,14 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="cancelPushButton">
         <property name="text">
          <string>Annuler</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="validatePushButton">
         <property name="enabled">
          <bool>false</bool>
         </property>

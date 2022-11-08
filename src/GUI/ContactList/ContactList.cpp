@@ -12,7 +12,7 @@ ContactList::ContactList(QWidget *parent) {
     QObject::connect(this, SIGNAL(refreshContactList(GestionContact * )),
                      SLOT(showContactList(GestionContact * )));
     QObject::connect(this->ui.lineEdit, SIGNAL(textChanged(
-    const QString &)), this, SLOT(searchInList(QString)));
+                                                       const QString &)), this, SLOT(searchInList(QString)));
 }
 
 void ContactList::setContactList(GestionContact *gestionContact) {
@@ -44,4 +44,9 @@ void ContactList::searchInList(QString content) {
 
 void ContactList::contactClicked(Contact contact) {
     emit showContactInfo(contact);
+}
+
+void ContactList::addNewContact(Contact c) {
+    this->gestionContact->addContact(c);
+    emit refreshContactList(this->gestionContact);
 }

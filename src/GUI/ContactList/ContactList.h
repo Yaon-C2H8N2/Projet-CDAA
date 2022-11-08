@@ -31,6 +31,7 @@ private slots:
     void showContactList(GestionContact *);
     void searchInList(QString);
     void contactClicked(Contact);
+    void addNewContact(Contact);
 };
 
 

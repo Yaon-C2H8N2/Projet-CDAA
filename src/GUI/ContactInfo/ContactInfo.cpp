@@ -2,11 +2,18 @@
 // Created by yaon on 30/10/22.
 //
 
+#include <QMenu>
+#include <QWidget>
+#include <iostream>
+#include <QDialog>
 #include "ContactInfo.h"
 
 ContactInfo::ContactInfo(QWidget *parent) {
     this->parent = parent;
     this->ui.setupUi(parent);
+    this->ui.scrollArea->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this->ui.scrollArea, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(ShowContextMenu(const QPoint &)));
 }
 
 void ContactInfo::setContact(Contact contact) {
@@ -32,4 +39,12 @@ void ContactInfo::show() {
 
 void ContactInfo::hide() {
     this->parent->hide();
+}
+
+void ContactInfo::ShowContextMenu(const QPoint &pos) {
+    QMenu contextMenu(tr("Context menu"), this->ui.scrollArea);
+    QAction action1("Ajouter interaction", this->ui.scrollArea);
+
+    contextMenu.addAction(&action1);
+    contextMenu.exec(this->ui.scrollArea->mapToGlobal(pos));
 }

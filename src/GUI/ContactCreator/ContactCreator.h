@@ -27,9 +27,11 @@ public:
     void hide();
 
 signals:
-
+    void validateContact(Contact);
 private slots:
     void validateFields();
+    void validateButtonClicked();
+    void cancelButtonClicked();
 };
 
 
