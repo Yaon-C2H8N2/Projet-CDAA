@@ -8,6 +8,11 @@
 #include <QDialog>
 #include "ContactInfo.h"
 
+/**
+ * Constructeur de la classe ContactInfo permettant d'afficher les informations relatives à un Contact.
+ * @param parent
+ * QWidget parent de l'instance créée.
+ */
 ContactInfo::ContactInfo(QWidget *parent) {
     this->parent = parent;
     this->ui.setupUi(parent);
@@ -16,6 +21,11 @@ ContactInfo::ContactInfo(QWidget *parent) {
             this, SLOT(ShowContextMenu(const QPoint &)));
 }
 
+/**
+ * Définit la valeur du Contact stocké dans l'instance de ContactInfo.
+ * @param contact
+ * Le Contact à définir si on souhaite peupler les champs de ContactInfo avec les informations de ce Contact.
+ */
 void ContactInfo::setContact(Contact contact) {
     this->contact = contact;
     this->ui.nameLabel->setText(QString::fromStdString(contact.getPrenom() + " " + contact.getNom()));
@@ -29,18 +39,34 @@ void ContactInfo::setContact(Contact contact) {
     this->show();
 }
 
+/**
+ * Retourne le Contact stocké au sein de ContactInfo.
+ * @return
+ * Une instance de Contact.
+ */
 Contact ContactInfo::getContact() {
     return this->contact;
 }
 
+/**
+ * Fonction permettant d'afficher ContactInfo en affichant le parent auquel la classe est rattachée.
+ */
 void ContactInfo::show() {
     this->parent->show();
 }
 
+/**
+ * Fonction permettant d'afficher ContactInfo en affichant le parent auquel la classe est rattachée.
+ */
 void ContactInfo::hide() {
     this->parent->hide();
 }
 
+/**
+ * Slot faisant apparaître un menu contextuel "custom" lorsqu'il reçoit un signal.
+ * @param pos
+ * La position où faire apparaître le menu contextuel.
+ */
 void ContactInfo::ShowContextMenu(const QPoint &pos) {
     QMenu contextMenu(tr("Context menu"), this->ui.scrollArea);
     QAction action1("Ajouter interaction", this->ui.scrollArea);
