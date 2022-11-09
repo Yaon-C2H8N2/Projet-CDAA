@@ -6,6 +6,11 @@
 #include "../ContactButton/ContactButton.h"
 #include <iostream>
 
+/**
+ * Constructeur de la classe ContactList permettant d'afficher tout le contenu de GestionContact.
+ * @param parent
+ * QWidget parent de l'instance créée.
+ */
 ContactList::ContactList(QWidget *parent) {
     this->parent = parent;
     this->ui.setupUi(this->parent);
@@ -15,15 +20,27 @@ ContactList::ContactList(QWidget *parent) {
                                                        const QString &)), this, SLOT(searchInList(QString)));
 }
 
+/**
+ * Définit l'instance de GestionContact à stocker dans ContactList et déclenche son affichage.
+ * @param gestionContact
+ */
 void ContactList::setContactList(GestionContact *gestionContact) {
     this->gestionContact = gestionContact;
     emit refreshContactList(this->gestionContact);
 }
 
+/**
+ * Fonction permettant d'afficher ContactList en affichant le parent auquel la classe est rattachée.
+ */
 void ContactList::show() {
     this->parent->show();
 }
 
+/**
+ * Slot affichant le contenu de la classe GestionContact passée en paramètre du signal reçu.
+ * @param gestionContact
+ * L'instance de GestionContact que l'on souhaite afficher.
+ */
 void ContactList::showContactList(GestionContact *gestionContact) {
     auto children = ui.scrollArea->widget()->findChildren<ContactButton *>();
     for (auto i: children) {
@@ -40,25 +57,50 @@ void ContactList::showContactList(GestionContact *gestionContact) {
     }
 }
 
+/**
+ * Slot émettant un signal refreshContactList(GestionContact) avec une liste restreinte au résultat de la recherche passé en paramètre du signal reçu.
+ * @param content
+ * Contenu de la recherche.
+ */
 void ContactList::searchInList(QString content) {
     emit refreshContactList(this->gestionContact->rechercheNom(content.toStdString()));
 }
 
+/**
+ * Slot émettant un signal showContactInfo(Contact) avec pour paramètre le Contact passé en paramètre du signal reçu.
+ * @param contact
+ * Le Contact à passer dans le signal.
+ */
 void ContactList::contactClicked(Contact contact) {
     emit showContactInfo(contact);
 }
 
+/**
+ * Slot ajoutant le contact passé en paramètre du signal reçu à la liste des Contact dans GestionContact et émettant un signal refreshContactList(GestionContact) pour afficher la liste actualisée.
+ * @param c
+ * Le Contact à ajouter à la liste.
+ */
 void ContactList::addNewContact(Contact c) {
     this->gestionContact->addContact(c);
     emit refreshContactList(this->gestionContact);
 }
 
+/**
+ * Slot supprimant le contact passé en paramètre du signal reçu de la liste des Contact dans GestionContact et émettant un signal refreshContactList(GestionContact) pour afficher la liste actualisée.
+ * @param c
+ * Le Contact à supprimer de la liste.
+ */
 void ContactList::deleteContact(Contact c) {
     //@todo dialog de confirmation
     this->gestionContact->removeContact(c);
     emit refreshContactList(this->gestionContact);
 }
 
+/**
+ * Slot déclenchant la procédure de modification du Contact passé en paramètre du signal reçu et émettant un signal refreshContactList(GestionContact) pour afficher la liste actualisée.
+ * @param c
+ * Le Contact à modifier.
+ */
 void ContactList::modifyContact(Contact c) {
     cout << "Modification requested for " << c.getNom() << endl;
     //@todo dialog ou fenêtre de modification de contact
