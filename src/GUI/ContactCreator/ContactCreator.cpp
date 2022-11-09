@@ -5,6 +5,11 @@
 #include <iostream>
 #include "ContactCreator.h"
 
+/**
+ * Constructeur de la classe ContactCreator permettant de crééer un nouveau contact.
+ * @param parent
+ * QWidget parent de l'instance créée.
+ */
 ContactCreator::ContactCreator(QWidget *parent) {
     this->parent = parent;
     this->ui.setupUi(parent);
@@ -16,6 +21,11 @@ ContactCreator::ContactCreator(QWidget *parent) {
     QObject::connect(this->ui.cancelPushButton, SIGNAL(clicked()), this, SLOT(cancelButtonClicked()));
 }
 
+/**
+ * Définit la valeur du Contact stocké dans l'instance de ContactCreator.
+ * @param contact
+ * Le Contact à définir si on souhaite peupler les champs du ContactCreator avec les informations de ce Contact.
+ */
 void ContactCreator::setContact(Contact contact) {
     this->contact = contact;
     this->ui.firstNameLineEdit->setText(QString::fromStdString(this->contact.getPrenom()));
@@ -25,15 +35,24 @@ void ContactCreator::setContact(Contact contact) {
     this->ui.mailAddressLineEdit->setText(QString::fromStdString(this->contact.getMail()));
 }
 
+/**
+ * Fonction permettant d'afficher le ContactCreator en affichant le parent auquel il est rattaché.
+ */
 void ContactCreator::show() {
     this->parent->show();
 }
 
+/**
+ * Fonction permettant de cacher le ContactCreator en cachant le parent auquel il est rattaché.
+ */
 void ContactCreator::hide() {
     this->parent->hide();
 }
 
 //@todo revoir le concept
+/**
+ * Slot vérifiant si tous les QLineEdit ne sont pas vides lorsqu'il reçoit un signal. Active ou non le bouton de validation en fonction du résultat.
+ */
 void ContactCreator::validateFields() {
     auto children = this->parent->findChildren<QLineEdit *>();
     bool notEmpty = true;
@@ -43,6 +62,9 @@ void ContactCreator::validateFields() {
     this->ui.validatePushButton->setEnabled(notEmpty);
 }
 
+/**
+ * Slot qui peuple les informations du Contact stocké en interne et émettant un signal validateContact(Contact) avec ce Contact lorsqu'il reçoit un signal.
+ */
 void ContactCreator::validateButtonClicked() {
     this->contact.setNom(this->ui.lastNameLineEdit->text().toStdString());
     this->contact.setPrenom(this->ui.firstNameLineEdit->text().toStdString());
@@ -57,6 +79,9 @@ void ContactCreator::validateButtonClicked() {
     this->hide();
 }
 
+/**
+ * Slot qui réinitialise les informations du Contact stocké en interne et cache le ContactCreator lorsqu'il reçoit un signal.
+ */
 void ContactCreator::cancelButtonClicked() {
     this->setContact(*new Contact());
     this->hide();
