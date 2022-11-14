@@ -38,7 +38,11 @@ void ContactInfo::setContact(Contact contact) {
     this->ui.creationDateLabel->setText(QString::fromStdString(
             to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
             to_string(contact.getDateCreation().tm_year + 1900)));
-    //@todo supprimer les anciennes interactions affichées si il y en a
+    auto children = ui.scrollArea->widget()->findChildren<QWidget *>();
+    for (auto i: children) {
+        ui.scrollArea->widget()->layout()->removeWidget(i);
+        i->close();
+    }
     for (int i = 0; i < this->contact.getInteractions()->getNbInteraction(); i++) {
         QWidget *widget = new QWidget(this->ui.scrollAreaWidgetContents);
         InteractionViewer interactionViewer(widget);

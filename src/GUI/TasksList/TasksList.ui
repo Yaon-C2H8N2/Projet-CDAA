@@ -42,16 +42,6 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QLabel" name="selectedDateLabel">
-        <property name="text">
-         <string>DEBUG_DATE</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QScrollArea" name="tasksScrollArea">
         <property name="widgetResizable">
          <bool>true</bool>
@@ -62,9 +52,10 @@
            <x>0</x>
            <y>0</y>
            <width>302</width>
-           <height>441</height>
+           <height>460</height>
           </rect>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2"/>
         </widget>
        </widget>
       </item>

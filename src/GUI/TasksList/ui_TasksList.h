@@ -1,20 +1,19 @@
 /********************************************************************************
-** Form generated from reading UI file 'TasksListsDmGja.ui'
+** Form generated from reading UI file 'TasksListeEWXNi.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef TASKSLISTSDMGJA_H
-#define TASKSLISTSDMGJA_H
+#ifndef TASKSLISTEEWXNI_H
+#define TASKSLISTEEWXNI_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCalendarWidget>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -28,9 +27,9 @@ public:
     QCalendarWidget *calendarWidget;
     QFrame *frame;
     QVBoxLayout *verticalLayout;
-    QLabel *selectedDateLabel;
     QScrollArea *tasksScrollArea;
     QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_2;
 
     void setupUi(QWidget *TasksList)
     {
@@ -52,18 +51,14 @@ public:
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        selectedDateLabel = new QLabel(frame);
-        selectedDateLabel->setObjectName(QString::fromUtf8("selectedDateLabel"));
-        selectedDateLabel->setAlignment(Qt::AlignCenter);
-
-        verticalLayout->addWidget(selectedDateLabel);
-
         tasksScrollArea = new QScrollArea(frame);
         tasksScrollArea->setObjectName(QString::fromUtf8("tasksScrollArea"));
         tasksScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 302, 441));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 302, 460));
+        verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         tasksScrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout->addWidget(tasksScrollArea);
@@ -80,7 +75,6 @@ public:
     void retranslateUi(QWidget *TasksList)
     {
         TasksList->setWindowTitle(QCoreApplication::translate("TasksList", "Form", nullptr));
-        selectedDateLabel->setText(QCoreApplication::translate("TasksList", "DEBUG_DATE", nullptr));
     } // retranslateUi
 
 };
@@ -91,4 +85,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // TASKSLISTSDMGJA_H
+#endif // TASKSLISTEEWXNI_H
