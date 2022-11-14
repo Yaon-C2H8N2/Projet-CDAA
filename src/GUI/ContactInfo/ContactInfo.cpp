@@ -36,6 +36,9 @@ void ContactInfo::setContact(Contact contact) {
     this->ui.creationDateLabel->setText(QString::fromStdString(
             to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
             to_string(contact.getDateCreation().tm_year + 1900)));
+    for (int i = 0; i < this->contact.getInteractions()->getNbInteraction(); i++) {
+        cout << this->contact.getInteractions()->getInteraction(i) << endl;
+    }
     this->show();
 }
 

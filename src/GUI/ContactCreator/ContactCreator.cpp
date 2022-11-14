@@ -6,7 +6,7 @@
 #include "ContactCreator.h"
 
 /**
- * Constructeur de la classe ContactCreator permettant de crééer un nouveau contact.
+ * Constructeur de la classe ContactCreator permettant de créer un nouveau contact.
  * @param parent
  * QWidget parent de l'instance créée.
  */

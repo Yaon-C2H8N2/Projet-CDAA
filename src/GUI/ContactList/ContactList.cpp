@@ -3,6 +3,7 @@
 //
 
 #include "ContactList.h"
+#include "ui_ContactDeleteDialog.h"
 #include "../ContactButton/ContactButton.h"
 #include <iostream>
 
@@ -91,9 +92,15 @@ void ContactList::addNewContact(Contact c) {
  * Le Contact à supprimer de la liste.
  */
 void ContactList::deleteContact(Contact c) {
-    //@todo dialog de confirmation
-    this->gestionContact->removeContact(c);
-    emit refreshContactList(this->gestionContact);
+    Ui::ContactDeleteDialog *dialogUi = new Ui::ContactDeleteDialog();
+    QDialog *dialog = new QDialog(nullptr);
+    dialogUi->setupUi(dialog);
+    if(dialog->exec()){
+        this->gestionContact->removeContact(c);
+        emit refreshContactList(this->gestionContact);
+    }
+    dialog->close();
+    delete dialogUi;
 }
 
 /**

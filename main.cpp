@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
     QApplication *app = new QApplication(argc, argv);
     MainWindow *mainWindow = new MainWindow(new QMainWindow(nullptr));
     GestionContact *gestionContact = new GestionContact();
+    GestionTache *gestionTache = new GestionTache();
 
     for (int i = 0; i < 50; i++) {
         Contact *c = new Contact();
@@ -23,6 +24,16 @@ int main(int argc, char *argv[]) {
         t += i * 24 * 3600;
         tm date = *localtime(&t);
         c->setDateCreation(date);
+        for (int j = 0; j < 2; j++) {
+            Interaction *i = new Interaction();
+            t += 10 * 24 * 3600; //interaction 10 jours après la précédente
+            date = *localtime(&t);
+            i->setDateInteraction(date);
+            i->setContenu(
+                    "Interaction n°" + to_string(j) + "\n@todo test test test @date " + to_string(date.tm_mday) + "/" +
+                    to_string(1+date.tm_mon) + "/" + to_string(1900+date.tm_year));
+            c->getInteractions()->addInteraction(*i);
+        }
         gestionContact->addContact(*c);
         delete c;
     }
