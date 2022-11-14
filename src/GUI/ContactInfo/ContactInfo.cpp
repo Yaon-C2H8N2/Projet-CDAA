@@ -7,6 +7,7 @@
 #include <iostream>
 #include <QDialog>
 #include "ContactInfo.h"
+#include "../InteractionViewer/InteractionViewer.h"
 
 /**
  * Constructeur de la classe ContactInfo permettant d'afficher les informations relatives à un Contact.
@@ -16,6 +17,7 @@
 ContactInfo::ContactInfo(QWidget *parent) {
     this->parent = parent;
     this->ui.setupUi(parent);
+    this->ui.scrollAreaWidgetContents->setLayout(new QVBoxLayout(ui.scrollAreaWidgetContents));
     this->ui.scrollArea->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this->ui.scrollArea, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(ShowContextMenu(const QPoint &)));
@@ -36,8 +38,13 @@ void ContactInfo::setContact(Contact contact) {
     this->ui.creationDateLabel->setText(QString::fromStdString(
             to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
             to_string(contact.getDateCreation().tm_year + 1900)));
+    //@todo supprimer les anciennes interactions affichées si il y en a
     for (int i = 0; i < this->contact.getInteractions()->getNbInteraction(); i++) {
-        cout << this->contact.getInteractions()->getInteraction(i) << endl;
+        QWidget *widget = new QWidget(this->ui.scrollAreaWidgetContents);
+        InteractionViewer interactionViewer(widget);
+        interactionViewer.setInteraction(this->contact.getInteractions()->getInteraction(i));
+        this->ui.scrollAreaWidgetContents->layout()->addWidget(widget);
+        widget->show();
     }
     this->show();
 }
