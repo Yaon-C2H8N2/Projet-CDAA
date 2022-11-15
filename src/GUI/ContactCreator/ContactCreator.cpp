@@ -15,16 +15,15 @@ ContactCreator::ContactCreator(QWidget *parent) {
     this->ui.setupUi(parent);
     auto children = this->parent->findChildren<QLineEdit *>();
     for (auto i: children) {
-        QObject::connect(i,SIGNAL(textChanged(const QString &)),this,SLOT(validateFields()));
+        QObject::connect(i, SIGNAL(textChanged(
+        const QString &)),this, SLOT(validateFields()));
     }
     QObject::connect(this->ui.validatePushButton, SIGNAL(clicked()), this, SLOT(validateButtonClicked()));
     QObject::connect(this->ui.cancelPushButton, SIGNAL(clicked()), this, SLOT(cancelButtonClicked()));
 }
 
 /**
- * Définit la valeur du Contact stocké dans l'instance de ContactCreator.
- * @param contact
- * Le Contact à définir si on souhaite peupler les champs du ContactCreator avec les informations de ce Contact.
+ * Réinitialise la valeur du Contact stocké dans l'instance de ContactCreator.
  */
 void ContactCreator::reset() {
     this->contact = *new Contact;
@@ -57,7 +56,7 @@ void ContactCreator::validateFields() {
     auto children = this->parent->findChildren<QLineEdit *>();
     bool notEmpty = true;
     for (auto i: children) {
-        if(i->text()=="")notEmpty = false;
+        if (i->text() == "")notEmpty = false;
     }
     this->ui.validatePushButton->setEnabled(notEmpty);
 }
