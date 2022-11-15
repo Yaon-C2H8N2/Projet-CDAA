@@ -27,10 +27,12 @@ public:
 signals:
     void refreshContactList(GestionContact *);
     void showContactInfo(Contact);
+    void createButtonClicked();
 private slots:
     void showContactList(GestionContact *);
     void searchInList(QString);
     void contactClicked(Contact);
+    void createContact();
     void addNewContact(Contact);
     void deleteContact(Contact);
     void modifyContact(Contact);

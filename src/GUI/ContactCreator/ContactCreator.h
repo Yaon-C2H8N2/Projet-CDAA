@@ -20,7 +20,7 @@ public:
 
     ContactCreator(QWidget *parent);
 
-    void setContact(Contact contact);
+    void reset();
 
     void show();
 

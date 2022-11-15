@@ -22,9 +22,7 @@ MainWindow::MainWindow(QMainWindow *parent) {
     this->contactInfo->hide();
 
     QObject::connect(contactList, SIGNAL(showContactInfo(Contact)), this, SLOT(showContact(Contact)));
-    //@todo à remplacer par un signal emit par contactList
-    QObject::connect(this->contactList->ui.pushButton, SIGNAL(clicked()), this, SLOT(showNewContact()));
-
+    QObject::connect(this->contactList, SIGNAL(createButtonClicked()), this, SLOT(showNewContact()));
     QObject::connect(this->contactCreator, SIGNAL(validateContact(Contact)), this->contactList,
                      SLOT(addNewContact(Contact)));
 }
@@ -40,7 +38,7 @@ void MainWindow::show() {
  * Slot affichant le widget ContactCreator contenu dans la MainWindow et cachant le widget ContactInfo contenu dans la MainWindow lorsqu'il reçoit un signal.
  */
 void MainWindow::showNewContact() {
-    this->contactCreator->setContact(*new Contact());
+    this->contactCreator->reset();
     this->contactCreator->show();
     this->contactInfo->setContact(*new Contact());
     this->contactInfo->hide();

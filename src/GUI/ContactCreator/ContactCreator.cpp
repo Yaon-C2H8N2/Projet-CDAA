@@ -26,8 +26,8 @@ ContactCreator::ContactCreator(QWidget *parent) {
  * @param contact
  * Le Contact à définir si on souhaite peupler les champs du ContactCreator avec les informations de ce Contact.
  */
-void ContactCreator::setContact(Contact contact) {
-    this->contact = contact;
+void ContactCreator::reset() {
+    this->contact = *new Contact;
     this->ui.firstNameLineEdit->setText(QString::fromStdString(this->contact.getPrenom()));
     this->ui.lastNameLineEdit->setText(QString::fromStdString(this->contact.getNom()));
     this->ui.companyNameLineEdit->setText(QString::fromStdString(this->contact.getEntreprise()));
@@ -83,6 +83,6 @@ void ContactCreator::validateButtonClicked() {
  * Slot qui réinitialise les informations du Contact stocké en interne et cache le ContactCreator lorsqu'il reçoit un signal.
  */
 void ContactCreator::cancelButtonClicked() {
-    this->setContact(*new Contact());
+    this->reset();
     this->hide();
 }

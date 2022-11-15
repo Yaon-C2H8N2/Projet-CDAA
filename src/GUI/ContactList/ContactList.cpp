@@ -17,6 +17,7 @@ ContactList::ContactList(QWidget *parent) {
     this->ui.setupUi(this->parent);
     QObject::connect(this, SIGNAL(refreshContactList(GestionContact * )),
                      SLOT(showContactList(GestionContact * )));
+    QObject::connect(this->ui.pushButton, SIGNAL(clicked(bool)), this, SLOT(createContact()));
     QObject::connect(this->ui.lineEdit, SIGNAL(textChanged(
                                                        const QString &)), this, SLOT(searchInList(QString)));
 }
@@ -95,7 +96,7 @@ void ContactList::deleteContact(Contact c) {
     Ui::ContactDeleteDialog *dialogUi = new Ui::ContactDeleteDialog();
     QDialog *dialog = new QDialog(nullptr);
     dialogUi->setupUi(dialog);
-    if(dialog->exec()){
+    if (dialog->exec()) {
         this->gestionContact->removeContact(c);
         emit refreshContactList(this->gestionContact);
     }
@@ -111,4 +112,8 @@ void ContactList::deleteContact(Contact c) {
 void ContactList::modifyContact(Contact c) {
     cout << "Modification requested for " << c.getNom() << endl;
     //@todo dialog ou fenêtre de modification de contact
+}
+
+void ContactList::createContact() {
+    emit createButtonClicked();
 }
