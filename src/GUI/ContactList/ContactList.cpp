@@ -5,6 +5,7 @@
 #include "ContactList.h"
 #include "ui_ContactDeleteDialog.h"
 #include "../ContactButton/ContactButton.h"
+#include "../ContactModifier/ContactModifier.h"
 #include <iostream>
 
 /**
@@ -110,8 +111,13 @@ void ContactList::deleteContact(Contact c) {
  * Le Contact à modifier.
  */
 void ContactList::modifyContact(Contact c) {
-    cout << "Modification requested for " << c.getNom() << endl;
-    //@todo dialog ou fenêtre de modification de contact
+    ContactModifier *modifier = new ContactModifier(nullptr);
+    modifier->setContact(c);
+    if(modifier->exec()){
+        this->gestionContact->modifyContact(c,modifier->getContact());
+    }
+    modifier->close();
+    emit refreshContactList(this->gestionContact);
 }
 
 void ContactList::createContact() {
