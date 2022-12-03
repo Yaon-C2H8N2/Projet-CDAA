@@ -41,6 +41,24 @@ tm Tache::getDateTache() {
 }
 
 /**
+ * Lie une Interaction à la Tache actuelle. Plusieurs Tache peuvent avoir la même Interaction.
+ * @param interaction
+ * L'Interaction à lier à la Tache.
+ */
+void Tache::setInteraction(Interaction interaction) {
+    this->interaction = interaction;
+}
+
+/**
+ * Retourne l'Interaction liée à la Tache actuelle.
+ * @return
+ * Une instance d'Interaction.
+ */
+Interaction Tache::getInteraction() {
+    return this->interaction;
+}
+
+/**
  * Redéfinition de l'opérateur d'égalité afin de comparer les tâches entre elles.
  * @param rhs
  * Une instance de Tache avec laquelle comparer l'instance actuelle.

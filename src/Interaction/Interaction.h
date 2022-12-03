@@ -8,7 +8,6 @@
 
 #include <string>
 #include <ostream>
-#include "../Tache/Tache.h"
 
 using namespace std;
 

@@ -48,8 +48,25 @@ Tache GestionTache::getTache(int i) {
             }
             cpt++;
         }
-    } else{} //throw exception (à voir comment ça marche, je connais pas encore)
-        return res;
+    } else {} //throw exception (à voir comment ça marche, je connais pas encore)
+    return res;
+}
+
+/**
+ * Retourne la GestionTache contenant toutes les Tache ayant pour Interaction liée l'Interaction passée en paramètre.
+ * @param interaction
+ * L'Interaction liée aux Tache recherchées.
+ * @return
+ * Un pointeur vers une instance de GestionTache.
+ */
+GestionTache *GestionTache::getTache(Interaction interaction) {
+    GestionTache *res = new GestionTache();
+    for (auto i: this->listeTache) {
+        if (i.getInteraction() == interaction) {
+            res->addTache(i);
+        }
+    }
+    return res;
 }
 
 /**

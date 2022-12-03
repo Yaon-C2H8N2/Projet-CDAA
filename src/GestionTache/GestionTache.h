@@ -23,6 +23,8 @@ public:
 
     Tache getTache(int i);
 
+    GestionTache *getTache(Interaction interaction);
+
     friend ostream &operator<<(ostream &os, const GestionTache &tache);
 };
 

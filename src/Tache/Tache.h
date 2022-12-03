@@ -7,6 +7,7 @@
 
 #include <string>
 #include <ostream>
+#include "../Interaction/Interaction.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Tache {
 private:
     string contenu;
     tm dateTache;
+    Interaction interaction;
 public:
     void setContenu(string contenu);
 
@@ -22,6 +24,10 @@ public:
     void setDateTache(tm dateTache);
 
     tm getDateTache();
+
+    void setInteraction(Interaction interaction);
+
+    Interaction getInteraction();
 
     friend ostream &operator<<(ostream &os, const Tache &tache);
 
