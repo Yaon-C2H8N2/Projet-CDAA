@@ -25,14 +25,14 @@ int main(int argc, char *argv[]) {
         tm date = *localtime(&t);
         c->setDateCreation(date);
         for (int j = 0; j < 2; j++) {
-            Interaction *i = new Interaction();
+            Interaction *inter = new Interaction();
             t += 10 * 24 * 3600; //interaction 10 jours après la précédente
             date = *localtime(&t);
-            i->setDateInteraction(date);
-            i->setContenu(
+            inter->setDateInteraction(date);
+            inter->setContenu(
                     "Interaction n°" + to_string(j) + "\n@todo test test test @date " + to_string(date.tm_mday) + "/" +
-                    to_string(1+date.tm_mon) + "/" + to_string(1900+date.tm_year));
-            c->getInteractions()->addInteraction(*i);
+                    to_string(1 + date.tm_mon) + "/" + to_string(1900 + date.tm_year));
+            c->getInteractions()->addInteraction(*inter);
         }
         gestionContact->addContact(*c);
         delete c;
