@@ -1,5 +1,7 @@
 #include <QApplication>
 #include <iostream>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 #include "src/Contact/Contact.h"
 #include "src/Interaction/Interaction.h"
 #include "src/GestionContact/GestionContact.h"
@@ -12,31 +14,28 @@ int main(int argc, char *argv[]) {
     GestionContact *gestionContact = new GestionContact();
     GestionTache *gestionTache = new GestionTache();
 
-    for (int i = 0; i < 50; i++) {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/yaon/Documents/Projet-CDAA/data/data.sqlite");
+    db.open();
+
+    QSqlQuery query(db);
+    query.exec("SELECT * FROM contacts");
+
+    while (query.next()) {
         Contact *c = new Contact();
-        c->setNom("DummyName" + to_string(i));
-        c->setPrenom("DummyFirstName" + to_string(i));
-        c->setMail("DummyMail" + to_string(i));
-        c->setEntreprise("DummyCompany" + to_string(i));
-        c->setCheminPhoto("./Dummy/Folder/profilePicture" + to_string(i) + ".jpg");
-        c->setTel("DummyPhone" + to_string(i));
-        time_t t = time(nullptr);
-        t += i * 24 * 3600;
+        c->setNom(query.value(1).toString().toStdString());
+        c->setPrenom(query.value(2).toString().toStdString());
+        c->setMail(query.value(3).toString().toStdString());
+        c->setEntreprise(query.value(4).toString().toStdString());
+        c->setCheminPhoto(query.value(5).toString().toStdString());
+        c->setTel(query.value(6).toString().toStdString());
+        time_t t = query.value(7).toDateTime().toSecsSinceEpoch();
         tm date = *localtime(&t);
         c->setDateCreation(date);
-        for (int j = 0; j < 2; j++) {
-            Interaction *i = new Interaction();
-            t += 10 * 24 * 3600; //interaction 10 jours après la précédente
-            date = *localtime(&t);
-            i->setDateInteraction(date);
-            i->setContenu(
-                    "Interaction n°" + to_string(j) + "\n@todo test test test @date " + to_string(date.tm_mday) + "/" +
-                    to_string(1+date.tm_mon) + "/" + to_string(1900+date.tm_year));
-            c->getInteractions()->addInteraction(*i);
-        }
         gestionContact->addContact(*c);
-        delete c;
     }
+
+    db.close();
 
     mainWindow->contactList->setContactList(gestionContact);
     mainWindow->show();
