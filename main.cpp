@@ -62,11 +62,8 @@ int main(int argc, char *argv[]) {
         tache.setDateTache(date);
         gestionTache->addTache(tache);
     }
-    cout << *gestionTache << endl;
 
     db.close();
-
-    cout << *gestionContact << endl;
 
     mainWindow->contactList->setContactList(gestionContact);
     mainWindow->show();
