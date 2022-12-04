@@ -31,13 +31,19 @@ VALUES (null, 'Beaulieu', 'Denise', 'DeniseBeaulieu@armyspy.com', 'Burstein-Appl
         '/home/yaon/Documents/Projet-CDAA/data/photo/default.png', '03 02 92 47 93', datetime());
 
 INSERT INTO interactions
-VALUES (null, 1, 'Appel client', datetime());
+VALUES (1, 1, 'Appel client', datetime());
 
 INSERT INTO interactions
-VALUES (null, 1, 'Appel client @todo rappeler client le @date 15/12/2022', datetime());
+VALUES (2, 1, 'Appel client @todo rappeler client @date 15/12/2022', datetime());
 
 INSERT INTO interactions
-VALUES (null, 2, 'Appel client', datetime());
+VALUES (1, 2, 'Appel client', datetime());
 
 INSERT INTO interactions
-VALUES (null, 5, 'Appel client @todo rappeler client', datetime());
+VALUES (1, 5, 'Appel client @todo rappeler client', datetime());
+
+INSERT INTO taches
+VALUES (null, 2, 1, 'rappeler client', '2022-12-15');
+
+INSERT INTO taches
+VALUES (null, 1, 5, 'rappeler client', date());

@@ -18,9 +18,9 @@ int main(int argc, char *argv[]) {
     db.setDatabaseName("/home/yaon/Documents/Projet-CDAA/data/data.sqlite");
     db.open();
 
+    //chargement des contacts
     QSqlQuery query(db);
     query.exec("SELECT * FROM contacts");
-
     while (query.next()) {
         Contact *c = new Contact();
         c->setNom(query.value(1).toString().toStdString());
@@ -35,17 +35,34 @@ int main(int argc, char *argv[]) {
         gestionContact->addContact(*c);
     }
 
+    //chargement des intéractions
     query.exec("select idContact, contenu, dateInteraction from interactions");
-    while(query.next()){
-        Contact c = gestionContact->getContact(query.value(0).toInt()-1);
+    while (query.next()) {
+        Contact c = gestionContact->getContact(query.value(0).toInt() - 1);
         Interaction i;
         i.setContenu(query.value(1).toString().toStdString());
         time_t t = query.value(2).toDateTime().toSecsSinceEpoch();
         tm date = *localtime(&t);
         i.setDateInteraction(date);
         c.getInteractions()->addInteraction(i);
-        gestionContact->modifyContact(gestionContact->getContact(query.value(0).toInt()-1), c);
+        gestionContact->modifyContact(gestionContact->getContact(query.value(0).toInt() - 1), c);
     }
+
+    //chargement des tâches
+    query.exec(
+            "select idInteraction, idContact, taches.contenu, dateTache from taches");
+    while (query.next()) {
+        Interaction interaction = gestionContact->getContact(
+                query.value(1).toInt() - 1).getInteractions()->getInteraction(query.value(0).toInt() - 1);
+        Tache tache;
+        tache.setInteraction(interaction);
+        tache.setContenu(query.value(2).toString().toStdString());
+        time_t t = query.value(3).toDateTime().toSecsSinceEpoch();
+        tm date = *localtime(&t);
+        tache.setDateTache(date);
+        gestionTache->addTache(tache);
+    }
+    cout << *gestionTache << endl;
 
     db.close();
 
