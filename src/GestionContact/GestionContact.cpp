@@ -46,17 +46,24 @@ void GestionContact::removeContact(Contact c) {
  * L'instance de Contact contenant les nouvelles informations.
  */
 void GestionContact::modifyContact(Contact c1, Contact c2) {
-    list<Contact> modifiedContact = {c2};
-    auto iterator = listeContacts.begin();
-    for (auto j: this->listeContacts) {
-        if (j == c1) {
-            this->listeContacts.splice(iterator, modifiedContact);
-            this->listeContacts.remove(c1);
+    for (auto j = this->listeContacts.rbegin(); j != this->listeContacts.rend(); j++) {
+        if (*j == c1) {
+            j->setNom(c2.getNom());
+            j->setPrenom(c2.getPrenom());
+            j->setTel(c2.getTel());
+            j->setMail(c2.getMail());
+            j->setEntreprise(c2.getEntreprise());
+            j->setCheminPhoto(c2.getCheminPhoto());
+            j->setDateCreation(c2.getDateCreation());
+            for (int i = 0; i < j->getInteractions()->getNbInteraction(); i++) {
+                j->getInteractions()->removeInteraction(j->getInteractions()->getInteraction(i));
+            }
+            for (int i = 0; i < c2.getInteractions()->getNbInteraction(); i++) {
+                j->getInteractions()->addInteraction(c2.getInteractions()->getInteraction(i));
+            }
             break;
         }
-        std::advance(iterator, 1);
     }
-    logModif("modification de " + c2.getNom() + " " + c2.getPrenom());
 }
 
 /**
@@ -147,9 +154,9 @@ GestionContact *GestionContact::rechercheEntreprise(string entreprise) {
  */
 GestionContact *GestionContact::rechercheDateCreation(tm date) {
     GestionContact *res = new GestionContact();
-    for(auto i:this->listeContacts){
+    for (auto i: this->listeContacts) {
         tm dateContact = i.getDateCreation();
-        if(mktime(&dateContact) == mktime(&date)){
+        if (mktime(&dateContact) == mktime(&date)) {
             res->addContact(i);
         }
     }
@@ -167,9 +174,9 @@ GestionContact *GestionContact::rechercheDateCreation(tm date) {
  */
 GestionContact *GestionContact::rechercheIntervalleDate(tm date_debut, tm date_fin) {
     GestionContact *res = new GestionContact();
-    for(auto i: this->listeContacts){
+    for (auto i: this->listeContacts) {
         tm dateContact = i.getDateCreation();
-        if(mktime(&dateContact) >= mktime(&date_debut) && mktime(&dateContact) <= mktime(&date_fin)){
+        if (mktime(&dateContact) >= mktime(&date_debut) && mktime(&dateContact) <= mktime(&date_fin)) {
             res->addContact(i);
         }
     }
