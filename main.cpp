@@ -35,7 +35,21 @@ int main(int argc, char *argv[]) {
         gestionContact->addContact(*c);
     }
 
+    query.exec("select idContact, contenu, dateInteraction from interactions");
+    while(query.next()){
+        Contact c = gestionContact->getContact(query.value(0).toInt()-1);
+        Interaction i;
+        i.setContenu(query.value(1).toString().toStdString());
+        time_t t = query.value(2).toDateTime().toSecsSinceEpoch();
+        tm date = *localtime(&t);
+        i.setDateInteraction(date);
+        c.getInteractions()->addInteraction(i);
+        gestionContact->modifyContact(gestionContact->getContact(query.value(0).toInt()-1), c);
+    }
+
     db.close();
+
+    cout << *gestionContact << endl;
 
     mainWindow->contactList->setContactList(gestionContact);
     mainWindow->show();
