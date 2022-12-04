@@ -21,7 +21,15 @@ SOURCES += \
 	src/GestionContact/GestionContact.cpp \
 	src/Tache/Tache.cpp \
 	src/GestionTache/GestionTache.cpp \
-	src/GestionInteraction/GestionInteraction.cpp
+	src/GestionInteraction/GestionInteraction.cpp \
+	src/GUI/MainWindow/MainWindow.cpp \
+	src/GUI/ContactList/ContactList.cpp \
+	src/GUI/TasksList/TasksList.cpp \
+	src/GUI/ContactInfo/ContactInfo.cpp \
+	src/GUI/ContactButton/ContactButton.cpp \
+	src/GUI/ContactCreator/ContactCreator.cpp \
+	src/GUI/InteractionViewer/InteractionViewer.cpp \
+	src/GUI/ContactModifier/ContactModifier.cpp
 
 HEADERS += \
 	src/Contact/Contact.h \
@@ -29,4 +37,12 @@ HEADERS += \
 	src/GestionContact/GestionContact.h \
 	src/Tache/Tache.h \
 	src/GestionTache/GestionTache.h \
-	src/GestionInteraction/GestionInteraction.h
+	src/GestionInteraction/GestionInteraction.h \
+	src/GUI/MainWindow/MainWindow.h \
+	src/GUI/ContactList/ContactList.h \
+	src/GUI/TasksList/TasksList.h \
+	src/GUI/ContactInfo/ContactInfo.h \
+	src/GUI/ContactButton/ContactButton.h \
+	src/GUI/ContactCreator/ContactCreator.h \
+	src/GUI/InteractionViewer/InteractionViewer.h \
+    src/GUI/ContactModifier/ContactModifier.h
