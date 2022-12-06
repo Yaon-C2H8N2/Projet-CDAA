@@ -54,9 +54,9 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="calendarTab">
+      <widget class="QWidget" name="taskTab">
        <attribute name="title">
-        <string>Calendrier</string>
+        <string>Tâches</string>
        </attribute>
       </widget>
      </widget>

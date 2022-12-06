@@ -14,7 +14,7 @@ MainWindow::MainWindow(QMainWindow *parent) {
     this->parent = parent;
     this->ui.setupUi(this->parent);
     this->contactList = new ContactList(this->ui.contactListWidget);
-    this->tasksList = new TasksList(this->ui.calendarTab);
+    this->tasksList = new TasksList(this->ui.taskTab);
     this->contactInfo = new ContactInfo(this->ui.contactInfoWidget);
     this->contactCreator = new ContactCreator(this->ui.newContactWidget);
 
