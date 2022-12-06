@@ -66,6 +66,7 @@ int main(int argc, char *argv[]) {
     db.close();
 
     mainWindow->contactList->setContactList(gestionContact);
+    mainWindow->tasksList->setTasksList(gestionTache);
     mainWindow->show();
 
     return app->exec();

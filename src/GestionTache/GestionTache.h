@@ -19,6 +19,8 @@ public:
 
     void removeTache(Tache t);
 
+    void removeTache(Interaction interaction);
+
     int getNbTache();
 
     Tache getTache(int i);
