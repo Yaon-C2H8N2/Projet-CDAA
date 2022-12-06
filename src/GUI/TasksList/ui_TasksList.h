@@ -1,17 +1,17 @@
 /********************************************************************************
-** Form generated from reading UI file 'TasksListeEWXNi.ui'
+** Form generated from reading UI file 'TasksListDzzUod.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef TASKSLISTEEWXNI_H
-#define TASKSLISTEEWXNI_H
+#ifndef TASKSLISTDZZUOD_H
+#define TASKSLISTDZZUOD_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCalendarWidget>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QScrollArea>
@@ -23,8 +23,11 @@ QT_BEGIN_NAMESPACE
 class Ui_TasksList
 {
 public:
+    QVBoxLayout *verticalLayout_3;
+    QFrame *frame_2;
     QHBoxLayout *horizontalLayout;
-    QCalendarWidget *calendarWidget;
+    QDateEdit *dateEdit;
+    QDateEdit *dateEdit_2;
     QFrame *frame;
     QVBoxLayout *verticalLayout;
     QScrollArea *tasksScrollArea;
@@ -36,12 +39,26 @@ public:
         if (TasksList->objectName().isEmpty())
             TasksList->setObjectName(QString::fromUtf8("TasksList"));
         TasksList->resize(640, 480);
-        horizontalLayout = new QHBoxLayout(TasksList);
+        verticalLayout_3 = new QVBoxLayout(TasksList);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        frame_2 = new QFrame(TasksList);
+        frame_2->setObjectName(QString::fromUtf8("frame_2"));
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
+        horizontalLayout = new QHBoxLayout(frame_2);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        calendarWidget = new QCalendarWidget(TasksList);
-        calendarWidget->setObjectName(QString::fromUtf8("calendarWidget"));
+        dateEdit = new QDateEdit(frame_2);
+        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
 
-        horizontalLayout->addWidget(calendarWidget);
+        horizontalLayout->addWidget(dateEdit);
+
+        dateEdit_2 = new QDateEdit(frame_2);
+        dateEdit_2->setObjectName(QString::fromUtf8("dateEdit_2"));
+
+        horizontalLayout->addWidget(dateEdit_2);
+
+
+        verticalLayout_3->addWidget(frame_2);
 
         frame = new QFrame(TasksList);
         frame->setObjectName(QString::fromUtf8("frame"));
@@ -56,7 +73,7 @@ public:
         tasksScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 302, 460));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 620, 406));
         verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         tasksScrollArea->setWidget(scrollAreaWidgetContents);
@@ -64,7 +81,7 @@ public:
         verticalLayout->addWidget(tasksScrollArea);
 
 
-        horizontalLayout->addWidget(frame);
+        verticalLayout_3->addWidget(frame);
 
 
         retranslateUi(TasksList);
@@ -85,4 +102,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // TASKSLISTEEWXNI_H
+#endif // TASKSLISTDZZUOD_H
