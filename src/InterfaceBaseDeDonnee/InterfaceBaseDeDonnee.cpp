@@ -80,3 +80,22 @@ void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_conta
     query.exec();
     db.close();
 }
+
+void InterfaceBaseDeDonnee::insertContact(Contact contact) {
+    QSqlQuery query(db);
+    db.open();
+    query.prepare("INSERT INTO contacts VALUES (null,:nom,:prenom,:mail,:entreprise,:cheminPhoto,:tel,:dateCreation)");
+    query.bindValue(":nom", QString::fromStdString(contact.getNom()));
+    query.bindValue(":prenom", QString::fromStdString(contact.getPrenom()));
+    query.bindValue(":mail", QString::fromStdString(contact.getMail()));
+    query.bindValue(":entreprise", QString::fromStdString(contact.getEntreprise()));
+    query.bindValue(":cheminPhoto", QString::fromStdString(contact.getCheminPhoto()));
+    query.bindValue(":tel", QString::fromStdString(contact.getTel()));
+    tm date = contact.getDateCreation();
+    query.bindValue(":dateCreation", QDateTime::fromSecsSinceEpoch(mktime(&date)));
+    for(auto i:query.boundValues()){
+        cout << i.toString().toStdString() << endl;
+    }
+    query.exec();
+    db.close();
+}

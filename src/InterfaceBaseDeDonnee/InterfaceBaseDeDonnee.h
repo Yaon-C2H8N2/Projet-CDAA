@@ -29,9 +29,7 @@ public:
 
     void updateContact(Contact old_contact, Contact new_contact);
 
-    void writeInteractions(GestionContact *gestionContact);
-
-    void writeTaches(GestionTache *gestionTache);
+    void insertContact(Contact contact);
 };
 
 
