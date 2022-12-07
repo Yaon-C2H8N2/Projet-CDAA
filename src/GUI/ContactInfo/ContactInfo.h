@@ -32,7 +32,11 @@ signals:
 
     void interactionDeleted(Interaction);
 
+    void refreshContactInfo();
+
 public slots:
+
+    void onRefreshContactInfo();
 
     void ShowContextMenu(const QPoint &);
 

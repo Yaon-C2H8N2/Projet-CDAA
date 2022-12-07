@@ -34,6 +34,6 @@ GestionTache *TasksList::getTasksList() {
 
 void TasksList::removeByInteraction(Interaction interaction) {
     cout << interaction << endl;
-    this->gestionTache->removeTache(interaction);
+    //this->gestionTache->removeTache(interaction);
 }
 

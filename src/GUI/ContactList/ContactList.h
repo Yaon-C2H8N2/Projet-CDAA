@@ -22,6 +22,8 @@ public:
 
     void setContactList(GestionContact *gestionContact);
 
+    GestionContact *getContactList();
+
     void show();
 
 signals:

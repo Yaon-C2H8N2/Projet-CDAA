@@ -7,6 +7,7 @@
 #include <iostream>
 #include <QDialog>
 #include "ContactInfo.h"
+#include "../InteractionViewer/InteractionViewer.h"
 
 /**
  * Constructeur de la classe ContactInfo permettant d'afficher les informations relatives à un Contact.
@@ -20,6 +21,7 @@ ContactInfo::ContactInfo(QWidget *parent) {
     this->ui.scrollArea->setContextMenuPolicy(Qt::CustomContextMenu);
     QObject::connect(this->ui.scrollArea, SIGNAL(customContextMenuRequested(const QPoint &)),
                      this, SLOT(ShowContextMenu(const QPoint &)));
+    QObject::connect(this, SIGNAL(refreshContactInfo()), this, SLOT(onRefreshContactInfo()));
 }
 
 /**
@@ -29,24 +31,7 @@ ContactInfo::ContactInfo(QWidget *parent) {
  */
 void ContactInfo::setContact(Contact contact) {
     this->contact = contact;
-    this->ui.nameLabel->setText(QString::fromStdString(contact.getPrenom() + " " + contact.getNom()));
-    this->ui.companyNameLabel->setText(QString::fromStdString(contact.getEntreprise()));
-    this->ui.phoneNumberLabel->setText(QString::fromStdString(contact.getTel()));
-    this->ui.mailAddressLabel->setText(QString::fromStdString(contact.getMail()));
-    this->ui.photoLabel->setText(QString::fromStdString(contact.getCheminPhoto()));
-    this->ui.creationDateLabel->setText(QString::fromStdString(
-            to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
-            to_string(contact.getDateCreation().tm_year + 1900)));
-    auto children = ui.scrollArea->widget()->findChildren<QWidget *>();
-    for (auto i: children) {
-        ui.scrollArea->widget()->layout()->removeWidget(i);
-        i->close();
-    }
-    for (int i = 0; i < this->contact.getInteractions()->getNbInteraction(); i++) {
-        QWidget *widget = new QWidget(this->ui.scrollAreaWidgetContents);
-        //affichage des interactions
-    }
-    this->show();
+    emit refreshContactInfo();
 }
 
 /**
@@ -87,4 +72,27 @@ void ContactInfo::ShowContextMenu(const QPoint &pos) {
 
 void ContactInfo::onInteractionDelete(Interaction interaction) {
     emit interactionDeleted(interaction);
+}
+
+void ContactInfo::onRefreshContactInfo() {
+    this->ui.nameLabel->setText(QString::fromStdString(contact.getPrenom() + " " + contact.getNom()));
+    this->ui.companyNameLabel->setText(QString::fromStdString(contact.getEntreprise()));
+    this->ui.phoneNumberLabel->setText(QString::fromStdString(contact.getTel()));
+    this->ui.mailAddressLabel->setText(QString::fromStdString(contact.getMail()));
+    this->ui.photoLabel->setText(QString::fromStdString(contact.getCheminPhoto()));
+    this->ui.creationDateLabel->setText(QString::fromStdString(
+            to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
+            to_string(contact.getDateCreation().tm_year + 1900)));
+    auto children = ui.scrollArea->widget()->findChildren<QWidget *>();
+    for (auto i: children) {
+        ui.scrollArea->widget()->layout()->removeWidget(i);
+        i->close();
+    }
+    for (int i = 0; i < this->contact.getInteractions()->getNbInteraction(); i++) {
+        InteractionViewer *interactionViewer = new InteractionViewer(this->ui.scrollAreaWidgetContents);
+        this->ui.scrollAreaWidgetContents->layout()->addWidget(interactionViewer);
+        interactionViewer->setInteraction(this->contact.getInteractions()->getInteraction(i));
+        QObject::connect(interactionViewer, SIGNAL(interactionDeleted(Interaction)), this, SLOT(onInteractionDelete(Interaction)));
+    }
+    this->show();
 }

@@ -61,5 +61,9 @@ void MainWindow::showContact(Contact contact) {
 }
 
 void MainWindow::onInteractionDelete(Interaction interaction) {
-    cout << interaction.getContenu() << endl;
+    Contact contact = this->contactInfo->getContact();
+    contact.getInteractions()->removeInteraction(interaction);
+    this->contactList->getContactList()->modifyContact(this->contactInfo->getContact(),contact);
+    this->contactInfo->setContact(contact);
+    this->tasksList->removeByInteraction(interaction);
 }

@@ -28,9 +28,13 @@ public:
     MainWindow(QMainWindow *parent);
 
     void show();
+
 private slots:
+
     void showNewContact();
+
     void showContact(Contact);
+
     void onInteractionDelete(Interaction);
 };
 
