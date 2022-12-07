@@ -7,7 +7,6 @@
 #include <iostream>
 #include <QDialog>
 #include "ContactInfo.h"
-#include "../InteractionViewer/InteractionViewer.h"
 
 /**
  * Constructeur de la classe ContactInfo permettant d'afficher les informations relatives à un Contact.
@@ -45,12 +44,7 @@ void ContactInfo::setContact(Contact contact) {
     }
     for (int i = 0; i < this->contact.getInteractions()->getNbInteraction(); i++) {
         QWidget *widget = new QWidget(this->ui.scrollAreaWidgetContents);
-        InteractionViewer interactionViewer(widget);
-        interactionViewer.setInteraction(this->contact.getInteractions()->getInteraction(i));
-        QObject::connect(&interactionViewer, SIGNAL(interactionDeleted(Interaction)), this,
-                         SLOT(onInteractionDelete(Interaction)));
-        this->ui.scrollAreaWidgetContents->layout()->addWidget(widget);
-        interactionViewer.show();
+        //affichage des interactions
     }
     this->show();
 }
