@@ -6,8 +6,8 @@
 #include "InterfaceBaseDeDonnee.h"
 
 InterfaceBaseDeDonnee::InterfaceBaseDeDonnee() {
+    db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/yaon/Documents/Projet-CDAA/data/data.sqlite");
-    cout << "Db openned at " << db.databaseName().toStdString() << endl;
 }
 
 void InterfaceBaseDeDonnee::getContacts(GestionContact *gestionContact) {

@@ -9,7 +9,7 @@ InteractionViewer::InteractionViewer(QWidget *parent) {
     this->parent = parent;
     this->ui.setupUi(parent);
     //connect du bouton
-    QObject::connect(this->ui.deleteButton, SIGNAL(clicked(bool)), this, SLOT(this->onInteractionDelete()));
+    QObject::connect(this->ui.deleteButton, SIGNAL(clicked(bool)), this, SLOT(onInteractionDelete()));
 }
 
 void InteractionViewer::setInteraction(Interaction interaction) {
