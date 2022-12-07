@@ -36,6 +36,8 @@ signals:
 
     void contactModified(Contact, Contact);
 
+    void contactDeleted(Contact);
+
 private slots:
 
     void showContactList(GestionContact *);

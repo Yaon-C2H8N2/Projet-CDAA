@@ -30,6 +30,7 @@ MainWindow::MainWindow(QMainWindow *parent) {
     QObject::connect(this->contactInfo, SIGNAL(interactionDeleted(Interaction)), this,
                      SLOT(onInteractionDelete(Interaction)));
     QObject::connect(this->contactList, SIGNAL(contactModified(Contact, Contact)), this, SLOT(onContactUpdate(Contact, Contact)));
+    QObject::connect(this->contactList, SIGNAL(contactDeleted(Contact)), this, SLOT(onContactDeletion(Contact)));
 }
 
 /**
@@ -77,4 +78,8 @@ void MainWindow::onContactUpdate(Contact c1, Contact c2) {
 
 void MainWindow::addNewContact(Contact contact) {
     this->interfaceBaseDeDonnee->insertContact(contact);
+}
+
+void MainWindow::onContactDeletion(Contact c) {
+    this->interfaceBaseDeDonnee->removeContact(c);
 }

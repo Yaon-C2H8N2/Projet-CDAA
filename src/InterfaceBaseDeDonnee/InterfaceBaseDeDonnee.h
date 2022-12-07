@@ -30,6 +30,8 @@ public:
     void updateContact(Contact old_contact, Contact new_contact);
 
     void insertContact(Contact contact);
+
+    void removeContact(Contact contact);
 };
 
 

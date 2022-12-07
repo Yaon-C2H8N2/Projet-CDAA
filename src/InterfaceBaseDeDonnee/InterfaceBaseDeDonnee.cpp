@@ -67,7 +67,6 @@ void InterfaceBaseDeDonnee::getTaches(GestionTache *gestionTache, GestionContact
 }
 
 
-
 void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_contact) {
     QSqlQuery query(db);
     db.open();
@@ -76,7 +75,8 @@ void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_conta
     query.bindValue(":newPrenom", QString::fromStdString(new_contact.getPrenom()));
     query.bindValue(":oldNom", QString::fromStdString(old_contact.getNom()));
     query.bindValue(":oldPrenom", QString::fromStdString(old_contact.getPrenom()));
-    cout << "update " << old_contact.getNom() << " " << old_contact.getPrenom() << " to " << query.boundValue(0).toString().toStdString() << " " << query.boundValue(1).toString().toStdString() << endl;
+    cout << "update " << old_contact.getNom() << " " << old_contact.getPrenom() << " to "
+         << query.boundValue(0).toString().toStdString() << " " << query.boundValue(1).toString().toStdString() << endl;
     query.exec();
     db.close();
 }
@@ -93,7 +93,27 @@ void InterfaceBaseDeDonnee::insertContact(Contact contact) {
     query.bindValue(":tel", QString::fromStdString(contact.getTel()));
     tm date = contact.getDateCreation();
     query.bindValue(":dateCreation", QDateTime::fromSecsSinceEpoch(mktime(&date)));
-    for(auto i:query.boundValues()){
+    for (auto i: query.boundValues()) {
+        cout << i.toString().toStdString() << endl;
+    }
+    query.exec();
+    db.close();
+}
+
+void InterfaceBaseDeDonnee::removeContact(Contact contact) {
+    QSqlQuery query(db);
+    db.open();
+    query.prepare(
+            "DELETE FROM contacts WHERE nom = :nom AND prenom = :prenom AND mail = :mail AND entreprise = :entreprise AND cheminPhoto = :cheminPhoto AND tel = :tel");
+    query.bindValue(":nom", QString::fromStdString(contact.getNom()));
+    query.bindValue(":prenom", QString::fromStdString(contact.getPrenom()));
+    query.bindValue(":mail", QString::fromStdString(contact.getMail()));
+    query.bindValue(":entreprise", QString::fromStdString(contact.getEntreprise()));
+    query.bindValue(":cheminPhoto", QString::fromStdString(contact.getCheminPhoto()));
+    query.bindValue(":tel", QString::fromStdString(contact.getTel()));
+    tm date = contact.getDateCreation();
+    query.bindValue(":dateCreation", QDateTime::fromSecsSinceEpoch(mktime(&date)));
+    for (auto i: query.boundValues()) {
         cout << i.toString().toStdString() << endl;
     }
     query.exec();

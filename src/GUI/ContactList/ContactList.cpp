@@ -107,6 +107,7 @@ void ContactList::deleteContact(Contact c) {
     }
     dialog->close();
     delete dialogUi;
+    emit contactDeleted(c);
 }
 
 /**
