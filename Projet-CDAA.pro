@@ -28,8 +28,8 @@ SOURCES += \
 	src/GUI/ContactInfo/ContactInfo.cpp \
 	src/GUI/ContactButton/ContactButton.cpp \
 	src/GUI/ContactCreator/ContactCreator.cpp \
-	src/GUI/InteractionViewer/InteractionViewer.cpp \
-	src/GUI/ContactModifier/ContactModifier.cpp
+	src/GUI/ContactModifier/ContactModifier.cpp \
+	src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.cpp
 
 HEADERS += \
 	src/Contact/Contact.h \
@@ -44,5 +44,5 @@ HEADERS += \
 	src/GUI/ContactInfo/ContactInfo.h \
 	src/GUI/ContactButton/ContactButton.h \
 	src/GUI/ContactCreator/ContactCreator.h \
-	src/GUI/InteractionViewer/InteractionViewer.h \
-    src/GUI/ContactModifier/ContactModifier.h
+    src/GUI/ContactModifier/ContactModifier.h \
+    src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h

@@ -32,6 +32,10 @@ void ContactList::setContactList(GestionContact *gestionContact) {
     emit refreshContactList(this->gestionContact);
 }
 
+GestionContact *ContactList::getContactList() {
+    return this->gestionContact;
+}
+
 /**
  * Fonction permettant d'afficher ContactList en affichant le parent auquel la classe est rattachée.
  */
@@ -103,6 +107,7 @@ void ContactList::deleteContact(Contact c) {
     }
     dialog->close();
     delete dialogUi;
+    emit contactDeleted(c);
 }
 
 /**
@@ -113,11 +118,12 @@ void ContactList::deleteContact(Contact c) {
 void ContactList::modifyContact(Contact c) {
     ContactModifier *modifier = new ContactModifier(nullptr);
     modifier->setContact(c);
-    if(modifier->exec()){
-        this->gestionContact->modifyContact(c,modifier->getContact());
+    if (modifier->exec()) {
+        this->gestionContact->modifyContact(c, modifier->getContact());
     }
-    modifier->close();
     emit refreshContactList(this->gestionContact);
+    emit contactModified(c,modifier->getContact());
+    modifier->close();
 }
 
 void ContactList::createContact() {

@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'MainWindowCpyEvH.ui'
+** Form generated from reading UI file 'MainWindowVYbLbS.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef MAINWINDOWCPYEVH_H
-#define MAINWINDOWCPYEVH_H
+#ifndef MAINWINDOWVYBLBS_H
+#define MAINWINDOWVYBLBS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -32,7 +32,7 @@ public:
     QWidget *contactListWidget;
     QWidget *contactInfoWidget;
     QWidget *newContactWidget;
-    QWidget *calendarTab;
+    QWidget *taskTab;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -70,9 +70,9 @@ public:
         horizontalLayout->addWidget(newContactWidget);
 
         tabWidget->addTab(contactTab, QString());
-        calendarTab = new QWidget();
-        calendarTab->setObjectName(QString::fromUtf8("calendarTab"));
-        tabWidget->addTab(calendarTab, QString());
+        taskTab = new QWidget();
+        taskTab->setObjectName(QString::fromUtf8("taskTab"));
+        tabWidget->addTab(taskTab, QString());
 
         gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
 
@@ -97,7 +97,7 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(contactTab), QCoreApplication::translate("MainWindow", "Contacts", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(calendarTab), QCoreApplication::translate("MainWindow", "Calendrier", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(taskTab), QCoreApplication::translate("MainWindow", "T\303\242ches", nullptr));
     } // retranslateUi
 
 };
@@ -108,4 +108,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // MAINWINDOWCPYEVH_H
+#endif // MAINWINDOWVYBLBS_H

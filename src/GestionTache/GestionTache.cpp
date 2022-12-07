@@ -87,3 +87,11 @@ ostream &operator<<(ostream &os, const GestionTache &tache) {
     }
     return os;
 }
+
+void GestionTache::removeTache(Interaction interaction) {
+    for (auto i: listeTache) {
+        if (i.getInteraction() == interaction) {
+            listeTache.remove(i);
+        }
+    }
+}

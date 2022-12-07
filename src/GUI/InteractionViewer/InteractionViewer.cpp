@@ -1,30 +1,25 @@
 //
-// Created by yaon on 14/11/22.
+// Created by yaon on 07/12/22.
 //
 
+#include <iostream>
 #include "InteractionViewer.h"
 
-InteractionViewer::InteractionViewer(QWidget *parent) {
-    this->parent = parent;
-    this->ui.setupUi(parent);
+InteractionViewer::InteractionViewer(QWidget *parent) : QWidget() {
+    this->ui.setupUi(this);
 }
 
 void InteractionViewer::setInteraction(Interaction interaction) {
     this->interaction = interaction;
     this->ui.textEdit->setText(QString::fromStdString(interaction.getContenu()));
-    this->ui.dateLabel->setText(QString::fromStdString("Intéraction du "+to_string(interaction.getDateInteraction()->tm_mday) + "/" +
-                                                       to_string(interaction.getDateInteraction()->tm_mon+1) + "/" +
-                                                       to_string(interaction.getDateInteraction()->tm_year+1900)));
+    this->ui.textEdit->setReadOnly(true);
+    this->ui.dateLabel->setText(QString::fromStdString(
+            to_string(interaction.getDateInteraction()->tm_mday) + "/" +
+            to_string(interaction.getDateInteraction()->tm_mon + 1) + "/" +
+            to_string(interaction.getDateInteraction()->tm_year + 1900)));
+    QObject::connect(this->ui.deleteButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteButtonPressed()));
 }
 
-Interaction InteractionViewer::getInteraction() {
-    return this->interaction;
-}
-
-void InteractionViewer::show() {
-    this->parent->show();
-}
-
-void InteractionViewer::hide() {
-    this->parent->hide();
+void InteractionViewer::onDeleteButtonPressed() {
+    emit interactionDeleted(this->interaction);
 }

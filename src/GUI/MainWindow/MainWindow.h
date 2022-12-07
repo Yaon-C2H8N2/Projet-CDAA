@@ -13,6 +13,7 @@
 #include "../TasksList/TasksList.h"
 #include "../ContactInfo/ContactInfo.h"
 #include "../ContactCreator/ContactCreator.h"
+#include "../../InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h"
 
 class MainWindow : public QObject {
 Q_OBJECT
@@ -23,14 +24,26 @@ public:
     TasksList *tasksList;
     ContactInfo *contactInfo;
     ContactCreator *contactCreator;
+    InterfaceBaseDeDonnee *interfaceBaseDeDonnee;
     Ui::MainWindow ui;
 
     MainWindow(QMainWindow *parent);
 
     void show();
+
 private slots:
+
     void showNewContact();
+
     void showContact(Contact);
+
+    void onInteractionDelete(Interaction);
+
+    void onContactUpdate(Contact, Contact);
+
+    void onContactDeletion(Contact);
+
+    void addNewContact(Contact);
 };
 
 

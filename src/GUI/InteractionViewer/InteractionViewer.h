@@ -1,19 +1,19 @@
 //
-// Created by yaon on 14/11/22.
+// Created by yaon on 07/12/22.
 //
 
 #ifndef PROJET_CDAA_INTERACTIONVIEWER_H
 #define PROJET_CDAA_INTERACTIONVIEWER_H
 
-#include <QWidget>
-#include <QObject>
+
 #include "../../Interaction/Interaction.h"
 #include "ui_InteractionViewer.h"
+#include <QObject>
+#include <QWidget>
 
-class InteractionViewer : public QObject {
+class InteractionViewer : public QWidget {
 Q_OBJECT
 private:
-    QWidget *parent;
     Interaction interaction;
 public:
     Ui::InteractionViewer ui;
@@ -22,11 +22,12 @@ public:
 
     void setInteraction(Interaction interaction);
 
-    Interaction getInteraction();
+signals:
+    void interactionDeleted(Interaction);
 
-    void show();
+public slots:
 
-    void hide();
+    void onDeleteButtonPressed();
 };
 
 

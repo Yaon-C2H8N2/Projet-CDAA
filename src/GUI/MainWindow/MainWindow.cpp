@@ -14,7 +14,7 @@ MainWindow::MainWindow(QMainWindow *parent) {
     this->parent = parent;
     this->ui.setupUi(this->parent);
     this->contactList = new ContactList(this->ui.contactListWidget);
-    this->tasksList = new TasksList(this->ui.calendarTab);
+    this->tasksList = new TasksList(this->ui.taskTab);
     this->contactInfo = new ContactInfo(this->ui.contactInfoWidget);
     this->contactCreator = new ContactCreator(this->ui.newContactWidget);
 
@@ -25,6 +25,12 @@ MainWindow::MainWindow(QMainWindow *parent) {
     QObject::connect(this->contactList, SIGNAL(createButtonClicked()), this, SLOT(showNewContact()));
     QObject::connect(this->contactCreator, SIGNAL(validateContact(Contact)), this->contactList,
                      SLOT(addNewContact(Contact)));
+    QObject::connect(this->contactCreator, SIGNAL(validateContact(Contact)), this,
+                     SLOT(addNewContact(Contact)));
+    QObject::connect(this->contactInfo, SIGNAL(interactionDeleted(Interaction)), this,
+                     SLOT(onInteractionDelete(Interaction)));
+    QObject::connect(this->contactList, SIGNAL(contactModified(Contact, Contact)), this, SLOT(onContactUpdate(Contact, Contact)));
+    QObject::connect(this->contactList, SIGNAL(contactDeleted(Contact)), this, SLOT(onContactDeletion(Contact)));
 }
 
 /**
@@ -56,4 +62,24 @@ void MainWindow::showContact(Contact contact) {
         contactInfo->setContact(*new Contact());
         contactInfo->hide();
     }
+}
+
+void MainWindow::onInteractionDelete(Interaction interaction) {
+    Contact contact = this->contactInfo->getContact();
+    contact.getInteractions()->removeInteraction(interaction);
+    this->contactList->getContactList()->modifyContact(this->contactInfo->getContact(),contact);
+    this->contactInfo->setContact(contact);
+    this->tasksList->removeByInteraction(interaction);
+}
+
+void MainWindow::onContactUpdate(Contact c1, Contact c2) {
+    this->interfaceBaseDeDonnee->updateContact(c1, c2);
+}
+
+void MainWindow::addNewContact(Contact contact) {
+    this->interfaceBaseDeDonnee->insertContact(contact);
+}
+
+void MainWindow::onContactDeletion(Contact c) {
+    this->interfaceBaseDeDonnee->removeContact(c);
 }
