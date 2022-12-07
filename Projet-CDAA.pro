@@ -29,7 +29,7 @@ SOURCES += \
 	src/GUI/ContactButton/ContactButton.cpp \
 	src/GUI/ContactCreator/ContactCreator.cpp \
 	src/GUI/ContactModifier/ContactModifier.cpp \
-	src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h
+	src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.cpp
 
 HEADERS += \
 	src/Contact/Contact.h \
