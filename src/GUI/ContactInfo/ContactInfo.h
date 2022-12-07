@@ -28,9 +28,15 @@ public:
 
     void hide();
 
+signals:
+
+    void interactionDeleted(Interaction);
+
 public slots:
 
     void ShowContextMenu(const QPoint &);
+
+    void onInteractionDelete(Interaction);
 };
 
 

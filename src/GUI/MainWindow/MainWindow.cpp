@@ -25,6 +25,8 @@ MainWindow::MainWindow(QMainWindow *parent) {
     QObject::connect(this->contactList, SIGNAL(createButtonClicked()), this, SLOT(showNewContact()));
     QObject::connect(this->contactCreator, SIGNAL(validateContact(Contact)), this->contactList,
                      SLOT(addNewContact(Contact)));
+    QObject::connect(this->contactInfo, SIGNAL(interactionDeleted(Interaction)), this,
+                     SLOT(onInteractionDelete(Interaction)));
 }
 
 /**
@@ -56,4 +58,8 @@ void MainWindow::showContact(Contact contact) {
         contactInfo->setContact(*new Contact());
         contactInfo->hide();
     }
+}
+
+void MainWindow::onInteractionDelete(Interaction interaction) {
+    cout << interaction.getContenu() << endl;
 }

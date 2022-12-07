@@ -31,6 +31,7 @@ public:
 private slots:
     void showNewContact();
     void showContact(Contact);
+    void onInteractionDelete(Interaction);
 };
 
 

@@ -116,8 +116,9 @@ void ContactList::modifyContact(Contact c) {
     if(modifier->exec()){
         this->gestionContact->modifyContact(c,modifier->getContact());
     }
-    modifier->close();
     emit refreshContactList(this->gestionContact);
+    emit contactModified(modifier->getContact());
+    modifier->close();
 }
 
 void ContactList::createContact() {

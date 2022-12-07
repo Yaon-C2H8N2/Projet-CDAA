@@ -22,11 +22,15 @@ public:
 
     void setInteraction(Interaction interaction);
 
-    Interaction getInteraction();
-
     void show();
 
-    void hide();
+signals:
+
+    void interactionDeleted(Interaction);
+
+public slots:
+
+    void onInteractionDelete();
 };
 
 

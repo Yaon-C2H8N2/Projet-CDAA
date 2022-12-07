@@ -19,8 +19,8 @@ ContactInfo::ContactInfo(QWidget *parent) {
     this->ui.setupUi(parent);
     this->ui.scrollAreaWidgetContents->setLayout(new QVBoxLayout(ui.scrollAreaWidgetContents));
     this->ui.scrollArea->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this->ui.scrollArea, SIGNAL(customContextMenuRequested(const QPoint &)),
-            this, SLOT(ShowContextMenu(const QPoint &)));
+    QObject::connect(this->ui.scrollArea, SIGNAL(customContextMenuRequested(const QPoint &)),
+                     this, SLOT(ShowContextMenu(const QPoint &)));
 }
 
 /**
@@ -47,8 +47,10 @@ void ContactInfo::setContact(Contact contact) {
         QWidget *widget = new QWidget(this->ui.scrollAreaWidgetContents);
         InteractionViewer interactionViewer(widget);
         interactionViewer.setInteraction(this->contact.getInteractions()->getInteraction(i));
+        QObject::connect(&interactionViewer, SIGNAL(interactionDeleted(Interaction)), this,
+                         SLOT(onInteractionDelete(Interaction)));
         this->ui.scrollAreaWidgetContents->layout()->addWidget(widget);
-        widget->show();
+        interactionViewer.show();
     }
     this->show();
 }
@@ -87,4 +89,8 @@ void ContactInfo::ShowContextMenu(const QPoint &pos) {
 
     contextMenu.addAction(&action1);
     contextMenu.exec(this->ui.scrollArea->mapToGlobal(pos));
+}
+
+void ContactInfo::onInteractionDelete(Interaction interaction) {
+    emit interactionDeleted(interaction);
 }
