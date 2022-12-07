@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
 
     mainWindow->contactList->setContactList(gestionContact);
     mainWindow->tasksList->setTasksList(gestionTache);
+    mainWindow->interfaceBaseDeDonnee = interfaceBaseDeDonnee;
     mainWindow->show();
 
     return app->exec();

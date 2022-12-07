@@ -121,7 +121,7 @@ void ContactList::modifyContact(Contact c) {
         this->gestionContact->modifyContact(c, modifier->getContact());
     }
     emit refreshContactList(this->gestionContact);
-    emit contactModified(modifier->getContact());
+    emit contactModified(c,modifier->getContact());
     modifier->close();
 }
 

@@ -65,3 +65,18 @@ void InterfaceBaseDeDonnee::getTaches(GestionTache *gestionTache, GestionContact
     }
     db.close();
 }
+
+
+
+void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_contact) {
+    QSqlQuery query(db);
+    db.open();
+    query.prepare("UPDATE contacts SET nom = :newNom, prenom = :newPrenom WHERE nom = :oldNom AND prenom = :oldPrenom");
+    query.bindValue(":newNom", QString::fromStdString(new_contact.getNom()));
+    query.bindValue(":newPrenom", QString::fromStdString(new_contact.getPrenom()));
+    query.bindValue(":oldNom", QString::fromStdString(old_contact.getNom()));
+    query.bindValue(":oldPrenom", QString::fromStdString(old_contact.getPrenom()));
+    cout << "update " << old_contact.getNom() << " " << old_contact.getPrenom() << " to " << query.boundValue(0).toString().toStdString() << " " << query.boundValue(1).toString().toStdString() << endl;
+    query.exec();
+    db.close();
+}

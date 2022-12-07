@@ -34,7 +34,7 @@ signals:
 
     void createButtonClicked();
 
-    void contactModified(Contact);
+    void contactModified(Contact, Contact);
 
 private slots:
 

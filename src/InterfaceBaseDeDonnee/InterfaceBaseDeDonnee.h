@@ -26,6 +26,12 @@ public:
     void getInteractions(GestionContact *gestionContact);
 
     void getTaches(GestionTache *gestionTache, GestionContact *gestionContact);
+
+    void updateContact(Contact old_contact, Contact new_contact);
+
+    void writeInteractions(GestionContact *gestionContact);
+
+    void writeTaches(GestionTache *gestionTache);
 };
 
 
