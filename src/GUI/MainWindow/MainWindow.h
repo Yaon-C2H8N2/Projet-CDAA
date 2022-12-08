@@ -44,6 +44,8 @@ private slots:
     void onContactDeletion(Contact);
 
     void addNewContact(Contact);
+
+    void onInteractionAdded(Contact);
 };
 
 

@@ -8,6 +8,7 @@
 #include <QDialog>
 #include "ContactInfo.h"
 #include "../InteractionViewer/InteractionViewer.h"
+#include "../InteractionCreator/ui_InteractionCreator.h"
 
 /**
  * Constructeur de la classe ContactInfo permettant d'afficher les informations relatives à un Contact.
@@ -67,6 +68,7 @@ void ContactInfo::ShowContextMenu(const QPoint &pos) {
     QAction action1("Ajouter interaction", this->ui.scrollArea);
 
     contextMenu.addAction(&action1);
+    QObject::connect(&action1, SIGNAL(triggered(bool)), this, SLOT(onInteractionCreatorRequest()));
     contextMenu.exec(this->ui.scrollArea->mapToGlobal(pos));
 }
 
@@ -92,7 +94,27 @@ void ContactInfo::onRefreshContactInfo() {
         InteractionViewer *interactionViewer = new InteractionViewer(this->ui.scrollAreaWidgetContents);
         this->ui.scrollAreaWidgetContents->layout()->addWidget(interactionViewer);
         interactionViewer->setInteraction(this->contact.getInteractions()->getInteraction(i));
-        QObject::connect(interactionViewer, SIGNAL(interactionDeleted(Interaction)), this, SLOT(onInteractionDelete(Interaction)));
+        QObject::connect(interactionViewer, SIGNAL(interactionDeleted(Interaction)), this,
+                         SLOT(onInteractionDelete(Interaction)));
     }
     this->show();
+}
+
+void ContactInfo::onInteractionCreatorRequest() {
+    Ui::InteractionCreator *dialogUi = new Ui::InteractionCreator();
+    QDialog *dialog = new QDialog(nullptr);
+    dialogUi->setupUi(dialog);
+    dialogUi->titleLabel->setText(QString::fromStdString("Ajout d'intéraction avec "+this->contact.getPrenom()+" "+this->contact.getNom()));
+    if (dialog->exec()) {
+        Interaction interaction;
+        interaction.setContenu(dialogUi->textEdit->toPlainText().toStdString());
+        time_t t = time(nullptr);
+        tm date = *localtime(&t);
+        interaction.setDateInteraction(date);
+        this->contact.getInteractions()->addInteraction(interaction);
+        emit refreshContactInfo();
+    }
+    dialog->close();
+    delete dialogUi;
+    emit interactionAdded(this->contact);
 }
