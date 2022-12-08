@@ -32,6 +32,8 @@ signals:
 
     void interactionDeleted(Interaction);
 
+    void interactionAdded(Contact);
+
     void refreshContactInfo();
 
 public slots:
@@ -41,6 +43,8 @@ public slots:
     void ShowContextMenu(const QPoint &);
 
     void onInteractionDelete(Interaction);
+
+    void onInteractionCreatorRequest();
 };
 
 
