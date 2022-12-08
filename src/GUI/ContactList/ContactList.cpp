@@ -32,6 +32,11 @@ void ContactList::setContactList(GestionContact *gestionContact) {
     emit refreshContactList(this->gestionContact);
 }
 
+/**
+ * Fonction retournant un pointeur vers l'instance de GestionContact contenue dans la classe.
+ * @return
+ * Un pointeur de GestionContact.
+ */
 GestionContact *ContactList::getContactList() {
     return this->gestionContact;
 }
@@ -126,6 +131,9 @@ void ContactList::modifyContact(Contact c) {
     modifier->close();
 }
 
+/**
+ * Slot émettant un signal lorsque le bouton d'ajout de contact est déclenché.
+ */
 void ContactList::createContact() {
     emit createButtonClicked();
 }

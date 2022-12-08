@@ -66,6 +66,11 @@ void MainWindow::showContact(Contact contact) {
     }
 }
 
+/**
+ * Slot supprimant les Tache liée à une Interaction lors de la suppression d'une Interaction.
+ * @param interaction
+ * L'Interaction supprimée.
+ */
 void MainWindow::onInteractionDelete(Interaction interaction) {
     Contact contact = this->contactInfo->getContact();
     contact.getInteractions()->removeInteraction(interaction);
@@ -75,18 +80,40 @@ void MainWindow::onInteractionDelete(Interaction interaction) {
     this->contactList->refreshContactList(this->contactList->getContactList());
 }
 
+/**
+ * Slot mettant à jour dans la base de données les infos d'un Contact.
+ * @param c1
+ * Le Contact à update.
+ * @param c2
+ * Les nouvelles infos du Contact.
+ */
 void MainWindow::onContactUpdate(Contact c1, Contact c2) {
     this->interfaceBaseDeDonnee->updateContact(c1, c2);
 }
 
+/**
+ * Slot ajoutant un Contact à la base de données.
+ * @param contact
+ * Le Contact à ajouter.
+ */
 void MainWindow::addNewContact(Contact contact) {
     this->interfaceBaseDeDonnee->insertContact(contact);
 }
 
+/**
+ * Slot supprimant un Contact de la base de données.
+ * @param c
+ * Le Contact à supprimer.
+ */
 void MainWindow::onContactDeletion(Contact c) {
     this->interfaceBaseDeDonnee->removeContact(c);
 }
 
+/**
+ * Slot rafraîchissant l'affichage des infos du Contact lors de l'ajout d'une intéraction.
+ * @param c
+ * Le Contact dont l'affichage doit être rafraîchit.
+ */
 void MainWindow::onInteractionAdded(Contact c) {
     this->contactList->getContactList()->modifyContact(c, c);
     this->contactList->refreshContactList(this->contactList->getContactList());

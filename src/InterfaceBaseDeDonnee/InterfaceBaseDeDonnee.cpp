@@ -5,11 +5,19 @@
 #include <iostream>
 #include "InterfaceBaseDeDonnee.h"
 
+/**
+ * Constructeur de la classe.
+ */
 InterfaceBaseDeDonnee::InterfaceBaseDeDonnee() {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/yaon/Documents/Projet-CDAA/data/data.sqlite");
 }
 
+/**
+ * Charge les contacts stockés dans la base de données dans la classe GestionContact passée en paramètre.
+ * @param gestionContact
+ * Un pointeur vers l'instance de GestionContact où on souhaite charger les contacts.
+ */
 void InterfaceBaseDeDonnee::getContacts(GestionContact *gestionContact) {
     QSqlQuery query(db);
     db.open();
@@ -30,6 +38,11 @@ void InterfaceBaseDeDonnee::getContacts(GestionContact *gestionContact) {
     db.close();
 }
 
+/**
+ * Charge les intéractions des contacts dans la classe GestionContact passée en paramètre.
+ * @param gestionContact
+ * Liste des contacts dont on souhaite charger les intéractions.
+ */
 void InterfaceBaseDeDonnee::getInteractions(GestionContact *gestionContact) {
     QSqlQuery query(db);
     db.open();
@@ -47,6 +60,13 @@ void InterfaceBaseDeDonnee::getInteractions(GestionContact *gestionContact) {
     db.close();
 }
 
+/**
+ * Charge les tâches des contacts dans la classe GestionTache passée en paramètre.
+ * @param gestionTache
+ * Classe dans laquelle on souhaite charger les tâches.
+ * @param gestionContact
+ * Liste des contacts liés aux tâches.
+ */
 void InterfaceBaseDeDonnee::getTaches(GestionTache *gestionTache, GestionContact *gestionContact) {
     QSqlQuery query(db);
     db.open();
@@ -66,7 +86,13 @@ void InterfaceBaseDeDonnee::getTaches(GestionTache *gestionTache, GestionContact
     db.close();
 }
 
-
+/**
+ * Met à jour un contact passé en paramètre avec l'autre contact passé en paramètre.
+ * @param old_contact
+ * Le Contact à mettre à jour.
+ * @param new_contact
+ * Le Contact contenant les nouvelles informations.
+ */
 void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_contact) {
     QSqlQuery query(db);
     db.open();
@@ -81,6 +107,11 @@ void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_conta
     db.close();
 }
 
+/**
+ * Fonction insérant un nouveau contact dans la base de donnée.
+ * @param contact
+ * Le Contact que l'on souhaite ajouter à la base de données.
+ */
 void InterfaceBaseDeDonnee::insertContact(Contact contact) {
     QSqlQuery query(db);
     db.open();
@@ -100,6 +131,11 @@ void InterfaceBaseDeDonnee::insertContact(Contact contact) {
     db.close();
 }
 
+/**
+ * Supprime un contact de la base de données.
+ * @param contact
+ * Le Contact que l'on souhaite supprimer.
+ */
 void InterfaceBaseDeDonnee::removeContact(Contact contact) {
     QSqlQuery query(db);
     db.open();

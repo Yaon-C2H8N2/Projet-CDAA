@@ -5,10 +5,20 @@
 #include <iostream>
 #include "InteractionViewer.h"
 
+/**
+ * Constructeur de la classe InteractionViewer.
+ * @param parent
+ * Le Widget parent de la classe.
+ */
 InteractionViewer::InteractionViewer(QWidget *parent) : QWidget() {
     this->ui.setupUi(this);
 }
 
+/**
+ * Définit l'Interaction à afficher dans le Widget.
+ * @param interaction
+ * Une instance d'Interaction dont on souhaite afficher le contenu et la date.
+ */
 void InteractionViewer::setInteraction(Interaction interaction) {
     this->interaction = interaction;
     this->ui.textEdit->setText(QString::fromStdString(interaction.getContenu()));
@@ -20,6 +30,9 @@ void InteractionViewer::setInteraction(Interaction interaction) {
     QObject::connect(this->ui.deleteButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteButtonPressed()));
 }
 
+/**
+ * Slot émettant un signal lorsque le bouton de suppression est déclenché.
+ */
 void InteractionViewer::onDeleteButtonPressed() {
     emit interactionDeleted(this->interaction);
 }

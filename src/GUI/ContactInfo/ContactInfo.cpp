@@ -72,10 +72,18 @@ void ContactInfo::ShowContextMenu(const QPoint &pos) {
     contextMenu.exec(this->ui.scrollArea->mapToGlobal(pos));
 }
 
+/**
+ * Slot faisant remonter un signal signalisant la suppression d'une Interaction.
+ * @param interaction
+ * L'Interaction supprimée.
+ */
 void ContactInfo::onInteractionDelete(Interaction interaction) {
     emit interactionDeleted(interaction);
 }
 
+/**
+ * Slot appelé lorsque l'on souhaite rafraîchir les informations du Contact affiché dans le GUI
+ */
 void ContactInfo::onRefreshContactInfo() {
     this->ui.nameLabel->setText(QString::fromStdString(contact.getPrenom() + " " + contact.getNom()));
     this->ui.companyNameLabel->setText(QString::fromStdString(contact.getEntreprise()));
@@ -100,6 +108,9 @@ void ContactInfo::onRefreshContactInfo() {
     this->show();
 }
 
+/**
+ * Slot affichant la fenêtre de dialogue permettant de créer une nouvelle Interaction.
+ */
 void ContactInfo::onInteractionCreatorRequest() {
     Ui::InteractionCreator *dialogUi = new Ui::InteractionCreator();
     QDialog *dialog = new QDialog(nullptr);
