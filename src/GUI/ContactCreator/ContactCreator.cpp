@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "ContactCreator.h"
+#include <QFileDialog>
 
 /**
  * Constructeur de la classe ContactCreator permettant de créer un nouveau contact.
@@ -16,10 +17,11 @@ ContactCreator::ContactCreator(QWidget *parent) {
     auto children = this->parent->findChildren<QLineEdit *>();
     for (auto i: children) {
         QObject::connect(i, SIGNAL(textChanged(
-        const QString &)),this, SLOT(validateFields()));
+                                           const QString &)), this, SLOT(validateFields()));
     }
     QObject::connect(this->ui.validatePushButton, SIGNAL(clicked()), this, SLOT(validateButtonClicked()));
     QObject::connect(this->ui.cancelPushButton, SIGNAL(clicked()), this, SLOT(cancelButtonClicked()));
+    QObject::connect(this->ui.contactPicturePushButton, SIGNAL(clicked()), this, SLOT(onPicturePushButtonClicked()));
 }
 
 /**
@@ -84,4 +86,23 @@ void ContactCreator::validateButtonClicked() {
 void ContactCreator::cancelButtonClicked() {
     this->reset();
     this->hide();
+}
+
+/**
+ * Slot générant une fenêtre de dialogue permettant de sélectionner un fichier à associer au contact que l'on souhaite créer.
+ */
+void ContactCreator::onPicturePushButtonClicked() {
+    QFileDialog dialog(nullptr);
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setReadOnly(true);
+    dialog.setFilter(QDir::Files);
+    dialog.setNameFilter("Images (*.png *.jpg)");
+    if(dialog.exec()){
+        this->contact.setCheminPhoto(dialog.selectedFiles().value(0).toStdString());
+        QIcon icon(dialog.selectedFiles().value(0));
+        this->ui.contactPicturePushButton->setIcon(icon);
+        this->ui.contactPicturePushButton->setText("");
+        this->ui.contactPicturePushButton->setIconSize(QSize(150,150));
+        cout << this->contact.getCheminPhoto() << endl;
+    }
 }

@@ -89,6 +89,9 @@ void MainWindow::onInteractionDelete(Interaction interaction) {
  */
 void MainWindow::onContactUpdate(Contact c1, Contact c2) {
     this->interfaceBaseDeDonnee->updateContact(c1, c2);
+    if (this->contactInfo->getContact() == c1) {
+        this->contactInfo->setContact(c2);
+    }
 }
 
 /**

@@ -2,6 +2,7 @@
 // Created by yaon on 15/11/22.
 //
 
+#include <QFileDialog>
 #include "ContactModifier.h"
 
 /**
@@ -13,6 +14,7 @@ ContactModifier::ContactModifier(QDialog *parent) {
     this->parent = parent;
     this->ui.setupUi(this);
     QObject::connect(this->ui.buttonBox, SIGNAL(accepted()), this, SLOT(validateChanges()));
+    QObject::connect(this->ui.photoPathEdit, SIGNAL(clicked(bool)), this, SLOT(onPicturePushButtonClicked()));
 }
 
 /**
@@ -27,7 +29,11 @@ void ContactModifier::setContact(Contact contact) {
     this->ui.mailEdit->setText(QString::fromStdString(contact.getMail()));
     this->ui.phoneNumberEdit->setText(QString::fromStdString(contact.getTel()));
     this->ui.companyNameEdit->setText(QString::fromStdString(contact.getEntreprise()));
-    //todo chemin photo avec le pushButton
+    this->pictureFilePath = contact.getCheminPhoto();
+    QIcon icon(QString::fromStdString(this->pictureFilePath));
+    this->ui.photoPathEdit->setIcon(icon);
+    this->ui.photoPathEdit->setText("");
+    this->ui.photoPathEdit->setIconSize(QSize(150,150));
 }
 
 /**
@@ -40,6 +46,24 @@ Contact ContactModifier::getContact() {
 }
 
 /**
+ * Slot générant une fenêtre de dialogue permettant de sélectionner un fichier à associer au contact que l'on souhaite créer.
+ */
+void ContactModifier::onPicturePushButtonClicked() {
+    QFileDialog dialog(nullptr);
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setReadOnly(true);
+    dialog.setFilter(QDir::Files);
+    dialog.setNameFilter("Images (*.png *.jpg)");
+    if(dialog.exec()){
+        this->pictureFilePath = dialog.selectedFiles().value(0).toStdString();
+        QIcon icon(dialog.selectedFiles().value(0));
+        this->ui.photoPathEdit->setIcon(icon);
+        this->ui.photoPathEdit->setText("");
+        this->ui.photoPathEdit->setIconSize(QSize(150,150));
+    }
+}
+
+/**
  * Slot déclenché lorsque l'utilisateur valide la modification du contact.
  */
 void ContactModifier::validateChanges() {
@@ -48,5 +72,5 @@ void ContactModifier::validateChanges() {
     this->contact.setMail(this->ui.mailEdit->text().toStdString());
     this->contact.setTel(this->ui.phoneNumberEdit->text().toStdString());
     this->contact.setEntreprise(this->ui.companyNameEdit->text().toStdString());
-    //todo chemin photo avec le pushButton
+    this->contact.setCheminPhoto(this->pictureFilePath);
 }

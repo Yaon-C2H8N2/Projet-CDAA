@@ -89,7 +89,9 @@ void ContactInfo::onRefreshContactInfo() {
     this->ui.companyNameLabel->setText(QString::fromStdString(contact.getEntreprise()));
     this->ui.phoneNumberLabel->setText(QString::fromStdString(contact.getTel()));
     this->ui.mailAddressLabel->setText(QString::fromStdString(contact.getMail()));
-    this->ui.photoLabel->setText(QString::fromStdString(contact.getCheminPhoto()));
+    QIcon icon(QString::fromStdString(contact.getCheminPhoto()));
+    this->ui.photoButton->setIcon(icon);
+    this->ui.photoButton->setIconSize(QSize(150,150));
     this->ui.creationDateLabel->setText(QString::fromStdString(
             to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
             to_string(contact.getDateCreation().tm_year + 1900)));

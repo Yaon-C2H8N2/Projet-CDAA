@@ -14,6 +14,7 @@ class ContactModifier : public QDialog {
 Q_OBJECT
 private:
     Contact contact;
+    string pictureFilePath;
     QDialog *parent;
 public:
     Ui::Dialog ui;
@@ -27,6 +28,8 @@ public:
 public slots:
 
     void validateChanges();
+
+    void onPicturePushButtonClicked();
 };
 
 

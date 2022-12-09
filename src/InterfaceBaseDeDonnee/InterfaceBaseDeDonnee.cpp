@@ -96,7 +96,7 @@ void InterfaceBaseDeDonnee::getTaches(GestionTache *gestionTache, GestionContact
 void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_contact) {
     QSqlQuery query(db);
     db.open();
-    query.prepare("UPDATE contacts SET nom = :newNom, prenom = :newPrenom WHERE nom = :oldNom AND prenom = :oldPrenom");
+    query.prepare("UPDATE contacts SET nom = :newNom, prenom = :newPrenom WHERE nom = :oldNom AND prenom = :oldPrenom"); //todo expand la requête à tous les champs du contact et pas juste son nom/prenom
     query.bindValue(":newNom", QString::fromStdString(new_contact.getNom()));
     query.bindValue(":newPrenom", QString::fromStdString(new_contact.getPrenom()));
     query.bindValue(":oldNom", QString::fromStdString(old_contact.getNom()));

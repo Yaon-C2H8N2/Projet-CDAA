@@ -1,18 +1,20 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactInfoskkzNu.ui'
+** Form generated from reading UI file 'ContactInfoOWGYJg.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTINFOSKKZNU_H
-#define CONTACTINFOSKKZNU_H
+#ifndef CONTACTINFOOWGYJG_H
+#define CONTACTINFOOWGYJG_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -23,7 +25,9 @@ class Ui_ContactInfo
 {
 public:
     QVBoxLayout *verticalLayout;
-    QLabel *photoLabel;
+    QFrame *frame_2;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *photoButton;
     QLabel *nameLabel;
     QFrame *frame;
     QVBoxLayout *verticalLayout_2;
@@ -44,11 +48,28 @@ public:
         ContactInfo->resize(640, 480);
         verticalLayout = new QVBoxLayout(ContactInfo);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        photoLabel = new QLabel(ContactInfo);
-        photoLabel->setObjectName(QString::fromUtf8("photoLabel"));
-        photoLabel->setAlignment(Qt::AlignCenter);
+        frame_2 = new QFrame(ContactInfo);
+        frame_2->setObjectName(QString::fromUtf8("frame_2"));
+        frame_2->setFrameShape(QFrame::NoFrame);
+        frame_2->setFrameShadow(QFrame::Plain);
+        horizontalLayout = new QHBoxLayout(frame_2);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        photoButton = new QPushButton(frame_2);
+        photoButton->setObjectName(QString::fromUtf8("photoButton"));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(photoButton->sizePolicy().hasHeightForWidth());
+        photoButton->setSizePolicy(sizePolicy);
+        photoButton->setMaximumSize(QSize(150, 150));
+        photoButton->setFlat(true);
 
-        verticalLayout->addWidget(photoLabel);
+        horizontalLayout->addWidget(photoButton);
+
+
+        verticalLayout->addWidget(frame_2);
 
         nameLabel = new QLabel(ContactInfo);
         nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
@@ -100,7 +121,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 620, 218));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 620, 117));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout->addWidget(scrollArea);
@@ -123,7 +144,7 @@ public:
     void retranslateUi(QWidget *ContactInfo)
     {
         ContactInfo->setWindowTitle(QCoreApplication::translate("ContactInfo", "Form", nullptr));
-        photoLabel->setText(QCoreApplication::translate("ContactInfo", "DEBUG_PHOTO", nullptr));
+        photoButton->setText(QString());
         nameLabel->setText(QCoreApplication::translate("ContactInfo", "DEBUG_NAME", nullptr));
         label->setText(QCoreApplication::translate("ContactInfo", "N\302\260T\303\251l\303\251phone", nullptr));
         phoneNumberLabel->setText(QCoreApplication::translate("ContactInfo", "DEBUG_PHONENUMBER", nullptr));
@@ -142,4 +163,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTINFOSKKZNU_H
+#endif // CONTACTINFOOWGYJG_H

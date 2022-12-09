@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactModifierfvKaFV.ui'
+** Form generated from reading UI file 'ContactModifierbTRWUI.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTMODIFIERFVKAFV_H
-#define CONTACTMODIFIERFVKAFV_H
+#ifndef CONTACTMODIFIERBTRWUI_H
+#define CONTACTMODIFIERBTRWUI_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -25,6 +25,8 @@ class Ui_Dialog
 {
 public:
     QVBoxLayout *verticalLayout;
+    QFrame *frame_2;
+    QHBoxLayout *horizontalLayout_2;
     QPushButton *photoPathEdit;
     QFrame *frame;
     QHBoxLayout *horizontalLayout;
@@ -42,18 +44,34 @@ public:
         Dialog->resize(640, 480);
         verticalLayout = new QVBoxLayout(Dialog);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        photoPathEdit = new QPushButton(Dialog);
+        frame_2 = new QFrame(Dialog);
+        frame_2->setObjectName(QString::fromUtf8("frame_2"));
+        frame_2->setFrameShape(QFrame::NoFrame);
+        frame_2->setFrameShadow(QFrame::Plain);
+        horizontalLayout_2 = new QHBoxLayout(frame_2);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        photoPathEdit = new QPushButton(frame_2);
         photoPathEdit->setObjectName(QString::fromUtf8("photoPathEdit"));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(photoPathEdit->sizePolicy().hasHeightForWidth());
+        photoPathEdit->setSizePolicy(sizePolicy);
+        photoPathEdit->setMaximumSize(QSize(150, 150));
+        photoPathEdit->setFlat(true);
 
-        verticalLayout->addWidget(photoPathEdit);
+        horizontalLayout_2->addWidget(photoPathEdit);
+
+
+        verticalLayout->addWidget(frame_2);
 
         frame = new QFrame(Dialog);
         frame->setObjectName(QString::fromUtf8("frame"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
-        frame->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
+        frame->setSizePolicy(sizePolicy1);
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         horizontalLayout = new QHBoxLayout(frame);
@@ -104,7 +122,7 @@ public:
     void retranslateUi(QDialog *Dialog)
     {
         Dialog->setWindowTitle(QCoreApplication::translate("Dialog", "Dialog", nullptr));
-        photoPathEdit->setText(QCoreApplication::translate("Dialog", "PushButton", nullptr));
+        photoPathEdit->setText(QString());
         firstNameEdit->setPlaceholderText(QCoreApplication::translate("Dialog", "Pr\303\251nom", nullptr));
         lastNameEdit->setPlaceholderText(QCoreApplication::translate("Dialog", "Nom", nullptr));
         phoneNumberEdit->setPlaceholderText(QCoreApplication::translate("Dialog", "N\302\260T\303\251l\303\251phone", nullptr));
@@ -120,4 +138,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTMODIFIERFVKAFV_H
+#endif // CONTACTMODIFIERBTRWUI_H

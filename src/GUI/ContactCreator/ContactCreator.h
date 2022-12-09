@@ -32,6 +32,7 @@ private slots:
     void validateFields();
     void validateButtonClicked();
     void cancelButtonClicked();
+    void onPicturePushButtonClicked();
 };
 
 
