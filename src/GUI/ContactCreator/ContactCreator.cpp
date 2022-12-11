@@ -34,6 +34,8 @@ void ContactCreator::reset() {
     this->ui.companyNameLineEdit->setText(QString::fromStdString(this->contact.getEntreprise()));
     this->ui.phoneNumberLineEdit->setText(QString::fromStdString(this->contact.getTel()));
     this->ui.mailAddressLineEdit->setText(QString::fromStdString(this->contact.getMail()));
+    this->ui.contactPicturePushButton->setIcon(QIcon());
+    this->ui.contactPicturePushButton->setText("Sélectionner Photo");
 }
 
 /**
