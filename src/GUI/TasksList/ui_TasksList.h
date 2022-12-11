@@ -1,20 +1,23 @@
 /********************************************************************************
-** Form generated from reading UI file 'TasksListDzzUod.ui'
+** Form generated from reading UI file 'TasksListCWosvd.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef TASKSLISTDZZUOD_H
-#define TASKSLISTDZZUOD_H
+#ifndef TASKSLISTCWOSVD_H
+#define TASKSLISTCWOSVD_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -26,8 +29,13 @@ public:
     QVBoxLayout *verticalLayout_3;
     QFrame *frame_2;
     QHBoxLayout *horizontalLayout;
-    QDateEdit *dateEdit;
-    QDateEdit *dateEdit_2;
+    QLabel *label;
+    QDateEdit *fromDateEdit;
+    QLabel *label_2;
+    QDateEdit *toDateEdit;
+    QPushButton *validateButton;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *reinitButton;
     QFrame *frame;
     QVBoxLayout *verticalLayout;
     QScrollArea *tasksScrollArea;
@@ -47,15 +55,39 @@ public:
         frame_2->setFrameShadow(QFrame::Raised);
         horizontalLayout = new QHBoxLayout(frame_2);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        dateEdit = new QDateEdit(frame_2);
-        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+        label = new QLabel(frame_2);
+        label->setObjectName(QString::fromUtf8("label"));
 
-        horizontalLayout->addWidget(dateEdit);
+        horizontalLayout->addWidget(label);
 
-        dateEdit_2 = new QDateEdit(frame_2);
-        dateEdit_2->setObjectName(QString::fromUtf8("dateEdit_2"));
+        fromDateEdit = new QDateEdit(frame_2);
+        fromDateEdit->setObjectName(QString::fromUtf8("fromDateEdit"));
 
-        horizontalLayout->addWidget(dateEdit_2);
+        horizontalLayout->addWidget(fromDateEdit);
+
+        label_2 = new QLabel(frame_2);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        horizontalLayout->addWidget(label_2);
+
+        toDateEdit = new QDateEdit(frame_2);
+        toDateEdit->setObjectName(QString::fromUtf8("toDateEdit"));
+
+        horizontalLayout->addWidget(toDateEdit);
+
+        validateButton = new QPushButton(frame_2);
+        validateButton->setObjectName(QString::fromUtf8("validateButton"));
+
+        horizontalLayout->addWidget(validateButton);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        reinitButton = new QPushButton(frame_2);
+        reinitButton->setObjectName(QString::fromUtf8("reinitButton"));
+
+        horizontalLayout->addWidget(reinitButton);
 
 
         verticalLayout_3->addWidget(frame_2);
@@ -92,6 +124,10 @@ public:
     void retranslateUi(QWidget *TasksList)
     {
         TasksList->setWindowTitle(QCoreApplication::translate("TasksList", "Form", nullptr));
+        label->setText(QCoreApplication::translate("TasksList", "Du", nullptr));
+        label_2->setText(QCoreApplication::translate("TasksList", "Au", nullptr));
+        validateButton->setText(QCoreApplication::translate("TasksList", "Valider", nullptr));
+        reinitButton->setText(QCoreApplication::translate("TasksList", "Liste Compl\303\250te", nullptr));
     } // retranslateUi
 
 };
@@ -102,4 +138,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // TASKSLISTDZZUOD_H
+#endif // TASKSLISTCWOSVD_H

@@ -24,11 +24,22 @@ public:
     GestionTache *getTasksList();
 
     void show();
+
 signals:
-    void refreshTaskList();
+
+    void refreshTaskList(GestionTache *);
+
 public slots:
-    void showTasksList();
+
+    void showTasksList(GestionTache *);
+
     void removeByInteraction(Interaction);
+
+    void miseAJourDepart(QDate);
+
+    void BoutonValider();
+
+    void BoutonReinit();
 };
 
 

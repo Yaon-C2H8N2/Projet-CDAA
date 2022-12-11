@@ -75,6 +75,7 @@ void ContactList::showContactList(GestionContact *gestionContact) {
  * Contenu de la recherche.
  */
 void ContactList::searchInList(QString content) {
+    //todo recherche avancée avec PushButton et fenêtre de dialogue
     emit refreshContactList(this->gestionContact->rechercheNom(content.toStdString()));
 }
 

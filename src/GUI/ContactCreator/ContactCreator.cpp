@@ -52,7 +52,6 @@ void ContactCreator::hide() {
     this->parent->hide();
 }
 
-//@todo revoir le concept
 /**
  * Slot vérifiant si tous les QLineEdit ne sont pas vides lorsqu'il reçoit un signal. Active ou non le bouton de validation en fonction du résultat.
  */
@@ -77,7 +76,6 @@ void ContactCreator::validateButtonClicked() {
     time_t t = time(nullptr);
     tm date = *localtime(&t);
     this->contact.setDateCreation(date);
-    //@todo chemin photo
     emit validateContact(this->contact);
     this->hide();
 }
@@ -99,12 +97,11 @@ void ContactCreator::onPicturePushButtonClicked() {
     dialog.setReadOnly(true);
     dialog.setFilter(QDir::Files);
     dialog.setNameFilter("Images (*.png *.jpg)");
-    if(dialog.exec()){
+    if (dialog.exec()) {
         this->contact.setCheminPhoto(dialog.selectedFiles().value(0).toStdString());
         QIcon icon(dialog.selectedFiles().value(0));
         this->ui.contactPicturePushButton->setIcon(icon);
         this->ui.contactPicturePushButton->setText("");
-        this->ui.contactPicturePushButton->setIconSize(QSize(150,150));
-        cout << this->contact.getCheminPhoto() << endl;
+        this->ui.contactPicturePushButton->setIconSize(QSize(150, 150));
     }
 }

@@ -125,6 +125,7 @@ void ContactInfo::onInteractionCreatorRequest() {
         tm date = *localtime(&t);
         interaction.setDateInteraction(date);
         this->contact.getInteractions()->addInteraction(interaction);
+        //todo parser l'interaction pour créer les taches correspondantes
         emit refreshContactInfo();
     }
     dialog->close();
