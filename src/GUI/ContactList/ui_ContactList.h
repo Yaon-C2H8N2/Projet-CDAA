@@ -1,16 +1,18 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactListJlqyih.ui'
+** Form generated from reading UI file 'ContactListmIogvM.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTLISTJLQYIH_H
-#define CONTACTLISTJLQYIH_H
+#ifndef CONTACTLISTMIOGVM_H
+#define CONTACTLISTMIOGVM_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLineEdit>
@@ -28,6 +30,9 @@ public:
     QFrame *frame;
     QHBoxLayout *horizontalLayout;
     QLineEdit *lineEdit;
+    QDateEdit *dateEdit;
+    QDateEdit *dateEdit_2;
+    QComboBox *comboBox;
     QPushButton *pushButton;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
@@ -53,6 +58,24 @@ public:
 
         horizontalLayout->addWidget(lineEdit);
 
+        dateEdit = new QDateEdit(frame);
+        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+
+        horizontalLayout->addWidget(dateEdit);
+
+        dateEdit_2 = new QDateEdit(frame);
+        dateEdit_2->setObjectName(QString::fromUtf8("dateEdit_2"));
+
+        horizontalLayout->addWidget(dateEdit_2);
+
+        comboBox = new QComboBox(frame);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+        horizontalLayout->addWidget(comboBox);
+
         pushButton = new QPushButton(frame);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
@@ -68,7 +91,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 622, 429));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 622, 428));
         verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         scrollArea->setWidget(scrollAreaWidgetContents);
@@ -84,6 +107,10 @@ public:
     void retranslateUi(QWidget *ContactList)
     {
         ContactList->setWindowTitle(QCoreApplication::translate("ContactList", "Form", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("ContactList", "Recherche par nom", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("ContactList", "Recherche par entreprise", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("ContactList", "Recherche par date cr\303\251ation", nullptr));
+
         pushButton->setText(QCoreApplication::translate("ContactList", "+", nullptr));
     } // retranslateUi
 
@@ -95,4 +122,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTLISTJLQYIH_H
+#endif // CONTACTLISTMIOGVM_H

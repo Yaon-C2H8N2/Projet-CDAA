@@ -37,7 +37,6 @@ void TasksList::show() {
  */
 void TasksList::setTasksList(GestionTache *gestionTache) {
     this->gestionTache = gestionTache;
-    //todo tri dans l'ordre croissant des tâches
     emit refreshTaskList(this->gestionTache);
 }
 
@@ -91,7 +90,7 @@ GestionTache *TasksList::getTasksList() {
  * L'Interaction dont on supprime les Tache liées.
  */
 void TasksList::removeByInteraction(Interaction interaction) {
-    this->gestionTache->removeTache(interaction);
+    //this->gestionTache->removeTache(interaction);
     emit refreshTaskList(this->gestionTache);
 }
 

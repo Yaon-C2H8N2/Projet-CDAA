@@ -121,11 +121,11 @@ void ContactInfo::onInteractionCreatorRequest() {
     if (dialog->exec()) {
         Interaction interaction;
         interaction.setContenu(dialogUi->textEdit->toPlainText().toStdString());
+        //todo parser contenu interaction
         time_t t = time(nullptr);
         tm date = *localtime(&t);
         interaction.setDateInteraction(date);
         this->contact.getInteractions()->addInteraction(interaction);
-        //todo parser l'interaction pour créer les taches correspondantes
         emit refreshContactInfo();
     }
     dialog->close();
