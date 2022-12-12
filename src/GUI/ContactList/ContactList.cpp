@@ -148,10 +148,10 @@ void ContactList::deleteContact(Contact c) {
     if (dialog->exec()) {
         this->gestionContact->removeContact(c);
         emit refreshContactList(this->gestionContact);
+        emit contactDeleted(c);
     }
     dialog->close();
     delete dialogUi;
-    emit contactDeleted(c);
 }
 
 /**
