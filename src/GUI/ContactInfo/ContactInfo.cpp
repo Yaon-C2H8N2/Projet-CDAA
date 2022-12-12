@@ -127,8 +127,8 @@ void ContactInfo::onInteractionCreatorRequest() {
         interaction.setDateInteraction(date);
         this->contact.getInteractions()->addInteraction(interaction);
         emit refreshContactInfo();
+        emit interactionAdded(this->contact);
     }
     dialog->close();
     delete dialogUi;
-    emit interactionAdded(this->contact);
 }
