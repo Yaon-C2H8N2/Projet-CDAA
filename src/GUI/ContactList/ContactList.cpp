@@ -113,6 +113,8 @@ void ContactList::onComboBoxChange() {
         this->ui.dateEdit->hide();
         this->ui.dateEdit_2->hide();
     }
+    this->ui.lineEdit->setText("");
+    emit refreshContactList(this->gestionContact);
 }
 
 /**

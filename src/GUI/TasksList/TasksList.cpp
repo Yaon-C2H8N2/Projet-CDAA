@@ -90,7 +90,7 @@ GestionTache *TasksList::getTasksList() {
  * L'Interaction dont on supprime les Tache liées.
  */
 void TasksList::removeByInteraction(Interaction interaction) {
-    //this->gestionTache->removeTache(interaction);
+    this->gestionTache->removeTache(interaction);
     emit refreshTaskList(this->gestionTache);
 }
 

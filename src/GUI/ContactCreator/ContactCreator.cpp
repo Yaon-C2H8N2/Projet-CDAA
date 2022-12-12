@@ -73,6 +73,9 @@ void ContactCreator::validateButtonClicked() {
     this->contact.setEntreprise(this->ui.companyNameLineEdit->text().toStdString());
     this->contact.setTel(this->ui.phoneNumberLineEdit->text().toStdString());
     this->contact.setMail(this->ui.mailAddressLineEdit->text().toStdString());
+    if(this->contact.getCheminPhoto().empty()){
+        this->contact.setCheminPhoto("/home/yaon/Documents/Projet-CDAA/data/photo/default.png");
+    }
     time_t t = time(nullptr);
     tm date = *localtime(&t);
     this->contact.setDateCreation(date);
