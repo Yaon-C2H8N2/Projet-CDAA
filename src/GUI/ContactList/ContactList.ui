@@ -42,6 +42,31 @@
        <widget class="QLineEdit" name="lineEdit"/>
       </item>
       <item>
+       <widget class="QDateEdit" name="dateEdit"/>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="dateEdit_2"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>Recherche par nom</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Recherche par entreprise</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Recherche par date création</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton">
         <property name="text">
          <string>+</string>
@@ -68,7 +93,7 @@
         <x>0</x>
         <y>0</y>
         <width>622</width>
-        <height>429</height>
+        <height>428</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2"/>

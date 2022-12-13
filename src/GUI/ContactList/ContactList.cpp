@@ -19,8 +19,15 @@ ContactList::ContactList(QWidget *parent) {
     QObject::connect(this, SIGNAL(refreshContactList(GestionContact * )),
                      SLOT(showContactList(GestionContact * )));
     QObject::connect(this->ui.pushButton, SIGNAL(clicked(bool)), this, SLOT(createContact()));
+    QObject::connect(this->ui.comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxChange()));
+    QObject::connect(this->ui.dateEdit, SIGNAL(dateChanged(const QDate &)), this, SLOT(searchInListByDate()));
+    QObject::connect(this->ui.dateEdit_2, SIGNAL(dateChanged(const QDate &)), this, SLOT(searchInListByDate()));
+    this->ui.dateEdit->hide();
+    this->ui.dateEdit_2->hide();
+    this->ui.dateEdit->setDate(QDate::currentDate());
+    this->ui.dateEdit_2->setMinimumDate(this->ui.dateEdit->date());
     QObject::connect(this->ui.lineEdit, SIGNAL(textChanged(
-                                                       const QString &)), this, SLOT(searchInList(QString)));
+                                                       const QString &)), this, SLOT(searchInListByText(QString)));
 }
 
 /**
@@ -74,9 +81,40 @@ void ContactList::showContactList(GestionContact *gestionContact) {
  * @param content
  * Contenu de la recherche.
  */
-void ContactList::searchInList(QString content) {
-    //todo recherche avancée avec PushButton et fenêtre de dialogue
-    emit refreshContactList(this->gestionContact->rechercheNom(content.toStdString()));
+void ContactList::searchInListByText(QString content) {
+    if (this->ui.comboBox->currentIndex() == 0) {
+        emit refreshContactList(this->gestionContact->rechercheNom(content.toStdString()));
+    } else if (this->ui.comboBox->currentIndex() == 1) {
+        emit refreshContactList(this->gestionContact->rechercheEntreprise(content.toStdString()));
+    }
+}
+
+void ContactList::searchInListByDate() {
+    this->ui.dateEdit_2->setMinimumDate(this->ui.dateEdit->date());
+    if(this->ui.comboBox->currentIndex() == 2){
+        tm date_debut, date_fin;
+        date_debut.tm_mday = this->ui.dateEdit->date().day();
+        date_debut.tm_mon = this->ui.dateEdit->date().month()-1;
+        date_debut.tm_year = this->ui.dateEdit->date().year()-1900;
+        date_fin.tm_mday = this->ui.dateEdit_2->date().day();
+        date_fin.tm_mon = this->ui.dateEdit_2->date().month()-1;
+        date_fin.tm_year = this->ui.dateEdit_2->date().year()-1900;
+        emit refreshContactList(this->gestionContact->rechercheIntervalleDate(date_debut, date_fin));
+    }
+}
+
+void ContactList::onComboBoxChange() {
+    if(this->ui.comboBox->currentIndex() == 2){
+        this->ui.lineEdit->hide();
+        this->ui.dateEdit->show();
+        this->ui.dateEdit_2->show();
+    }else{
+        this->ui.lineEdit->show();
+        this->ui.dateEdit->hide();
+        this->ui.dateEdit_2->hide();
+    }
+    this->ui.lineEdit->setText("");
+    emit refreshContactList(this->gestionContact);
 }
 
 /**
@@ -110,10 +148,10 @@ void ContactList::deleteContact(Contact c) {
     if (dialog->exec()) {
         this->gestionContact->removeContact(c);
         emit refreshContactList(this->gestionContact);
+        emit contactDeleted(c);
     }
     dialog->close();
     delete dialogUi;
-    emit contactDeleted(c);
 }
 
 /**
@@ -128,7 +166,7 @@ void ContactList::modifyContact(Contact c) {
         this->gestionContact->modifyContact(c, modifier->getContact());
     }
     emit refreshContactList(this->gestionContact);
-    emit contactModified(c,modifier->getContact());
+    emit contactModified(c, modifier->getContact());
     modifier->close();
 }
 

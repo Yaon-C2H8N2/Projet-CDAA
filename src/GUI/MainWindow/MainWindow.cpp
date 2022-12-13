@@ -78,6 +78,8 @@ void MainWindow::onInteractionDelete(Interaction interaction) {
     this->contactInfo->setContact(contact);
     this->tasksList->removeByInteraction(interaction);
     this->contactList->refreshContactList(this->contactList->getContactList());
+    this->interfaceBaseDeDonnee->removeInteraction(contact, interaction);
+    this->interfaceBaseDeDonnee->removeTache(contact, interaction);
 }
 
 /**
@@ -120,4 +122,5 @@ void MainWindow::onContactDeletion(Contact c) {
 void MainWindow::onInteractionAdded(Contact c) {
     this->contactList->getContactList()->modifyContact(c, c);
     this->contactList->refreshContactList(this->contactList->getContactList());
+    this->interfaceBaseDeDonnee->ajoutInteraction(c, c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1));
 }
