@@ -91,7 +91,7 @@ void ContactInfo::onRefreshContactInfo() {
     this->ui.mailAddressLabel->setText(QString::fromStdString(contact.getMail()));
     QIcon icon(QString::fromStdString(contact.getCheminPhoto()));
     this->ui.photoButton->setIcon(icon);
-    this->ui.photoButton->setIconSize(QSize(150,150));
+    this->ui.photoButton->setIconSize(QSize(150, 150));
     this->ui.creationDateLabel->setText(QString::fromStdString(
             to_string(contact.getDateCreation().tm_mday) + "/" + to_string(contact.getDateCreation().tm_mon + 1) + "/" +
             to_string(contact.getDateCreation().tm_year + 1900)));
@@ -117,7 +117,8 @@ void ContactInfo::onInteractionCreatorRequest() {
     Ui::InteractionCreator *dialogUi = new Ui::InteractionCreator();
     QDialog *dialog = new QDialog(nullptr);
     dialogUi->setupUi(dialog);
-    dialogUi->titleLabel->setText(QString::fromStdString("Ajout d'intéraction avec "+this->contact.getPrenom()+" "+this->contact.getNom()));
+    dialogUi->titleLabel->setText(QString::fromStdString(
+            "Ajout d'intéraction avec " + this->contact.getPrenom() + " " + this->contact.getNom()));
     if (dialog->exec()) {
         Interaction interaction;
         interaction.setContenu(dialogUi->textEdit->toPlainText().toStdString());

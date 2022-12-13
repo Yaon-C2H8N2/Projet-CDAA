@@ -118,6 +118,8 @@ void MainWindow::onContactDeletion(Contact c) {
  * Le Contact dont l'affichage doit être rafraîchit.
  */
 void MainWindow::onInteractionAdded(Contact c) {
+    //TODO parser l'intéraction (dernière intéraction de la liste d'intéractions du contact)
+    cout << "Interaction à parser :" << endl << c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1) << endl;
     this->contactList->getContactList()->modifyContact(c, c);
     this->contactList->refreshContactList(this->contactList->getContactList());
 }
