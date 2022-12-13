@@ -78,7 +78,6 @@ void MainWindow::onInteractionDelete(Interaction interaction) {
     this->contactInfo->setContact(contact);
     this->tasksList->removeByInteraction(interaction);
     this->contactList->refreshContactList(this->contactList->getContactList());
-    this->interfaceBaseDeDonnee->removeTache(contact, interaction);
     this->interfaceBaseDeDonnee->removeInteraction(contact, interaction);
 }
 
@@ -120,11 +119,54 @@ void MainWindow::onContactDeletion(Contact c) {
  * Le Contact dont l'affichage doit être rafraîchit.
  */
 void MainWindow::onInteractionAdded(Contact c) {
-    //TODO parser l'intéraction (dernière intéraction de la liste d'intéractions du contact)
-
-    Interaction interaction = c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1);
-
     this->contactList->getContactList()->modifyContact(c, c);
     this->contactList->refreshContactList(this->contactList->getContactList());
-    this->interfaceBaseDeDonnee->ajoutInteraction(c, c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1));
+    this->interfaceBaseDeDonnee->ajoutInteraction(c, c.getInteractions()->getInteraction(
+            c.getInteractions()->getNbInteraction() - 1));
+
+    /*
+     * ===========================================================================
+     *              EXTRACTION DES TACHES ET INSERTION DANS LA DB
+     * ===========================================================================
+     */
+
+    Interaction interaction = c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction() - 1);
+    QString contenu = QString::fromStdString(interaction.getContenu());
+
+    //c'est ultra sketchy  j'en ai très honte
+    while (contenu.indexOf("@todo", Qt::CaseInsensitive) > (-1)) {
+        contenu.remove(0, contenu.indexOf("@todo", Qt::CaseInsensitive) + 5);
+        Tache tache;
+        tache.setInteraction(interaction);
+        if (contenu.indexOf("@date", Qt::CaseInsensitive) > (-1)) {
+            //si tag date trouvé
+            if (contenu.indexOf("@todo", Qt::CaseInsensitive) > (-1) && contenu.indexOf(
+                    contenu.indexOf("@todo", Qt::CaseInsensitive) < contenu.indexOf("@date", Qt::CaseInsensitive))) {
+                //si tag date après le prochain tag to_do alors pas de recherche pour le to_do actuel
+                tache.setContenu(contenu.mid(0, contenu.indexOf("\n", Qt::CaseInsensitive)).toStdString());
+                time_t t = time(nullptr);
+                tm date = *(localtime(&t));
+                tache.setDateTache(date);
+                contenu.remove(0,contenu.indexOf("\n", Qt::CaseInsensitive));
+            } else {
+                //si tag date avant le prochain to_do, contenu du to_do s'arrête juste avant le tag date
+                tache.setContenu(contenu.mid(0, contenu.indexOf("@date", Qt::CaseInsensitive)).toStdString());
+                contenu.remove(0, contenu.indexOf("@date", Qt::CaseInsensitive) + 5);
+                tm date;
+                tache.setDateTache(date);
+                contenu.remove(0,11);
+            }
+        } else {
+            //pas de tag date trouvé, fin du contenu du to_do à la fin de la ligne
+            tache.setContenu(contenu.mid(0, contenu.indexOf("\n", Qt::CaseInsensitive)).toStdString());
+            time_t t = time(nullptr);
+            tm date = *(localtime(&t));
+            tache.setDateTache(date);
+            contenu.remove(0,contenu.indexOf("\n", Qt::CaseInsensitive));
+        }
+        GestionTache *gestionTache = this->tasksList->getTasksList();
+        gestionTache->addTache(tache);
+        this->interfaceBaseDeDonnee->insertionTache(c,interaction,tache);
+        this->tasksList->refreshTaskList(gestionTache);
+    }
 }

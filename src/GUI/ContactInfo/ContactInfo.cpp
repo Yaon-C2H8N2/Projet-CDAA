@@ -122,7 +122,6 @@ void ContactInfo::onInteractionCreatorRequest() {
     if (dialog->exec()) {
         Interaction interaction;
         interaction.setContenu(dialogUi->textEdit->toPlainText().toStdString());
-        //todo parser contenu interaction
         time_t t = time(nullptr);
         tm date = *localtime(&t);
         interaction.setDateInteraction(date);

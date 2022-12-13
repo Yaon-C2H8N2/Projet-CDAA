@@ -37,6 +37,8 @@ public:
 
     void removeInteraction(Contact contact, Interaction interaction);
 
+    void insertionTache(Contact contact, Interaction interaction, Tache tache);
+
     void removeTache(Contact contact, Interaction interaction);
 };
 
