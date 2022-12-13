@@ -78,8 +78,8 @@ void MainWindow::onInteractionDelete(Interaction interaction) {
     this->contactInfo->setContact(contact);
     this->tasksList->removeByInteraction(interaction);
     this->contactList->refreshContactList(this->contactList->getContactList());
-    this->interfaceBaseDeDonnee->removeInteraction(contact, interaction);
     this->interfaceBaseDeDonnee->removeTache(contact, interaction);
+    this->interfaceBaseDeDonnee->removeInteraction(contact, interaction);
 }
 
 /**
@@ -121,7 +121,9 @@ void MainWindow::onContactDeletion(Contact c) {
  */
 void MainWindow::onInteractionAdded(Contact c) {
     //TODO parser l'intéraction (dernière intéraction de la liste d'intéractions du contact)
-    cout << "Interaction à parser :" << endl << c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1) << endl;
+
+    Interaction interaction = c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1);
+
     this->contactList->getContactList()->modifyContact(c, c);
     this->contactList->refreshContactList(this->contactList->getContactList());
     this->interfaceBaseDeDonnee->ajoutInteraction(c, c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1));

@@ -146,6 +146,10 @@ void InterfaceBaseDeDonnee::insertContact(Contact contact) {
  * Le Contact que l'on souhaite supprimer.
  */
 void InterfaceBaseDeDonnee::removeContact(Contact contact) {
+    //suppression des intéractions du contact
+    for(int i=0;i<contact.getInteractions()->getNbInteraction();i++){
+        removeInteraction(contact,contact.getInteractions()->getInteraction(i));
+    }
     QSqlQuery query(db);
     db.open();
     query.prepare(
@@ -241,7 +245,6 @@ void InterfaceBaseDeDonnee::removeTache(Contact contact, Interaction interaction
     query.exec();
     query.first();
     int idInteraction = query.value(0).toInt();
-    cout << idContact << " " << idInteraction << endl;
     query.clear();
     query.prepare("delete from taches where idInteraction = :idInteraction AND idContact = :idContact");
     query.bindValue(":idInteraction",idInteraction);
