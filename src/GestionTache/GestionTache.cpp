@@ -89,9 +89,8 @@ ostream &operator<<(ostream &os, const GestionTache &tache) {
 }
 
 void GestionTache::removeTache(Interaction interaction) {
-    for (auto i: listeTache) {
-        if (i.getInteraction() == interaction) {
-            listeTache.remove(i);
-        }
+    GestionTache taches = *this->getTache(interaction);
+    for (int i=0; i<taches.getNbTache(); i++) {
+        this->removeTache(taches.getTache(i));
     }
 }

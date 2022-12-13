@@ -37,7 +37,6 @@ void TasksList::show() {
  */
 void TasksList::setTasksList(GestionTache *gestionTache) {
     this->gestionTache = gestionTache;
-    //todo tri dans l'ordre croissant des tâches
     emit refreshTaskList(this->gestionTache);
 }
 

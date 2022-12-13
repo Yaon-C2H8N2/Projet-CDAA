@@ -31,7 +31,13 @@ public:
 
     void insertContact(Contact contact);
 
+    void ajoutInteraction(Contact contact, Interaction interaction);
+
     void removeContact(Contact contact);
+
+    void removeInteraction(Contact contact, Interaction interaction);
+
+    void removeTache(Contact contact, Interaction interaction);
 };
 
 

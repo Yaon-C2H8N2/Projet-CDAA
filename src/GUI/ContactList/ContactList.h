@@ -42,7 +42,11 @@ private slots:
 
     void showContactList(GestionContact *);
 
-    void searchInList(QString);
+    void searchInListByText(QString);
+
+    void searchInListByDate();
+
+    void onComboBoxChange();
 
     void contactClicked(Contact);
 
