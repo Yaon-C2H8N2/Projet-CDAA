@@ -153,6 +153,9 @@ void MainWindow::onInteractionAdded(Contact c) {
                 tache.setContenu(contenu.mid(0, contenu.indexOf("@date", Qt::CaseInsensitive)).toStdString());
                 contenu.remove(0, contenu.indexOf("@date", Qt::CaseInsensitive) + 5);
                 tm date;
+                date.tm_mday = contenu.mid(1,3).toInt();
+                date.tm_mon = contenu.mid(4,6).toInt();
+                date.tm_year = contenu.mid(7,11).toInt();
                 tache.setDateTache(date);
                 contenu.remove(0,11);
             }
