@@ -13,4 +13,4 @@ Un des objectifs principaux de Tritium est le suivi d'intéractions. En effet, p
 ## Installation
 Pour l'instant Tritium est disponible uniquement sous Linux. Par la suite l'application sera compilée pour Windows et Mac.
 ### Téléchargement pour Linux :
-[https://github.com/Yaon-C2H8N2/Projet-CDAA/releases/download/v1.0.0/Tritium-Linux-bin]
+https://github.com/Yaon-C2H8N2/Projet-CDAA/releases/download/v1.0.0/Tritium-Linux-bin
