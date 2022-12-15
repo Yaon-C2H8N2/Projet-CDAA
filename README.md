@@ -10,5 +10,3 @@ Un des objectifs principaux de Tritium est le suivi d'intéractions. En effet, p
 | ------------- | ------------- |
 | **@todo**  | Créé une tâche. Le contenu suivant dans la même ligne sera le contenu de la tâche.  |
 | **@date [Facultatif]**  | Définit la date d'une tâche. Si le tag est absent alors la date est fixée à aujourd'hui.  |
-## Installation
-Pour l'instant Tritium est disponible uniquement sous Linux. Par la suite l'application sera compilée pour Windows et Mac.
