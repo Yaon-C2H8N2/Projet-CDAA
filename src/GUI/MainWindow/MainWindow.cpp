@@ -157,7 +157,6 @@ void MainWindow::onInteractionAdded(Contact c) {
             } else {
                 tache.setContenu(contenu.mid(0, contenu.indexOf("@date", Qt::CaseInsensitive)).toStdString());
                 contenu.remove(0, contenu.indexOf("@date", Qt::CaseInsensitive) + 5);
-                cout << contenu.mid(1, contenu.indexOf("\n", Qt::CaseInsensitive) - 1).toStdString() << endl;
                 QDateTime qDate = QDateTime::fromString(contenu.mid(1, 10), "dd/MM/yyyy");
                 if (qDate.isNull()) {
                     qDate = QDateTime::currentDateTime();

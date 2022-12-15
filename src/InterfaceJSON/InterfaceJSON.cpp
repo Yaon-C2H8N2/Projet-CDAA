@@ -66,7 +66,8 @@ void InterfaceJSON::importFromJson(GestionContact *gestionContact, QString path,
         c.setEntreprise(contact["entreprise"].toString().toStdString());
         c.setMail(contact["mail"].toString().toStdString());
         c.setTel(contact["tel"].toString().toStdString());
-        c.setCheminPhoto("/home/yaon/Documents/Projet-CDAA/data/photo/default.png");
+        c.setCheminPhoto((QApplication::applicationDirPath() +
+                          "/data/photo/default.png").toStdString());
         QString date = contact["dateCreation"].toString();
         QDateTime qDateCreation = QDateTime::fromString(date, "dd/MM/yyyy");
         time_t t = qDateCreation.toSecsSinceEpoch();

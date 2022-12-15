@@ -10,7 +10,7 @@
  */
 InterfaceBaseDeDonnee::InterfaceBaseDeDonnee() {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/yaon/Documents/Projet-CDAA/data/data.sqlite");
+    db.setDatabaseName(QApplication::applicationDirPath() + "/data/data.sqlite");
 }
 
 /**
