@@ -30,7 +30,8 @@ SOURCES += \
 	src/GUI/ContactCreator/ContactCreator.cpp \
 	src/GUI/ContactModifier/ContactModifier.cpp \
 	src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.cpp \
-	src/GUI/InteractionViewer/InteractionViewer.cpp
+	src/GUI/InteractionViewer/InteractionViewer.cpp \
+	src/InterfaceJSON/InterfaceJSON.cpp
 
 HEADERS += \
 	src/Contact/Contact.h \
@@ -47,4 +48,15 @@ HEADERS += \
 	src/GUI/ContactCreator/ContactCreator.h \
     src/GUI/ContactModifier/ContactModifier.h \
     src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h \
-    src/GUI/InteractionViewer/InteractionViewer.h
+    src/GUI/InteractionViewer/InteractionViewer.h \
+    src/InterfaceJSON/InterfaceJSON.h \
+    src/GUI/ui_ContactCreator.h \
+    src/GUI/ui_ContactInfo.h \
+    src/GUI/ui_InteractionCreator.h \
+    src/GUI/ui_ContactDeleteDialog.h \
+    src/GUI/ui_ContactList.h \
+    src/GUI/ui_ContactCreator.h \
+    src/GUI/ui_ContactModifier.h \
+    src/GUI/ui_InteractionViewer.h \
+    src/GUI/ui_MainWindow.h \
+    src/GUI/ui_TasksList.h
