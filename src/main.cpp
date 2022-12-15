@@ -1,11 +1,11 @@
 #include <QApplication>
 #include <iostream>
-#include "src/Contact/Contact.h"
-#include "src/Interaction/Interaction.h"
-#include "src/GestionContact/GestionContact.h"
-#include "src/GestionTache/GestionTache.h"
-#include "src/GUI/MainWindow/MainWindow.h"
-#include "src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h"
+#include "Contact/Contact.h"
+#include "Interaction/Interaction.h"
+#include "GestionContact/GestionContact.h"
+#include "GestionTache/GestionTache.h"
+#include "GUI/MainWindow/MainWindow.h"
+#include "InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h"
 
 int main(int argc, char *argv[]) {
     QApplication *app = new QApplication(argc, argv);
