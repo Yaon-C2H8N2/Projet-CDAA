@@ -50,13 +50,24 @@ HEADERS += \
     src/InterfaceBaseDeDonnee/InterfaceBaseDeDonnee.h \
     src/GUI/InteractionViewer/InteractionViewer.h \
     src/InterfaceJSON/InterfaceJSON.h \
-    src/GUI/ui_ContactCreator.h \
-    src/GUI/ui_ContactInfo.h \
-    src/GUI/ui_InteractionCreator.h \
-    src/GUI/ui_ContactDeleteDialog.h \
-    src/GUI/ui_ContactList.h \
-    src/GUI/ui_ContactCreator.h \
-    src/GUI/ui_ContactModifier.h \
-    src/GUI/ui_InteractionViewer.h \
-    src/GUI/ui_MainWindow.h \
-    src/GUI/ui_TasksList.h
+    src/GUI/TasksList/ui_TasksList.h \
+    src/GUI/ContactModifier/ui_ContactModifier.h \
+    src/GUI/MainWindow/ui_MainWindow.h \
+    src/GUI/ContactInfo/ui_ContactInfo.h \
+    src/GUI/ContactInfo/ui_InteractionCreator.h \
+    src/GUI/ContactList/ui_ContactDeleteDialog.h \
+    src/GUI/ContactList/ui_ContactList.h \
+    src/GUI/InteractionViewer/ui_InteractionViewer.h \
+    src/GUI/ContactCreator/ui_ContactCreator.h
+
+
+FORMS += \
+    src/GUI/TasksList/TasksList.ui \
+    src/GUI/ContactModifier/ContactModifier.ui \
+    src/GUI/MainWindow/MainWindow.ui \
+    src/GUI/ContactInfo/ContactInfo.ui \
+    src/GUI/ContactInfo/InteractionCreator.ui \
+    src/GUI/ContactList/ContactDeleteDialog.ui \
+    src/GUI/ContactList/ContactList.ui \
+    src/GUI/InteractionViewer/InteractionViewer.ui \
+    src/GUI/ContactCreator/ContactCreator.ui
