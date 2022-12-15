@@ -190,6 +190,9 @@ void MainWindow::onJsonExportRequested() {
     dialog.setAcceptMode(QFileDialog::AcceptSave);
     if (dialog.exec()) {
         QString path = dialog.selectedFiles()[0];
+        if (!path.endsWith(".json")) {
+            path.append(".json");
+        }
         InterfaceJSON *interfaceJSON = new InterfaceJSON();
         interfaceJSON->exportInJson(this->contactList->getContactList(), path);
     }
