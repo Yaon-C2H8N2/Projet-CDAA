@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+#include <QMessageBox>
+#include <QFileDialog>
 #include "InterfaceBaseDeDonnee.h"
 
 /**
@@ -11,6 +13,17 @@
 InterfaceBaseDeDonnee::InterfaceBaseDeDonnee() {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QApplication::applicationDirPath() + "/data/data.sqlite");
+    if(!db.open()){
+        QMessageBox mb;
+        mb.setText("Fichier data.sqlite non trouvé.\nIl est normalement situé ici :\n[emplacement du dossier du projet]/data/data.sqlite\nVeuillez sélectionner l'emplacement du fichier data.sqlite.");
+        mb.exec();
+        QFileDialog fileDialog;
+        fileDialog.setFileMode(QFileDialog::ExistingFile);
+        fileDialog.setNameFilter("Fichier data.sqlite (*.sqlite)");
+        fileDialog.exec();
+        db.setDatabaseName(fileDialog.selectedFiles()[0]);
+    }
+    db.close();
 }
 
 /**
