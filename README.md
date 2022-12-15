@@ -12,5 +12,3 @@ Un des objectifs principaux de Tritium est le suivi d'intéractions. En effet, p
 | **@date [Facultatif]**  | Définit la date d'une tâche. Si le tag est absent alors la date est fixée à aujourd'hui.  |
 ## Installation
 Pour l'instant Tritium est disponible uniquement sous Linux. Par la suite l'application sera compilée pour Windows et Mac.
-### Téléchargement pour Linux :
-https://github.com/Yaon-C2H8N2/Projet-CDAA/releases/download/v1.0.0/Tritium-Linux-bin
