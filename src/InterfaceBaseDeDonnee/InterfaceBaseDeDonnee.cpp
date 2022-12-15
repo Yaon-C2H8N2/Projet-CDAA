@@ -161,6 +161,13 @@ void InterfaceBaseDeDonnee::removeContact(Contact contact) {
     db.close();
 }
 
+/**
+ * Fonction insérant une nouvelle interaction dans la base de donnée.
+ * @param contact
+ * Le Contact auquel on souhaite ajouter l'interaction.
+ * @param interaction
+ * L'Interaction que l'on souhaite ajouter à la base de données.
+ */
 void InterfaceBaseDeDonnee::ajoutInteraction(Contact contact, Interaction interaction) {
     QSqlQuery query(db);
     db.open();
@@ -187,6 +194,13 @@ void InterfaceBaseDeDonnee::ajoutInteraction(Contact contact, Interaction intera
     db.close();
 }
 
+/**
+ * Supprime une Interaction de la base de données.
+ * @param contact
+ * Le Contact dont l'Interaction à supprimer est lié.
+ * @param interaction
+ * L'Interaction que l'on souhaite supprimer de la base de données.
+ */
 void InterfaceBaseDeDonnee::removeInteraction(Contact contact, Interaction interaction) {
     removeTache(contact, interaction);
     QSqlQuery query(db);
@@ -214,6 +228,15 @@ void InterfaceBaseDeDonnee::removeInteraction(Contact contact, Interaction inter
     db.close();
 }
 
+/**
+ * Fonction insérant une nouvelle tâche dans la base de donnée.
+ * @param contact
+ * Le Contact auquel l'Interaction liée à la Tache est associé.
+ * @param interaction
+ * L'Interaction liée à la Tache que l'on souhaite ajouter à la base de données.
+ * @param tache
+ * La Tache que l'on souhaite ajouter à la base de données.
+ */
 void InterfaceBaseDeDonnee::insertionTache(Contact contact, Interaction interaction, Tache tache) {
     QSqlQuery query(db);
     db.open();
@@ -249,6 +272,13 @@ void InterfaceBaseDeDonnee::insertionTache(Contact contact, Interaction interact
     query.exec();
 }
 
+/**
+ * Supprime une Tache de la base de données.
+ * @param contact
+ * Le Contact dont l'Intéraction liée à la Tache à supprimer est lié.
+ * @param interaction
+ * L'Interaction dont la Tache à supprimer est lié.
+ */
 void InterfaceBaseDeDonnee::removeTache(Contact contact, Interaction interaction) {
     QSqlQuery query(db);
     db.open();

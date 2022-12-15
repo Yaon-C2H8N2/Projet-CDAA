@@ -1,0 +1,68 @@
+{
+    "contacts": [
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Xray Eye & Vision Clinics",
+            "mail": "FitzRouze@jourrapide.com",
+            "nom": "Rouze",
+            "prenom": "Fitz",
+            "tel": "01 79 77 78 89"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Karl Shoes",
+            "mail": "EtienneVadnais@rhyta.com",
+            "nom": "Vadnais",
+            "prenom": "Étienne",
+            "tel": "05 90 27 87 31"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Sunburst Garden Management",
+            "mail": "LaverneLamontagne@teleworm.us",
+            "nom": "Lamontagne",
+            "prenom": "Laverne",
+            "tel": "02 27 18 60 28"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Mostow Co.",
+            "mail": "AndreeLamour@armyspy.com",
+            "nom": "Lamour",
+            "prenom": "Andrée",
+            "tel": "04 24 23 24 37"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Your Choices",
+            "mail": "IgnaceGrenier@dayrep.com",
+            "nom": "Grenier",
+            "prenom": "Ignace",
+            "tel": "01 40 06 43 78"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Albers Super Markets",
+            "mail": "AubinPoirier@dayrep.com",
+            "nom": "Poirier",
+            "prenom": "Aubin",
+            "tel": "04 58 81 47 97"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Sunburst Garden Management",
+            "mail": "PorterRuest@dayrep.com",
+            "nom": "Ruest",
+            "prenom": "Porter",
+            "tel": "01 75 58 08 67"
+        },
+        {
+            "dateCreation": "12/12/2022",
+            "entreprise": "Burstein-Applebee",
+            "mail": "DeniseBeaulieu@armyspy.com",
+            "nom": "Beaulieu",
+            "prenom": "Denise",
+            "tel": "03 02 92 47 93"
+        }
+    ]
+}

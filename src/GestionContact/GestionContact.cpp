@@ -176,8 +176,7 @@ GestionContact *GestionContact::rechercheIntervalleDate(tm date_debut, tm date_f
     GestionContact *res = new GestionContact();
     for (auto i: this->listeContacts) {
         tm dateContact = i.getDateCreation();
-        //le résultat du if ne fait aucun sens
-        if (difftime(mktime(&dateContact), mktime(&date_debut)) >= 0 && difftime(mktime(&dateContact), mktime(&date_fin)) <= 0) {
+        if (mktime(&dateContact) >= mktime(&date_debut) && mktime(&dateContact) <= mktime(&date_fin)) {
             res->addContact(i);
         }
     }

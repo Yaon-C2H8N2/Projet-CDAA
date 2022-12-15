@@ -93,12 +93,10 @@ void ContactList::searchInListByDate() {
     this->ui.dateEdit_2->setMinimumDate(this->ui.dateEdit->date());
     if(this->ui.comboBox->currentIndex() == 2){
         tm date_debut, date_fin;
-        date_debut.tm_mday = this->ui.dateEdit->date().day();
-        date_debut.tm_mon = this->ui.dateEdit->date().month()-1;
-        date_debut.tm_year = this->ui.dateEdit->date().year()-1900;
-        date_fin.tm_mday = this->ui.dateEdit_2->date().day();
-        date_fin.tm_mon = this->ui.dateEdit_2->date().month()-1;
-        date_fin.tm_year = this->ui.dateEdit_2->date().year()-1900;
+        time_t t = this->ui.dateEdit->dateTime().toSecsSinceEpoch();
+        date_debut = *localtime(&t);
+        t = this->ui.dateEdit_2->dateTime().toSecsSinceEpoch();
+        date_fin = *localtime(&t);
         emit refreshContactList(this->gestionContact->rechercheIntervalleDate(date_debut, date_fin));
     }
 }

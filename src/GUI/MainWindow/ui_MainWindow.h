@@ -1,19 +1,21 @@
 /********************************************************************************
-** Form generated from reading UI file 'MainWindowVYbLbS.ui'
+** Form generated from reading UI file 'MainWindowVkVivf.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef MAINWINDOWVYBLBS_H
-#define MAINWINDOWVYBLBS_H
+#ifndef MAINWINDOWVKVIVF_H
+#define MAINWINDOWVKVIVF_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -24,6 +26,8 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionImporter;
+    QAction *actionExporter;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QTabWidget *tabWidget;
@@ -34,6 +38,7 @@ public:
     QWidget *newContactWidget;
     QWidget *taskTab;
     QMenuBar *menubar;
+    QMenu *menuFichier;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -41,6 +46,10 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(853, 640);
+        actionImporter = new QAction(MainWindow);
+        actionImporter->setObjectName(QString::fromUtf8("actionImporter"));
+        actionExporter = new QAction(MainWindow);
+        actionExporter->setObjectName(QString::fromUtf8("actionExporter"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
@@ -80,10 +89,16 @@ public:
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 853, 24));
+        menuFichier = new QMenu(menubar);
+        menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
+
+        menubar->addAction(menuFichier->menuAction());
+        menuFichier->addAction(actionImporter);
+        menuFichier->addAction(actionExporter);
 
         retranslateUi(MainWindow);
 
@@ -96,8 +111,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionImporter->setText(QCoreApplication::translate("MainWindow", "Importer", nullptr));
+        actionExporter->setText(QCoreApplication::translate("MainWindow", "Exporter", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(contactTab), QCoreApplication::translate("MainWindow", "Contacts", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(taskTab), QCoreApplication::translate("MainWindow", "T\303\242ches", nullptr));
+        menuFichier->setTitle(QCoreApplication::translate("MainWindow", "Fichier", nullptr));
     } // retranslateUi
 
 };
@@ -108,4 +126,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // MAINWINDOWVYBLBS_H
+#endif // MAINWINDOWVKVIVF_H

@@ -3,7 +3,9 @@
 //
 
 #include <iostream>
+#include <QFileDialog>
 #include "MainWindow.h"
+#include "../../InterfaceJSON/InterfaceJSON.h"
 
 /**
  * Constructeur de la classe MainWindow permettant d'afficher la fenêtre principale.
@@ -33,6 +35,8 @@ MainWindow::MainWindow(QMainWindow *parent) {
     QObject::connect(this->contactList, SIGNAL(contactModified(Contact, Contact)), this,
                      SLOT(onContactUpdate(Contact, Contact)));
     QObject::connect(this->contactList, SIGNAL(contactDeleted(Contact)), this, SLOT(onContactDeletion(Contact)));
+    QObject::connect(this->ui.actionExporter, SIGNAL(triggered()), this, SLOT(onJsonExportRequested()));
+    QObject::connect(this->ui.actionImporter, SIGNAL(triggered()), this, SLOT(onJsonImportRequested()));
 }
 
 /**
@@ -111,6 +115,8 @@ void MainWindow::addNewContact(Contact contact) {
  */
 void MainWindow::onContactDeletion(Contact c) {
     this->interfaceBaseDeDonnee->removeContact(c);
+    this->contactInfo->setContact(*new Contact());
+    this->contactInfo->hide();
 }
 
 /**
@@ -147,17 +153,17 @@ void MainWindow::onInteractionAdded(Contact c) {
                 time_t t = time(nullptr);
                 tm date = *(localtime(&t));
                 tache.setDateTache(date);
-                contenu.remove(0,contenu.indexOf("\n", Qt::CaseInsensitive));
+                contenu.remove(0, contenu.indexOf("\n", Qt::CaseInsensitive));
             } else {
                 //si tag date avant le prochain to_do, contenu du to_do s'arrête juste avant le tag date
                 tache.setContenu(contenu.mid(0, contenu.indexOf("@date", Qt::CaseInsensitive)).toStdString());
                 contenu.remove(0, contenu.indexOf("@date", Qt::CaseInsensitive) + 5);
                 tm date;
-                date.tm_mday = contenu.mid(1,3).toInt();
-                date.tm_mon = contenu.mid(4,6).toInt();
-                date.tm_year = contenu.mid(7,11).toInt();
+                date.tm_mday = contenu.mid(1, 3).toInt();
+                date.tm_mon = contenu.mid(4, 6).toInt();
+                date.tm_year = contenu.mid(7, 11).toInt();
                 tache.setDateTache(date);
-                contenu.remove(0,11);
+                contenu.remove(0, 11);
             }
         } else {
             //pas de tag date trouvé, fin du contenu du to_do à la fin de la ligne
@@ -165,11 +171,41 @@ void MainWindow::onInteractionAdded(Contact c) {
             time_t t = time(nullptr);
             tm date = *(localtime(&t));
             tache.setDateTache(date);
-            contenu.remove(0,contenu.indexOf("\n", Qt::CaseInsensitive));
+            contenu.remove(0, contenu.indexOf("\n", Qt::CaseInsensitive));
         }
         GestionTache *gestionTache = this->tasksList->getTasksList();
         gestionTache->addTache(tache);
-        this->interfaceBaseDeDonnee->insertionTache(c,interaction,tache);
+        this->interfaceBaseDeDonnee->insertionTache(c, interaction, tache);
         this->tasksList->refreshTaskList(gestionTache);
+    }
+}
+
+/**
+ * Slot appelé lors de l'exportation de la liste de contacts dans un fichier JSON.
+ */
+void MainWindow::onJsonExportRequested() {
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setNameFilter(tr("JSON (*.json)"));
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    if (dialog.exec()) {
+        QString path = dialog.selectedFiles()[0];
+        InterfaceJSON *interfaceJSON = new InterfaceJSON();
+        interfaceJSON->exportInJson(this->contactList->getContactList(), path);
+    }
+}
+
+/**
+ * Slot appelé lors de l'importation d'un fichier JSON.
+ */
+void MainWindow::onJsonImportRequested() {
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setNameFilter(tr("JSON (*.json)"));
+    if (dialog.exec()) {
+        QString path = dialog.selectedFiles()[0];
+        InterfaceJSON *interfaceJSON = new InterfaceJSON();
+        interfaceJSON->importFromJson(this->contactList->getContactList(), path, this->interfaceBaseDeDonnee);
+        this->contactList->refreshContactList(this->contactList->getContactList());
     }
 }
