@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactListmIogvM.ui'
+** Form generated from reading UI file 'ContactListgDVHzf.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTLISTMIOGVM_H
-#define CONTACTLISTMIOGVM_H
+#ifndef CONTACTLISTGDVHZF_H
+#define CONTACTLISTGDVHZF_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -15,6 +15,7 @@
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
@@ -37,6 +38,7 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_2;
+    QLabel *dataInfoLabel;
 
     void setupUi(QWidget *ContactList)
     {
@@ -91,12 +93,18 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 622, 428));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 622, 403));
         verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout->addWidget(scrollArea);
+
+        dataInfoLabel = new QLabel(ContactList);
+        dataInfoLabel->setObjectName(QString::fromUtf8("dataInfoLabel"));
+        dataInfoLabel->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(dataInfoLabel);
 
 
         retranslateUi(ContactList);
@@ -112,6 +120,7 @@ public:
         comboBox->setItemText(2, QCoreApplication::translate("ContactList", "Recherche par date cr\303\251ation", nullptr));
 
         pushButton->setText(QCoreApplication::translate("ContactList", "+", nullptr));
+        dataInfoLabel->setText(QString());
     } // retranslateUi
 
 };
@@ -122,4 +131,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTLISTMIOGVM_H
+#endif // CONTACTLISTGDVHZF_H

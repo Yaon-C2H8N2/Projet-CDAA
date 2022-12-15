@@ -70,6 +70,7 @@ void ContactList::showContactList(GestionContact *gestionContact) {
         QObject::connect(contactButton, SIGNAL(deleteContact(Contact)), this, SLOT(deleteContact(Contact)));
         ui.scrollArea->widget()->layout()->addWidget(contactButton);
     }
+    this->ui.dataInfoLabel->setText("Nombre de contact : "+QString::fromStdString(to_string(this->gestionContact->getNbContacts())));
 }
 
 /**
