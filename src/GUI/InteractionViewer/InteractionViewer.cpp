@@ -1,7 +1,3 @@
-//
-// Created by yaon on 07/12/22.
-//
-
 #include <iostream>
 #include "InteractionViewer.h"
 

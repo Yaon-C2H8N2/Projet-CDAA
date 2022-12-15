@@ -1,7 +1,3 @@
-//
-// Created by yaon on 15/11/22.
-//
-
 #ifndef PROJET_CDAA_CONTACTMODIFIER_H
 #define PROJET_CDAA_CONTACTMODIFIER_H
 

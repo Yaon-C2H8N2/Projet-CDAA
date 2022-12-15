@@ -1,7 +1,3 @@
-//
-// Created by yaon on 30/10/22.
-//
-
 #ifndef PROJET_CDAA_TASKSLIST_H
 #define PROJET_CDAA_TASKSLIST_H
 

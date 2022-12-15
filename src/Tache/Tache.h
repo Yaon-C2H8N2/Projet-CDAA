@@ -1,7 +1,3 @@
-//
-// Created by yaon on 18/10/22.
-//
-
 #ifndef PROJET_CDAA_TACHE_H
 #define PROJET_CDAA_TACHE_H
 

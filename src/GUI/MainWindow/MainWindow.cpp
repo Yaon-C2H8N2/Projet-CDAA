@@ -1,7 +1,3 @@
-//
-// Created by yaon on 29/10/22.
-//
-
 #include <iostream>
 #include <QFileDialog>
 #include "MainWindow.h"

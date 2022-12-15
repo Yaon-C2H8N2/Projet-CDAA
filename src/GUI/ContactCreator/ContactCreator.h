@@ -1,7 +1,3 @@
-//
-// Created by yaon on 31/10/22.
-//
-
 #ifndef PROJET_CDAA_CONTACTCREATOR_H
 #define PROJET_CDAA_CONTACTCREATOR_H
 

@@ -1,7 +1,3 @@
-//
-// Created by yaon on 29/10/22.
-//
-
 #ifndef PROJET_CDAA_MAINWINDOW_H
 #define PROJET_CDAA_MAINWINDOW_H
 

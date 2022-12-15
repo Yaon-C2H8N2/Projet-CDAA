@@ -1,7 +1,3 @@
-//
-// Created by yaon on 07/12/22.
-//
-
 #ifndef PROJET_CDAA_INTERACTIONVIEWER_H
 #define PROJET_CDAA_INTERACTIONVIEWER_H
 

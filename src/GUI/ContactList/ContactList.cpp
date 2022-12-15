@@ -1,7 +1,3 @@
-//
-// Created by yaon on 30/10/22.
-//
-
 #include "ContactList.h"
 #include "ui_ContactDeleteDialog.h"
 #include "../ContactButton/ContactButton.h"

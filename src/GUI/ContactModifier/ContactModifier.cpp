@@ -1,7 +1,3 @@
-//
-// Created by yaon on 15/11/22.
-//
-
 #include <QFileDialog>
 #include "ContactModifier.h"
 

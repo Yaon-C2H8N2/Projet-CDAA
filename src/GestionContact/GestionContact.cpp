@@ -1,7 +1,3 @@
-//
-// Created by yaon on 12/10/22.
-//
-
 #include <iostream>
 #include "GestionContact.h"
 
