@@ -46,6 +46,10 @@ private slots:
     void addNewContact(Contact);
 
     void onInteractionAdded(Contact);
+
+    void onJsonExportRequested();
+
+    void onJsonImportRequested();
 };
 
 

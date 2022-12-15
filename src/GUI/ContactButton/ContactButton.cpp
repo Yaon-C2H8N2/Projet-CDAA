@@ -19,6 +19,8 @@ ContactButton::ContactButton(QWidget *parent, Contact contact) : QPushButton() {
     this->setAttribute(Qt::WA_DeleteOnClose);
     this->setText(QString::fromStdString(
             this->contact.getPrenom() + " " + this->contact.getNom()));
+    this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    this->setToolTip("Clic Droit pour modifier ou supprimer le contact");
     QObject::connect(this, SIGNAL(clicked()), this, SLOT(buttonClicked()));
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     QObject::connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),

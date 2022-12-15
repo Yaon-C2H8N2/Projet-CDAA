@@ -10,7 +10,7 @@
  */
 InterfaceBaseDeDonnee::InterfaceBaseDeDonnee() {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/yaon/Documents/Projet-CDAA/data/data.sqlite");
+    db.setDatabaseName(QApplication::applicationDirPath() + "/data/data.sqlite");
 }
 
 /**
@@ -110,8 +110,6 @@ void InterfaceBaseDeDonnee::updateContact(Contact old_contact, Contact new_conta
     query.bindValue(":oldEntreprise", QString::fromStdString(old_contact.getEntreprise()));
     query.bindValue(":oldCheminPhoto", QString::fromStdString(old_contact.getCheminPhoto()));
     query.bindValue(":oldTel", QString::fromStdString(old_contact.getTel()));
-    cout << "update " << old_contact.getNom() << " " << old_contact.getPrenom() << " to "
-         << query.boundValue(0).toString().toStdString() << " " << query.boundValue(1).toString().toStdString() << endl;
     query.exec();
     db.close();
 }
@@ -133,9 +131,6 @@ void InterfaceBaseDeDonnee::insertContact(Contact contact) {
     query.bindValue(":tel", QString::fromStdString(contact.getTel()));
     tm date = contact.getDateCreation();
     query.bindValue(":dateCreation", QDateTime::fromSecsSinceEpoch(mktime(&date)));
-    for (auto i: query.boundValues()) {
-        cout << i.toString().toStdString() << endl;
-    }
     query.exec();
     db.close();
 }
@@ -146,6 +141,10 @@ void InterfaceBaseDeDonnee::insertContact(Contact contact) {
  * Le Contact que l'on souhaite supprimer.
  */
 void InterfaceBaseDeDonnee::removeContact(Contact contact) {
+    //suppression des intéractions du contact
+    for (int i = 0; i < contact.getInteractions()->getNbInteraction(); i++) {
+        removeInteraction(contact, contact.getInteractions()->getInteraction(i));
+    }
     QSqlQuery query(db);
     db.open();
     query.prepare(
@@ -158,13 +157,17 @@ void InterfaceBaseDeDonnee::removeContact(Contact contact) {
     query.bindValue(":tel", QString::fromStdString(contact.getTel()));
     tm date = contact.getDateCreation();
     query.bindValue(":dateCreation", QDateTime::fromSecsSinceEpoch(mktime(&date)));
-    for (auto i: query.boundValues()) {
-        cout << i.toString().toStdString() << endl;
-    }
     query.exec();
     db.close();
 }
 
+/**
+ * Fonction insérant une nouvelle interaction dans la base de donnée.
+ * @param contact
+ * Le Contact auquel on souhaite ajouter l'interaction.
+ * @param interaction
+ * L'Interaction que l'on souhaite ajouter à la base de données.
+ */
 void InterfaceBaseDeDonnee::ajoutInteraction(Contact contact, Interaction interaction) {
     QSqlQuery query(db);
     db.open();
@@ -191,7 +194,15 @@ void InterfaceBaseDeDonnee::ajoutInteraction(Contact contact, Interaction intera
     db.close();
 }
 
+/**
+ * Supprime une Interaction de la base de données.
+ * @param contact
+ * Le Contact dont l'Interaction à supprimer est lié.
+ * @param interaction
+ * L'Interaction que l'on souhaite supprimer de la base de données.
+ */
 void InterfaceBaseDeDonnee::removeInteraction(Contact contact, Interaction interaction) {
+    removeTache(contact, interaction);
     QSqlQuery query(db);
     db.open();
     //récupération id contact
@@ -217,7 +228,16 @@ void InterfaceBaseDeDonnee::removeInteraction(Contact contact, Interaction inter
     db.close();
 }
 
-void InterfaceBaseDeDonnee::removeTache(Contact contact, Interaction interaction){
+/**
+ * Fonction insérant une nouvelle tâche dans la base de donnée.
+ * @param contact
+ * Le Contact auquel l'Interaction liée à la Tache est associé.
+ * @param interaction
+ * L'Interaction liée à la Tache que l'on souhaite ajouter à la base de données.
+ * @param tache
+ * La Tache que l'on souhaite ajouter à la base de données.
+ */
+void InterfaceBaseDeDonnee::insertionTache(Contact contact, Interaction interaction, Tache tache) {
     QSqlQuery query(db);
     db.open();
     //récupération id contact
@@ -241,11 +261,52 @@ void InterfaceBaseDeDonnee::removeTache(Contact contact, Interaction interaction
     query.exec();
     query.first();
     int idInteraction = query.value(0).toInt();
-    cout << idContact << " " << idInteraction << endl;
+    query.clear();
+    //insertion tache
+    query.prepare("insert into taches values (null, :idInteraction, :idContact, :contenu, :dateTache)");
+    query.bindValue(":idInteraction", idInteraction);
+    query.bindValue(":idContact", idContact);
+    query.bindValue(":contenu", QString::fromStdString(tache.getContenu()));
+    tm date = tache.getDateTache();
+    query.bindValue(":dateTache", QDateTime::fromSecsSinceEpoch(mktime(&date)));
+    query.exec();
+}
+
+/**
+ * Supprime une Tache de la base de données.
+ * @param contact
+ * Le Contact dont l'Intéraction liée à la Tache à supprimer est lié.
+ * @param interaction
+ * L'Interaction dont la Tache à supprimer est lié.
+ */
+void InterfaceBaseDeDonnee::removeTache(Contact contact, Interaction interaction) {
+    QSqlQuery query(db);
+    db.open();
+    //récupération id contact
+    query.prepare(
+            "SELECT id FROM contacts WHERE nom = :nom AND prenom = :prenom AND mail = :mail AND entreprise = :entreprise AND cheminPhoto = :cheminPhoto AND tel = :tel");
+    query.bindValue(":nom", QString::fromStdString(contact.getNom()));
+    query.bindValue(":prenom", QString::fromStdString(contact.getPrenom()));
+    query.bindValue(":mail", QString::fromStdString(contact.getMail()));
+    query.bindValue(":entreprise", QString::fromStdString(contact.getEntreprise()));
+    query.bindValue(":cheminPhoto", QString::fromStdString(contact.getCheminPhoto()));
+    query.bindValue(":tel", QString::fromStdString(contact.getTel()));
+    query.exec();
+    query.first();
+    int idContact = query.value(0).toInt();
+    query.clear();
+    //récupération id interaction
+    query.prepare(
+            "select id from interactions where idContact = :idContact AND contenu = :contenu");
+    query.bindValue(":idContact", idContact);
+    query.bindValue(":contenu", QString::fromStdString(interaction.getContenu()));
+    query.exec();
+    query.first();
+    int idInteraction = query.value(0).toInt();
     query.clear();
     query.prepare("delete from taches where idInteraction = :idInteraction AND idContact = :idContact");
-    query.bindValue(":idInteraction",idInteraction);
-    query.bindValue(":idContact",idContact);
+    query.bindValue(":idInteraction", idInteraction);
+    query.bindValue(":idContact", idContact);
     query.exec();
     db.close();
 }

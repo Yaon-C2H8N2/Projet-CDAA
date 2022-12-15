@@ -3,7 +3,9 @@
 //
 
 #include <iostream>
+#include <QFileDialog>
 #include "MainWindow.h"
+#include "../../InterfaceJSON/InterfaceJSON.h"
 
 /**
  * Constructeur de la classe MainWindow permettant d'afficher la fenêtre principale.
@@ -33,6 +35,8 @@ MainWindow::MainWindow(QMainWindow *parent) {
     QObject::connect(this->contactList, SIGNAL(contactModified(Contact, Contact)), this,
                      SLOT(onContactUpdate(Contact, Contact)));
     QObject::connect(this->contactList, SIGNAL(contactDeleted(Contact)), this, SLOT(onContactDeletion(Contact)));
+    QObject::connect(this->ui.actionExporter, SIGNAL(triggered()), this, SLOT(onJsonExportRequested()));
+    QObject::connect(this->ui.actionImporter, SIGNAL(triggered()), this, SLOT(onJsonImportRequested()));
 }
 
 /**
@@ -79,7 +83,6 @@ void MainWindow::onInteractionDelete(Interaction interaction) {
     this->tasksList->removeByInteraction(interaction);
     this->contactList->refreshContactList(this->contactList->getContactList());
     this->interfaceBaseDeDonnee->removeInteraction(contact, interaction);
-    this->interfaceBaseDeDonnee->removeTache(contact, interaction);
 }
 
 /**
@@ -112,6 +115,8 @@ void MainWindow::addNewContact(Contact contact) {
  */
 void MainWindow::onContactDeletion(Contact c) {
     this->interfaceBaseDeDonnee->removeContact(c);
+    this->contactInfo->setContact(*new Contact());
+    this->contactInfo->hide();
 }
 
 /**
@@ -120,9 +125,91 @@ void MainWindow::onContactDeletion(Contact c) {
  * Le Contact dont l'affichage doit être rafraîchit.
  */
 void MainWindow::onInteractionAdded(Contact c) {
-    //TODO parser l'intéraction (dernière intéraction de la liste d'intéractions du contact)
-    cout << "Interaction à parser :" << endl << c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1) << endl;
     this->contactList->getContactList()->modifyContact(c, c);
     this->contactList->refreshContactList(this->contactList->getContactList());
-    this->interfaceBaseDeDonnee->ajoutInteraction(c, c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction()-1));
+    this->interfaceBaseDeDonnee->ajoutInteraction(c, c.getInteractions()->getInteraction(
+            c.getInteractions()->getNbInteraction() - 1));
+
+    /*
+     * ===========================================================================
+     *              EXTRACTION DES TACHES ET INSERTION DANS LA DB
+     * ===========================================================================
+     */
+
+    Interaction interaction = c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction() - 1);
+    QString contenu = QString::fromStdString(interaction.getContenu());
+    contenu.append("\n");
+
+    //c'est ultra sketchy  j'en ai très honte
+    while (contenu.indexOf("@todo", Qt::CaseInsensitive) > (-1)) {
+        contenu.remove(0, contenu.indexOf("@todo", Qt::CaseInsensitive) + 5);
+        Tache tache;
+        tache.setInteraction(interaction);
+        if (contenu.indexOf("@date", Qt::CaseInsensitive) > (-1)) {
+            //si tag date trouvé
+            if (contenu.indexOf("\n", Qt::CaseInsensitive) < contenu.indexOf("@date", Qt::CaseInsensitive)) {
+                //si tag date après un retour à la ligne
+                tache.setContenu(contenu.mid(0, contenu.indexOf("\n", Qt::CaseInsensitive)).toStdString());
+                time_t t = time(nullptr);
+                tm date = *(localtime(&t));
+                tache.setDateTache(date);
+                contenu.remove(0, contenu.indexOf("\n", Qt::CaseInsensitive));
+            } else {
+                tache.setContenu(contenu.mid(0, contenu.indexOf("@date", Qt::CaseInsensitive)).toStdString());
+                contenu.remove(0, contenu.indexOf("@date", Qt::CaseInsensitive) + 5);
+                QDateTime qDate = QDateTime::fromString(contenu.mid(1, 10), "dd/MM/yyyy");
+                if (qDate.isNull()) {
+                    qDate = QDateTime::currentDateTime();
+                }
+                time_t t = qDate.toSecsSinceEpoch();
+                tm date = *localtime(&t);
+                tache.setDateTache(date);
+                contenu.remove(0, 11);
+            }
+        } else {
+            //pas de tag date trouvé, fin du contenu du to_do à la fin de la ligne
+            tache.setContenu(contenu.mid(0, contenu.indexOf("\n", Qt::CaseInsensitive)).toStdString());
+            time_t t = time(nullptr);
+            tm date = *(localtime(&t));
+            tache.setDateTache(date);
+            contenu.remove(0, contenu.indexOf("\n", Qt::CaseInsensitive));
+        }
+        GestionTache *gestionTache = this->tasksList->getTasksList();
+        gestionTache->addTache(tache);
+        this->interfaceBaseDeDonnee->insertionTache(c, interaction, tache);
+        this->tasksList->refreshTaskList(gestionTache);
+    }
+}
+
+/**
+ * Slot appelé lors de l'exportation de la liste de contacts dans un fichier JSON.
+ */
+void MainWindow::onJsonExportRequested() {
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setNameFilter(tr("JSON (*.json)"));
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    if (dialog.exec()) {
+        QString path = dialog.selectedFiles()[0];
+        if (!path.endsWith(".json")) {
+            path.append(".json");
+        }
+        InterfaceJSON *interfaceJSON = new InterfaceJSON();
+        interfaceJSON->exportInJson(this->contactList->getContactList(), path);
+    }
+}
+
+/**
+ * Slot appelé lors de l'importation d'un fichier JSON.
+ */
+void MainWindow::onJsonImportRequested() {
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setNameFilter(tr("JSON (*.json)"));
+    if (dialog.exec()) {
+        QString path = dialog.selectedFiles()[0];
+        InterfaceJSON *interfaceJSON = new InterfaceJSON();
+        interfaceJSON->importFromJson(this->contactList->getContactList(), path, this->interfaceBaseDeDonnee);
+        this->contactList->refreshContactList(this->contactList->getContactList());
+    }
 }

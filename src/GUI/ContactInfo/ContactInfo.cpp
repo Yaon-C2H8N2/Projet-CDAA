@@ -8,7 +8,7 @@
 #include <QDialog>
 #include "ContactInfo.h"
 #include "../InteractionViewer/InteractionViewer.h"
-#include "../InteractionCreator/ui_InteractionCreator.h"
+#include "ui_InteractionCreator.h"
 
 /**
  * Constructeur de la classe ContactInfo permettant d'afficher les informations relatives à un Contact.
@@ -122,7 +122,6 @@ void ContactInfo::onInteractionCreatorRequest() {
     if (dialog->exec()) {
         Interaction interaction;
         interaction.setContenu(dialogUi->textEdit->toPlainText().toStdString());
-        //todo parser contenu interaction
         time_t t = time(nullptr);
         tm date = *localtime(&t);
         interaction.setDateInteraction(date);

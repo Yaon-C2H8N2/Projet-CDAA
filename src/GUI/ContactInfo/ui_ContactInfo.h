@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'ContactInfoOWGYJg.ui'
+** Form generated from reading UI file 'ContactInfoUSDJdO.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef CONTACTINFOOWGYJG_H
-#define CONTACTINFOOWGYJG_H
+#ifndef CONTACTINFOUSDJDO_H
+#define CONTACTINFOUSDJDO_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -152,6 +152,9 @@ public:
         mailAddressLabel->setText(QCoreApplication::translate("ContactInfo", "DEBUG_MAILADDRESS", nullptr));
         label_3->setText(QCoreApplication::translate("ContactInfo", "Entreprise", nullptr));
         companyNameLabel->setText(QCoreApplication::translate("ContactInfo", "DEBUG_COMPANYNAME", nullptr));
+#if QT_CONFIG(tooltip)
+        scrollArea->setToolTip(QCoreApplication::translate("ContactInfo", "Clic Droit pour ajouter une interaction", nullptr));
+#endif // QT_CONFIG(tooltip)
         creationDateLabel->setText(QCoreApplication::translate("ContactInfo", "DEBUG_CREATIONDATE", nullptr));
     } // retranslateUi
 
@@ -163,4 +166,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // CONTACTINFOOWGYJG_H
+#endif // CONTACTINFOUSDJDO_H
