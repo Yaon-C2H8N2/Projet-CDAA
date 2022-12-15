@@ -138,6 +138,7 @@ void MainWindow::onInteractionAdded(Contact c) {
 
     Interaction interaction = c.getInteractions()->getInteraction(c.getInteractions()->getNbInteraction() - 1);
     QString contenu = QString::fromStdString(interaction.getContenu());
+    contenu.append("\n");
 
     //c'est ultra sketchy  j'en ai très honte
     while (contenu.indexOf("@todo", Qt::CaseInsensitive) > (-1)) {
@@ -146,22 +147,23 @@ void MainWindow::onInteractionAdded(Contact c) {
         tache.setInteraction(interaction);
         if (contenu.indexOf("@date", Qt::CaseInsensitive) > (-1)) {
             //si tag date trouvé
-            if (contenu.indexOf("@todo", Qt::CaseInsensitive) > (-1) && contenu.indexOf(
-                    contenu.indexOf("@todo", Qt::CaseInsensitive) < contenu.indexOf("@date", Qt::CaseInsensitive))) {
-                //si tag date après le prochain tag to_do alors pas de recherche pour le to_do actuel
+            if (contenu.indexOf("\n", Qt::CaseInsensitive) < contenu.indexOf("@date", Qt::CaseInsensitive)) {
+                //si tag date après un retour à la ligne
                 tache.setContenu(contenu.mid(0, contenu.indexOf("\n", Qt::CaseInsensitive)).toStdString());
                 time_t t = time(nullptr);
                 tm date = *(localtime(&t));
                 tache.setDateTache(date);
                 contenu.remove(0, contenu.indexOf("\n", Qt::CaseInsensitive));
             } else {
-                //si tag date avant le prochain to_do, contenu du to_do s'arrête juste avant le tag date
                 tache.setContenu(contenu.mid(0, contenu.indexOf("@date", Qt::CaseInsensitive)).toStdString());
                 contenu.remove(0, contenu.indexOf("@date", Qt::CaseInsensitive) + 5);
-                tm date;
-                date.tm_mday = contenu.mid(1, 3).toInt();
-                date.tm_mon = contenu.mid(4, 6).toInt();
-                date.tm_year = contenu.mid(7, 11).toInt();
+                cout << contenu.mid(1, contenu.indexOf("\n", Qt::CaseInsensitive) - 1).toStdString() << endl;
+                QDateTime qDate = QDateTime::fromString(contenu.mid(1, 10), "dd/MM/yyyy");
+                if (qDate.isNull()) {
+                    qDate = QDateTime::currentDateTime();
+                }
+                time_t t = qDate.toSecsSinceEpoch();
+                tm date = *localtime(&t);
                 tache.setDateTache(date);
                 contenu.remove(0, 11);
             }
